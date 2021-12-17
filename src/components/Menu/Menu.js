@@ -2,7 +2,7 @@ import React from 'react';
 
 const Menu = () => {
 
-    const links = ['Home', 'Favorites', 'Profile']
+    const links = ['Home', 'Follows', 'Profile']
 
     return (
         links.map(link => {

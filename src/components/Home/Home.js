@@ -1,7 +1,6 @@
 import React from 'react';
 import './home.css';
 import List from '../List/List';
-import Menu from '../Menu/Menu';
 
 const Home = () => {
 
@@ -12,11 +11,7 @@ const Home = () => {
     // search => filter List and only display titles with the characters included in the search
 
     return (
-        <>
-            <nav className='nav'>
-                <Menu />
-            </nav>
-            
+        <>  
             <section className='search-bar'>
                 <h6>SEARCH...</h6>
             </section>
