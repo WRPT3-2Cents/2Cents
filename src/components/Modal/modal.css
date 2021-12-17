@@ -11,9 +11,11 @@
 }
 
 .modal-content {
-        background-color: darkgray;
+        background-color: rgb(31, 29, 29);
         margin: 10% auto; /* 10% from the top and centered */
         padding: 20px;
         border: 1px solid #888;
         width: 80%;
+        color: white;
+        font-weight: bold;
 }

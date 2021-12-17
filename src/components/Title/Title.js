@@ -23,10 +23,15 @@ const Title = () => {
     return (
         <>
             <section className='header'>
-                <button>ADD TO WATCHLIST</button>
-                <button>ADD TO FOLLOWS </button>
                 <h1> TITLE </h1>
-                <button> RECOMMEND</button>
+
+                <section className='action-btns'>
+                    <button>ADD TO WATCHLIST</button>
+                    <button>ADD TO FOLLOWS </button>
+                    <button> RECOMMEND</button>
+                    <button> NOT RECOMMEND</button>
+                </section>
+
             </section>
 
             {comments.map(comment => {

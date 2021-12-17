@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import useForm from '../../utils/useForm';
+import './form.css';
 
-const Form = () => {
+const Form = ({fields, toggleForm}) => {
     const [values, handleChange] = useForm();
-    const [categories, setCategories] = useState([]);
+    // const [categories, setCategories] = useState([]);
 
     const info = (e) => {
         e.preventDefault();
@@ -23,7 +24,7 @@ const Form = () => {
                 {fields.map((field, i) => {
                     return (
                         <div key={i}>
-                            <label>{field.toUpperCase()}</label>
+                            <label>{field.toUpperCase()}</label>:
                             <input value={values.field} 
                                 name={field}
                                 onChange={handleChange}
