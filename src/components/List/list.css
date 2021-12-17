@@ -1,0 +1,6 @@
+.item {
+    border: 2px solid black;
+    list-style: none;
+    padding: 20px 0px;
+    margin: 0px 30px 25px;
+}
