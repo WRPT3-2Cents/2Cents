@@ -2,6 +2,7 @@ import React from 'react';
 import './list.css';
 
 const List = ({list}) => {
+
     return (
         list.map(item => {
             return (

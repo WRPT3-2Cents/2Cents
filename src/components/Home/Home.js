@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import './home.css';
 import List from '../List/List';
 import Menu from '../Menu/Menu';
