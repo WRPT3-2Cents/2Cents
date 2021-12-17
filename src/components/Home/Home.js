@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './home.css';
 import List from '../List/List';
+import Modal from '../Modal/Modal';
+import Form from '../Form/Form';
 
 const Home = () => {
 
@@ -16,11 +18,13 @@ const Home = () => {
         setFormStatus(!formStatus);
     }
 
+    const fields = ['Name', 'Type', 'Length', 'Genre', 'Description'];
+
     return (
         <>  
             <section className='search-bar'>
                 <h6>SEARCH...</h6>
-                <h6 onClick={toggleForm}>+</h6>
+                <h1 onClick={toggleForm}>+</h1>
             </section>
 
             <h1>Home</h1>
@@ -28,7 +32,11 @@ const Home = () => {
             <List list={testList} />
 
             {formStatus  && <Modal>
-                </Modal>}
+                                <Form
+                                    toggleForm={toggleForm}
+                                    fields={fields}
+                                    />
+                            </Modal>}
         </>
     )
 }

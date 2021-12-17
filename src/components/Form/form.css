@@ -1,0 +1,20 @@
+.form-btn {
+    background: white;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.form-btn:hover {
+    background: black;
+    color: white;
+    cursor: pointer;
+}
+
+.form {
+    border: 2px solid white;
+    margin-bottom: 50px;
+    padding: 25px 10px;
+}
