@@ -1,6 +1,7 @@
 const express = require('express');
 const massive = require('massive');
 require('dotenv').config();
+const {postRegister, postLogin, getUser, logout} = require('./authController')
 
 
 const app = express();
@@ -20,10 +21,10 @@ massive({
 })
 
 //Authentication Endpoints
-app.post('/api/register')
-app.post('/api/login')
-app.get('/api/me')
-app.delete('/api/logout')
+app.post('/api/register', postRegister)
+app.post('/api/login', postLogin)
+app.get('/api/me', getUser)
+app.delete('/api/logout', logout)
 //Title Endpoints
 
 //User Endpoints
