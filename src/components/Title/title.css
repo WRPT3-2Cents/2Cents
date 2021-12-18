@@ -2,3 +2,23 @@
     border: 2px solid black;
 }
 
+.action-btns button {
+    margin: 0px 10px;
+}
+
+.add-comment-section {
+    border: 2px solid black;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-box p {
+    padding: 5px 0px;
+    margin: 0;
+}
+
+.comment-box h6 {
+    padding: 0;
+    margin: 0;
+}

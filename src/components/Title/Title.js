@@ -1,10 +1,14 @@
-import React from 'react';
-import List from '../List/List';
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
+// import List from '../List/List';
 import './title.css';
 
 const Title = () => {
 
-    const comments = [ {
+    const [newTopLevelComment, setNewTopLevelComment] = useState('');
+    const [comments, setComments] = useState([]);
+
+    const mockComments = [ {
         comment_id: 0,
         message: 'This was a great movie!',
         date: '12-16-2021',
@@ -20,18 +24,54 @@ const Title = () => {
     }
     ];
 
+    useEffect(() => {
+        setComments(mockComments)
+    }, []);
+
+    const displayNewComment = () => {
+
+        const newComment = {
+            comment_id: comments.length,
+            message: newTopLevelComment,
+            date: Date().split('GMT')[0],
+        }
+        
+        const newComments = [
+            ...comments,
+            newComment
+        ]
+        setComments(newComments);
+
+        axios.post(`/api/comments`, newComment)
+            .then(res => {
+                console.log(res.data)
+                // setComments(res.data)
+            }).catch(err => console.log(err))
+
+        setNewTopLevelComment('');
+    }
+
+    const handleChange = (e) => {
+        setNewTopLevelComment(e.target.value);
+    }
+
     return (
         <>
             <section className='header'>
                 <h1> TITLE </h1>
 
                 <section className='action-btns'>
-                    <button>ADD TO WATCHLIST</button>
-                    <button>ADD TO FOLLOWS </button>
-                    <button> RECOMMEND</button>
-                    <button> NOT RECOMMEND</button>
+                    <button>W</button>
+                    <button>F </button>
+                    <button> ^</button>
+                    <button> v</button>
                 </section>
 
+            </section>
+
+            <section className='add-comment-section'>
+                <textarea onChange={handleChange} value={newTopLevelComment} />
+                <button className='add-comment-btn' onClick={displayNewComment}>SUBMIT</button>
             </section>
 
             {comments.map(comment => {
