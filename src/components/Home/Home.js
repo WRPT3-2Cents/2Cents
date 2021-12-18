@@ -3,10 +3,12 @@ import './home.css';
 import List from '../List/List';
 import Modal from '../Modal/Modal';
 import Form from '../Form/Form';
+// import axios from 'axios'
 
 const Home = () => {
 
     const [formStatus, setFormStatus] = useState(false);
+    // const [useOptions, setOptions] =useState([])
 
     const testList = ['movie', 'tv show', 'book'];
     // getTitles => select all titles and set state to equal response

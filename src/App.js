@@ -12,7 +12,7 @@ const App = () => {
   return (
     <div className="App">
       <Nav />
-      {/* <Home /> */}
+      <Home />
       <Title />
       {/* <Follows /> */}
       {/* <Profile /> */}
