@@ -8,44 +8,23 @@ const Title = () => {
     const [newTopLevelComment, setNewTopLevelComment] = useState('');
     const [comments, setComments] = useState([]);
 
-    const mockComments = [ {
-        comment_id: 0,
-        message: 'This was a great movie!',
-        date: '12-16-2021',
-        previous_id: undefined,
-        next_id: 1
-    },
-    {
-        comment_id: 1,
-        message: 'Totally agree!',
-        date: '12-16-2021',
-        previous_id: 0,
-        next_id: undefined
-    }
-    ];
-
     useEffect(() => {
-        setComments(mockComments)
+        axios.get(`/api/comments/title_id`)
+            .then(res => setComments(res.data))
+            .catch(err => console.log(err))
     }, []);
 
     const displayNewComment = () => {
-
         const newComment = {
-            comment_id: comments.length,
             message: newTopLevelComment,
-            date: Date().split('GMT')[0],
         }
         
-        const newComments = [
-            ...comments,
-            newComment
-        ]
-        setComments(newComments);
+        console.log(newTopLevelComment);
 
         axios.post(`/api/comments`, newComment)
             .then(res => {
                 console.log(res.data)
-                // setComments(res.data)
+                setComments(res.data)
             }).catch(err => console.log(err))
 
         setNewTopLevelComment('');
@@ -76,9 +55,10 @@ const Title = () => {
 
             {comments.map(comment => {
                 return (
-                    <div className='comment-box'>
+                    <div className='comment-box' key={comment.comment_id}>
                         <p>{comment.message}</p>
                         <h6>{comment.date}</h6>
+                        <button>Reply</button>
                     </div>
                 )
             })}
