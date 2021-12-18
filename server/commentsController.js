@@ -1,8 +1,8 @@
 const getComments = (req, res) => {
     const db = req.app.get('db');
     db.get_comments()
-    .then((Comments)=>{
-        res.status(200).send(Comments)
+    .then((comments)=>{
+        res.status(200).send(comments)
     })
     .catch((e)=>console.log(e));
 }

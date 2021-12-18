@@ -1,8 +1,8 @@
 const getTitles = (req,res) => {
     const db = req.app.get('db');
     db.get_titles()
-    .then((Titles)=>{
-        res.status(200).send(Titles);
+    .then((titles)=>{
+        res.status(200).send(titles);
     })
     .catch((e)=> console.log(e));
 }

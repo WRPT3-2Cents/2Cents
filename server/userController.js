@@ -1,8 +1,8 @@
 const getUsers = (req, res) => {
     const db = req.app.get('db');
     db.get_users()
-    .then((Users)=>{
-        res.status(200).send(Users)
+    .then((users)=>{
+        res.status(200).send(users)
     })
     .catch((e)=>console.log(e))
 }
