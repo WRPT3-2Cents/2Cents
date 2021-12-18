@@ -22,3 +22,13 @@
     padding: 0;
     margin: 0;
 }
+
+.reply-area {
+    border: 2px solid blue;
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}

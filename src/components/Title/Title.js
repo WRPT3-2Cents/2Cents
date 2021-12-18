@@ -6,20 +6,47 @@ import './title.css';
 const Title = () => {
 
     const [newTopLevelComment, setNewTopLevelComment] = useState('');
+    const [replyComment, setReplyComment] = useState('');
     const [comments, setComments] = useState([]);
+
+    const orderComments = (commentsArr) => {
+
+        const findChildren = (parentComment) => {
+            if (parentComment.next_id === undefined){
+                return parentComment;
+            } else {
+                const child = commentsArr.find(comment => comment.comment_id === parentComment.nextId);
+                findChildren(child);
+            }
+        }
+
+        commentsArr.map(parentComment => {
+            console.log(parentComment);
+            // orderedComments.push(parentComment);
+            const children = findChildren(parentComment);
+            console.log(children);
+        })
+    }
 
     useEffect(() => {
         axios.get(`/api/comments/title_id`)
-            .then(res => setComments(res.data))
+            .then(res => {
+                setComments(res.data);
+                console.log(res.data);
+            })
             .catch(err => console.log(err))
+        
+            orderComments(comments);
+
     }, []);
 
     const displayNewComment = () => {
         const newComment = {
             message: newTopLevelComment,
+            date: Date().split('GMT')[0],
+            previous_id: null,
+            next_id: null
         }
-        
-        console.log(newTopLevelComment);
 
         axios.post(`/api/comments`, newComment)
             .then(res => {
@@ -30,8 +57,34 @@ const Title = () => {
         setNewTopLevelComment('');
     }
 
+    const submitReply = (parentComment) => {
+
+        const newReplyComment = {
+            message: replyComment,
+            date: Date().split('GMT')[0],
+            previous_id: parentComment.comment_id,
+            next_id: null
+        }
+
+        axios.post(`/api/comments`, newReplyComment)
+            .then(res => {
+                console.log(res.data)
+                setComments(res.data)
+            }).catch(err => console.log(err))
+        
+        setReplyComment('');
+    }
+
     const handleChange = (e) => {
         setNewTopLevelComment(e.target.value);
+    }
+
+    const handleReplyChange = (e) => {
+        setReplyComment(e.target.value);
+    }
+
+    const addReplyComment = (e) => {
+        e.target.parentNode.childNodes[3].classList.toggle('hidden');
     }
 
     return (
@@ -42,8 +95,8 @@ const Title = () => {
                 <section className='action-btns'>
                     <button>W</button>
                     <button>F </button>
-                    <button> ^</button>
-                    <button> v</button>
+                    <button>^</button>
+                    <button>v</button>
                 </section>
 
             </section>
@@ -58,7 +111,12 @@ const Title = () => {
                     <div className='comment-box' key={comment.comment_id}>
                         <p>{comment.message}</p>
                         <h6>{comment.date}</h6>
-                        <button>Reply</button>
+                        <button onClick={addReplyComment}>Reply</button>
+                        
+                        <div className='reply-area hidden'>
+                                <textarea onChange={handleReplyChange} value={replyComment} />
+                                <button className='add-reply-btn' onClick={() => submitReply(comment)}>SUBMIT</button>
+                            </div>
                     </div>
                 )
             })}
