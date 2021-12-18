@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 // import List from '../List/List';
+import Modal from '../Modal/Modal';
+import EditCommentForm from '../EditCommentForm/EditCommentForm';
+
 import './title.css';
 
 const Title = () => {
@@ -8,27 +11,36 @@ const Title = () => {
     const [newTopLevelComment, setNewTopLevelComment] = useState('');
     const [replyComment, setReplyComment] = useState('');
     const [comments, setComments] = useState([]);
+    const [editCommentStatus, setEditCommentStatus] = useState(false);
+    const [targetComment, setTargetComment] = useState({});
 
     const orderComments = (commentsArr) => {
         console.log(commentsArr);
+        const orderedComments = [];
 
         const findChildren = (parentComment) => {
-            if (parentComment.next_id === undefined){
-                console.log(parentComment);
-                return parentComment;
-            } else {
-                const child = commentsArr.find(comment => comment.comment_id === parentComment.nextId);
+            orderedComments.push(parentComment);
+            if (parentComment.next_id !== 0 && parentComment.next_id !== null){
+                const child = commentsArr.find(comment => comment.comment_id === parentComment.next_id);
                 console.log(child);
                 findChildren(child);
             }
         }
 
-        commentsArr.map(parentComment => {
-            console.log(parentComment);
-            // orderedComments.push(parentComment);
-            const children = findChildren(parentComment);
-            console.log(children);
+        commentsArr.sort((a, b) => (a.comment_id - b.comment_id)).map(parentComment => {
+            // helper function for resursive search
+            findChildren(parentComment);
         })
+        
+        const finalCommentOrder = [];
+        
+        orderedComments.map(comment => {
+                if (!finalCommentOrder.includes(comment))
+                    finalCommentOrder.push(comment);
+            })
+        
+        // console.log(finalCommentOrder);
+        setComments(finalCommentOrder);
     }
 
     useEffect(() => {
@@ -86,7 +98,29 @@ const Title = () => {
     }
 
     const addReplyComment = (e) => {
-        e.target.parentNode.childNodes[3].classList.toggle('hidden');
+        e.stopPropagation();
+        // console.log(e.target.parentNode.childNodes);
+        e.target.parentNode.childNodes[4].classList.toggle('hidden');
+    }
+
+    const toggleEditCommentForm = () => {
+        setEditCommentStatus(!editCommentStatus);
+    }
+
+    const editComment = (comment) => {
+        setTargetComment(comment);
+        toggleEditCommentForm();
+    }
+
+    const deleteMe = (e, comment) => {
+        e.stopPropagation();
+        console.log(comment)
+        axios.delete(`/api/comments/${comment.comment_id}`)
+            .then(res => {
+                console.log(res.data);
+                orderComments(res.data)
+            })
+            .catch(err => console.log(err));
     }
 
     return (
@@ -109,11 +143,29 @@ const Title = () => {
             </section>
 
             {comments.map(comment => {
+                const date = comment.date.split('T')[0];
+
+                if (comment.previous_id !== 0 && comment.previous_id !== null){
+                        return (
+                            <div className='comment-box reply' key={comment.comment_id} onClick={() => editComment(comment)}>
+                                <p>{comment.message}</p>
+                                <h6>{date}</h6>
+                                <button onClick={addReplyComment}>Reply</button>
+                                <button onClick={(e) => deleteMe(e, comment)}> DELETE </button>
+                                
+                                <div className='reply-area hidden'>
+                                        <textarea onChange={handleReplyChange} value={replyComment} />
+                                        <button className='add-reply-btn' onClick={() => submitReply(comment)}>SUBMIT</button>
+                                    </div>
+                            </div>
+                        )
+                }
                 return (
-                    <div className='comment-box' key={comment.comment_id}>
+                    <div className='comment-box' key={comment.comment_id} onClick={() => editComment(comment)}>
                         <p>{comment.message}</p>
-                        <h6>{comment.date}</h6>
+                        <h6>{date}</h6>
                         <button onClick={addReplyComment}>Reply</button>
+                        <button onClick={(e) => deleteMe(e, comment)}> DELETE </button>
                         
                         <div className='reply-area hidden'>
                                 <textarea onChange={handleReplyChange} value={replyComment} />
@@ -122,6 +174,16 @@ const Title = () => {
                     </div>
                 )
             })}
+
+            {editCommentStatus && <Modal>
+                                        <EditCommentForm 
+                                            comment={targetComment} 
+                                            toggle={toggleEditCommentForm}
+                                            setComments={orderComments}/>
+                                    </Modal>}
+
+
+
         </>
     )
 }
