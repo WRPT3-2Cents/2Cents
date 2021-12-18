@@ -39,8 +39,8 @@ app.delete('/api/logout', logout);
 //Title Endpoints
 app.get('/api/titles', getTitles);
 app.post('/api/titles', addTitle);
-app.put('/api/title', editTitle);
-app.delete('/api/title', deleteTitle);
+app.put('/api/titles', editTitle);
+app.delete('/api/titles/title_id', deleteTitle);
 //User Endpoints
 app.get('/api/users', getUsers);
 app.post('/api/users', addUsers);
