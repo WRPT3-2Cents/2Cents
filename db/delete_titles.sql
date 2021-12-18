@@ -1,0 +1,2 @@
+DELETE FROM Titles
+WHERE id = $1;
