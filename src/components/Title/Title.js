@@ -10,12 +10,15 @@ const Title = () => {
     const [comments, setComments] = useState([]);
 
     const orderComments = (commentsArr) => {
+        console.log(commentsArr);
 
         const findChildren = (parentComment) => {
             if (parentComment.next_id === undefined){
+                console.log(parentComment);
                 return parentComment;
             } else {
                 const child = commentsArr.find(comment => comment.comment_id === parentComment.nextId);
+                console.log(child);
                 findChildren(child);
             }
         }
@@ -31,12 +34,11 @@ const Title = () => {
     useEffect(() => {
         axios.get(`/api/comments/title_id`)
             .then(res => {
-                setComments(res.data);
-                console.log(res.data);
+                orderComments(res.data);
+                // setComments(res.data);
+                // console.log(res.data);
             })
             .catch(err => console.log(err))
-        
-            orderComments(comments);
 
     }, []);
 
