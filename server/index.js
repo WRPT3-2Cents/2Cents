@@ -2,10 +2,14 @@ const express = require('express');
 const massive = require('massive');
 require('dotenv').config();
 const session = require('express-session')
+<<<<<<< HEAD
 const path = require('path');
+=======
+const path =require('path')
+>>>>>>> main
 const {postRegister, postLogin, getUser, logout} = require('./authController')
 const {getTitles, addTitle, editTitle, deleteTitle} = require('./titleController')
-const {getUsers, addUsers, editUsers, deleteUsers} = require('./userController')
+const {getUsers, editUsers, deleteUsers} = require('./userController')
 const {getComments, addComment, editComment, deleteComment} = require('./commentsController')
 
 const app = express();
@@ -46,7 +50,6 @@ app.put('/api/titles', editTitle);
 app.delete('/api/titles/:title_id', deleteTitle);
 //User Endpoints
 app.get('/api/users', getUsers);
-app.post('/api/users', addUsers);
 app.put('/api/users', editUsers);
 app.delete('/api/users',deleteUsers);
 //Comments Endpoints 

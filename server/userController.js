@@ -7,16 +7,27 @@ const getUsers = (req, res) => {
     .catch((e)=>console.log(e))
 }
 
-const addUsers = (req, res) => {
-    const db = req.app.get('db')
-    const {username, password, email, recommendations, watchlist} = req.body
-    db.add_users(username, password, email, recommendations, watchlist)
-    .then(()=> res.sendStatus(200))
-    .catch((e)=>res.status(500).send(e))
-}
 
 const editUsers = (req, res) => {
     const db = req.app.get('db')
+    const {
+        user_id,
+        username,
+        password,
+        email,
+        recommendations,
+        watchlist
+    } = req.body
+    db.edit_users(
+        user_id,
+        username,
+        password,
+        email,
+        recommendations,
+        watchlist
+    )
+    .then((users) => res.status(200).send(users))
+    .catch((e) => console.log(e));
 }
 
 const deleteUsers = (req, res) => {
@@ -29,7 +40,6 @@ const deleteUsers = (req, res) => {
 
 module.exports = {
     getUsers,
-    addUsers,
     editUsers,
     deleteUsers
 }
