@@ -95,10 +95,10 @@ const Title = () => {
 
     const handleReplyChange = (e) => {
         setReplyComment(e.target.value);
+        e.target.parentNode.childNodes[4].classList.toggle('hidden');
     }
 
     const addReplyComment = (e) => {
-        e.stopPropagation();
         // console.log(e.target.parentNode.childNodes);
         e.target.parentNode.childNodes[4].classList.toggle('hidden');
     }
@@ -147,8 +147,8 @@ const Title = () => {
 
                 if (comment.previous_id !== 0 && comment.previous_id !== null){
                         return (
-                            <div className='comment-box reply' key={comment.comment_id} onClick={() => editComment(comment)}>
-                                <p>{comment.message}</p>
+                            <div className='comment-box reply' key={comment.comment_id}>
+                                <p onClick={() => editComment(comment)}>{comment.message}</p>
                                 <h6>{date}</h6>
                                 <button onClick={addReplyComment}>Reply</button>
                                 <button onClick={(e) => deleteMe(e, comment)}> DELETE </button>
@@ -161,8 +161,8 @@ const Title = () => {
                         )
                 }
                 return (
-                    <div className='comment-box' key={comment.comment_id} onClick={() => editComment(comment)}>
-                        <p>{comment.message}</p>
+                    <div className='comment-box' key={comment.comment_id}>
+                        <p onClick={() => editComment(comment)}>{comment.message}</p>
                         <h6>{date}</h6>
                         <button onClick={addReplyComment}>Reply</button>
                         <button onClick={(e) => deleteMe(e, comment)}> DELETE </button>
