@@ -2,9 +2,10 @@ const express = require('express');
 const massive = require('massive');
 require('dotenv').config();
 const session = require('express-session')
+const path =require('path')
 const {postRegister, postLogin, getUser, logout} = require('./authController')
 const {getTitles, addTitle, editTitle, deleteTitle} = require('./titleController')
-const {getUsers, addUsers, editUsers, deleteUsers} = require('./userController')
+const {getUsers, editUsers, deleteUsers} = require('./userController')
 const {getComments, addComment, editComment, deleteComment} = require('./commentsController')
 
 const app = express();
@@ -19,12 +20,14 @@ app.use(session({
     }
 }));
 
+const dbLocation = path.join(__dirname, '../db');
+
 massive({
     connectionString: process.env.CONNECTION_STRING,
     ssl:{
         rejectUnauthorized: false
     }
-}).then((dbInstance)=>{
+}, { scripts: dbLocation }).then((dbInstance)=>{
     app.set('db', dbInstance);
     console.log('Database connection succesful')
 }).catch((e)=>{
@@ -43,7 +46,6 @@ app.put('/api/titles', editTitle);
 app.delete('/api/titles/title_id', deleteTitle);
 //User Endpoints
 app.get('/api/users', getUsers);
-app.post('/api/users', addUsers);
 app.put('/api/users', editUsers);
 app.delete('/api/users',deleteUsers);
 //Comments Endpoints 
