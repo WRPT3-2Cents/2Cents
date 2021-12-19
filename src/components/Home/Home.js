@@ -26,7 +26,7 @@ const Home = () => {
         <>  
             <section className='search-bar'>
                 <h6>SEARCH...</h6>
-                <h1 onClick={toggleForm}>+</h1>
+                <h1 onClick={toggleForm}>Add New Title</h1>
             </section>
 
             <h1>Home</h1>
