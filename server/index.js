@@ -2,11 +2,7 @@ const express = require('express');
 const massive = require('massive');
 require('dotenv').config();
 const session = require('express-session')
-<<<<<<< HEAD
 const path = require('path');
-=======
-const path =require('path')
->>>>>>> main
 const {postRegister, postLogin, getUser, logout} = require('./authController')
 const {getTitles, addTitle, editTitle, deleteTitle} = require('./titleController')
 const {getUsers, editUsers, deleteUsers} = require('./userController')
