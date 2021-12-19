@@ -10,7 +10,7 @@ const getComments = (req, res) => {
 
 const addComment = async (req,res) => {
     
-    console.log(req.body);
+    // console.log(req.body);
     const { message, date, previous_id, next_id } = req.body;
     const db = req.app.get('db');
 
@@ -64,11 +64,11 @@ const deleteComment = async (req, res) => {
     try {
 
         const comment = await db.find_comment(req.params.comment_id);
-        console.log(comment);
+        // console.log(comment);
 
         if (comment[0].next_id === null){
             const comments = await db.true_delete_comment(req.params.comment_id)
-            console.log(comments);
+            // console.log(comments);
             return res.status(200).send(comments);
         } 
         

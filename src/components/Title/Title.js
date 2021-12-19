@@ -15,7 +15,7 @@ const Title = () => {
     const [targetComment, setTargetComment] = useState({});
 
     const orderComments = (commentsArr) => {
-        console.log(commentsArr);
+        // console.log(commentsArr);
         const orderedComments = [];
 
         const findChildren = (parentComment) => {
@@ -64,7 +64,7 @@ const Title = () => {
 
         axios.post(`/api/comments`, newComment)
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 setComments(res.data)
             }).catch(err => console.log(err))
 
@@ -82,7 +82,7 @@ const Title = () => {
 
         axios.post(`/api/comments`, newReplyComment)
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 setComments(res.data)
             }).catch(err => console.log(err))
         
@@ -114,10 +114,10 @@ const Title = () => {
 
     const deleteMe = (e, comment) => {
         e.stopPropagation();
-        console.log(comment)
+        // console.log(comment)
         axios.delete(`/api/comments/${comment.comment_id}`)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 orderComments(res.data)
             })
             .catch(err => console.log(err));
