@@ -23,20 +23,20 @@ const List = ({list}) => {
     },[])
 
     return (
-            // list.map(item => {
-            //     return (
-            //         <li className='item'>{item}</li>
-            //         )
-            //     })
-        <div>
-        {useOptions.map((e,i) => {
-            return <div key={i}>
-            <li>{e.Title}<br/>
-             Released In {e.Year}</li>
-            <img src={e.Poster} alt="Jason Bourne" />
-            </div>
-        })}
-        </div>
+            list.map(item => {
+                return (
+                    <li className='item'>{item}</li>
+                    )
+                })
+        // <div>
+        // {useOptions.map((e,i) => {
+        //     return <div key={i}>
+        //     <li>{e.Title}<br/>
+        //      Released In {e.Year}</li>
+        //     <img src={e.Poster} alt="Jason Bourne" />
+        //     </div>
+        // })}
+        // </div>
     )
 }
 

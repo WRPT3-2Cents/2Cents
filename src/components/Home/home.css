@@ -12,3 +12,10 @@
     font-size: 1.2rem;
     font-weight: bold;
 }
+
+.titles {
+    list-style: none;
+    display: flex;
+    border: 2px solid black;
+    justify-content: space-around;
+}

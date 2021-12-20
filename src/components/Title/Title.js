@@ -3,7 +3,6 @@ import axios from 'axios';
 // import List from '../List/List';
 import Modal from '../Modal/Modal';
 import EditCommentForm from '../EditCommentForm/EditCommentForm';
-
 import './title.css';
 
 const Title = () => {
