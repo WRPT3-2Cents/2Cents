@@ -43,7 +43,7 @@ const editTitle = (req, res) => {
     recommendations,
     non_recommendations,
   } = req.body;
-  console.log(req.body)
+  
   db.edit_titles(
     title_id,
     name,

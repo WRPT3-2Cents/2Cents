@@ -14,7 +14,6 @@ const Register = () => {
       userEmail,
     };
 
-    console.log(body);
     axios.post("/api/register",body);
   };
 

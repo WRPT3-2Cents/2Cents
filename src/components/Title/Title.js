@@ -15,20 +15,18 @@ const Title = () => {
     const [targetComment, setTargetComment] = useState({});
 
     const orderComments = (commentsArr) => {
-        // console.log(commentsArr);
         const orderedComments = [];
 
         const findChildren = (parentComment) => {
             orderedComments.push(parentComment);
             if (parentComment.next_id !== 0 && parentComment.next_id !== null){
                 const child = commentsArr.find(comment => comment.comment_id === parentComment.next_id);
-                console.log(child);
                 findChildren(child);
             }
         }
 
         commentsArr.sort((a, b) => (a.comment_id - b.comment_id)).map(parentComment => {
-            // helper function for resursive search
+            // helper function for recursive search
             findChildren(parentComment);
         })
         
@@ -38,8 +36,6 @@ const Title = () => {
                 if (!finalCommentOrder.includes(comment))
                     finalCommentOrder.push(comment);
             })
-        
-        // console.log(finalCommentOrder);
         setComments(finalCommentOrder);
     }
 
@@ -47,8 +43,6 @@ const Title = () => {
         axios.get(`/api/comments/title_id`)
             .then(res => {
                 orderComments(res.data);
-                // setComments(res.data);
-                // console.log(res.data);
             })
             .catch(err => console.log(err))
 
@@ -64,7 +58,6 @@ const Title = () => {
 
         axios.post(`/api/comments`, newComment)
             .then(res => {
-                // console.log(res.data)
                 setComments(res.data)
             }).catch(err => console.log(err))
 
@@ -82,7 +75,6 @@ const Title = () => {
 
         axios.post(`/api/comments`, newReplyComment)
             .then(res => {
-                // console.log(res.data)
                 setComments(res.data)
             }).catch(err => console.log(err))
         
@@ -99,7 +91,6 @@ const Title = () => {
     }
 
     const addReplyComment = (e) => {
-        // console.log(e.target.parentNode.childNodes);
         e.target.parentNode.childNodes[4].classList.toggle('hidden');
     }
 
@@ -114,10 +105,9 @@ const Title = () => {
 
     const deleteMe = (e, comment) => {
         e.stopPropagation();
-        // console.log(comment)
+        
         axios.delete(`/api/comments/${comment.comment_id}`)
             .then(res => {
-                // console.log(res.data);
                 orderComments(res.data)
             })
             .catch(err => console.log(err));
