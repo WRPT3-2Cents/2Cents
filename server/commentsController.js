@@ -1,8 +1,11 @@
 
 
 const getComments = (req, res) => {
+    
+    const { title_id } = req.params;
+
     const db = req.app.get('db');
-    db.get_comments()
+    db.get_comments(title_id)
         .then((comments)=>{
             res.status(200).send(comments)
         }).catch((e)=>console.log(e));

@@ -1,1 +1,2 @@
-SELECT * FROM Comments;
+SELECT * FROM Comments
+WHERE title_id = $1;

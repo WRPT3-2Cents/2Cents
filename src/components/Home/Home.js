@@ -16,7 +16,6 @@ const Home = () => {
     useEffect(() => {
         axios.get(`/api/titles`)
             .then(res => {
-                console.log(res.data);
                 setTitles(res.data)
             })
             .catch(err => console.log(err))
@@ -47,7 +46,7 @@ const Home = () => {
             {titles.map(title => {
                 return (
                     <li className='titles' key={title.title_id}>
-                    <Link to={`Title/${title.title_id}`}>
+                    <Link to={`Title/${title.name}/${title.title_id}`}>
                         <h2>{title.name}</h2>
                         <h6>{title.genre}</h6>
                         <h6>{title.type}</h6>

@@ -7,6 +7,10 @@ const Menu = () => {
 
     return (
         links.map(link => {
+            if (link === 'Home'){
+                return <li><Link to='/'>Home</Link></li>
+            }
+            
             return <li><Link to={`/${link}`}>{link}</Link></li>
         })
     )
