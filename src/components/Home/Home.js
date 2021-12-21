@@ -10,8 +10,7 @@ const Home = () => {
 
     const [formStatus, setFormStatus] = useState(false);
     const [titles, setTitles] = useState([]);
-
-    const testList = ['movie', 'tv show', 'book'];
+    const [searchParams, setSearchParams] = useState('');
 
     useEffect(() => {
         axios.get(`/api/titles`)
@@ -21,32 +20,34 @@ const Home = () => {
             .catch(err => console.log(err))
     }, []);
 
-    // search => filter List and only display titles with the characters included in the search
+    
+    const handleChange = (e) => {
+        setSearchParams(e.target.value);
+    }
+    
 
     const toggleForm = () => {
         setFormStatus(!formStatus);
     }
 
-    const fields = ['Name', 'Type', 'Length', 'Genre', 'Description'];
+    const filteredTitles = titles.filter(title => title.name.toLowerCase().includes(searchParams));
 
     return (
-
-
-
+        
         <>  
             <section className='search-bar'>
-                {/* <h6>SEARCH...</h6> */}
+                <input value={searchParams} onChange={handleChange} placeholder='Search...'/>
                 <button onClick={toggleForm}>Add New Title</button>
             </section>
 
             <h1>Home</h1>
 
-            {/* <List list={testList} /> */}
+            {/* <List /> */}
 
-            {titles.map(title => {
+            {filteredTitles.map(title => {
                 return (
                     <li className='titles' key={title.title_id}>
-                    <Link to={`Title/${title.name}/${title.title_id}`}>
+                    <Link to={`Title/${title.name}/${title.title_id}`} className='title-details'>
                         <h2>{title.name}</h2>
                         <h6>{title.genre}</h6>
                         <h6>{title.type}</h6>
@@ -59,7 +60,7 @@ const Home = () => {
             {formStatus  && <Modal>
                                 <Form
                                     toggleForm={toggleForm}
-                                    fields={fields}
+                                    setTitles={setTitles}
                                     />
                             </Modal>}
         </>

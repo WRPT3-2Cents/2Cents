@@ -2,6 +2,7 @@
     border: 2px solid black;
     display: flex;
     justify-content: space-around;
+    padding: 10px 0px;
 }
 
 .nav {
@@ -15,7 +16,19 @@
 
 .titles {
     list-style: none;
+    border: 1px solid black;
+}
+
+.titles a {
+    text-decoration: none;
+    color: black;
+}
+
+.titles a:hover {
+    cursor: pointer;
+}
+
+.title-details {
     display: flex;
-    border: 2px solid black;
     justify-content: space-around;
 }
