@@ -10,11 +10,9 @@ const Form = ({toggleForm, setTitles}) => {
         e.preventDefault();
         axios.post(`/api/titles`, values)
             .then(res => {
-                console.log(res.data);
                 toggleForm();
                 setTitles(res.data)
             })
-        console.log(values);
     }
 
     return (

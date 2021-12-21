@@ -47,7 +47,6 @@ const Comments = ({title_id}) => {
 
         // helper function for creating list of comments to include replies
         const findChildren = (parentComment) => {
-            // console.log(parentComment);
             orderedComments.push(parentComment);
             if (parentComment.next_id !== 0 && parentComment.next_id !== null){
                 const child = commentsArr.find(comment => comment.comment_id === parentComment.next_id);
