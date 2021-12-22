@@ -1,3 +1,20 @@
+const getOneTitle = async (req, res) => {
+  const db= req.app.get('db');
+
+  const { title_id } = req.params;
+  
+
+  try {
+    const title = await db.get_one_title(title_id);
+    
+    return res.status(200).send(title[0]);
+
+  } catch(err){
+    console.log(`Error retrieving single title: ${err}`);
+    return res.status(500).send(err);
+  }
+}
+
 const getTitles = (req, res) => {
   const db = req.app.get("db");
   db.get_titles()
@@ -43,7 +60,7 @@ const editTitle = (req, res) => {
     non_recommendations,
   } = req.body;
   
-  db.edit_titles(
+  db.edit_titles([
     title_id,
     name,
     type,
@@ -51,7 +68,7 @@ const editTitle = (req, res) => {
     genre,
     length,
     recommendations,
-    non_recommendations
+    non_recommendations]
   )
     .then((titles) => res.status(200).send(titles))
     .catch((e) => console.log(e));
@@ -66,6 +83,7 @@ const deleteTitle = (req, res) => {
 };
 
 module.exports = {
+  getOneTitle,
   getTitles,
   addTitle,
   editTitle,

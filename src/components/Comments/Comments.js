@@ -72,11 +72,18 @@ const Comments = ({title_id}) => {
         setComments(finalCommentOrder);
     }
 
-    const submitReply = (parentComment) => {
+    const addReplyComment = (e) => {
+        e.target.parentNode.childNodes[4].classList.toggle('hidden');
+    }
+
+    const submitReply = (e, parentComment) => {
+
+        e.target.parentNode.classList.toggle('hidden');
 
         const newReplyComment = {
             message: replyComment,
             date: Date().split('GMT')[0],
+            title_id: title_id,
             previous_id: parentComment.comment_id,
             next_id: null
         }
@@ -91,12 +98,8 @@ const Comments = ({title_id}) => {
 
     const handleReplyChange = (e) => {
         setReplyComment(e.target.value);
-        e.target.parentNode.childNodes[4].classList.toggle('hidden');
     }
 
-    const addReplyComment = (e) => {
-        e.target.parentNode.childNodes[4].classList.toggle('hidden');
-    }
 
     const toggleEditCommentForm = () => {
         setEditCommentStatus(!editCommentStatus);
@@ -110,7 +113,7 @@ const Comments = ({title_id}) => {
     const deleteMe = (e, comment) => {
         e.stopPropagation();
         
-        axios.delete(`/api/comments/${comment.comment_id}`)
+        axios.delete(`/api/comments/${title_id}/${comment.comment_id}`)
             .then(res => {
                 orderComments(res.data)
             })
@@ -138,7 +141,7 @@ const Comments = ({title_id}) => {
                                 
                                 <div className='reply-area hidden'>
                                         <textarea onChange={handleReplyChange} value={replyComment} />
-                                        <button className='add-reply-btn' onClick={() => submitReply(comment)}>SUBMIT</button>
+                                        <button className='add-reply-btn' onClick={(e) => submitReply(e, comment)}>SUBMIT</button>
                                     </div>
                             </div>
                         )
@@ -152,7 +155,7 @@ const Comments = ({title_id}) => {
                         
                         <div className='reply-area hidden'>
                                 <textarea onChange={handleReplyChange} value={replyComment} />
-                                <button className='add-reply-btn' onClick={() => submitReply(comment)}>SUBMIT</button>
+                                <button className='add-reply-btn' onClick={(e) => submitReply(e, comment)}>SUBMIT</button>
                             </div>
                     </div>
                 )
@@ -162,7 +165,8 @@ const Comments = ({title_id}) => {
                                         <EditCommentForm 
                                             comment={targetComment} 
                                             toggle={toggleEditCommentForm}
-                                            setComments={orderComments}/>
+                                            setComments={orderComments}
+                                            titleId={title_id}/>
                                     </Modal>}
         </>
     )
