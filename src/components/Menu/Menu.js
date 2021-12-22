@@ -18,6 +18,7 @@ const Menu = () => {
                 <li><h4><Link to='/Follows'>Follows</Link></h4></li>
                 <li><h4><Link to='/Profile'>Profile</Link></h4></li>
                 <li><h4><Link to='/About'>About</Link></h4></li>
+                <li><h4><Link to='/Sign-up'>Sign-Up</Link></h4></li>
                 {/* <li><h4 onClick={logout} className='log-out'>Log-out</h4></li> */}
             </ul>
         </div>
