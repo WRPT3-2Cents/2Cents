@@ -4,7 +4,7 @@ require('dotenv').config();
 const session = require('express-session')
 const path = require('path');
 const {postRegister, postLogin, getUser, logout} = require('./authController')
-const {getTitles, addTitle, editTitle, deleteTitle} = require('./titleController')
+const {getOneTitle, getTitles, addTitle, editTitle, deleteTitle} = require('./titleController')
 const {getUsers, editUsers, deleteUsers} = require('./userController')
 const {getComments, addComment, editComment, deleteComment} = require('./commentsController')
 
@@ -40,6 +40,7 @@ app.post('/api/login', postLogin);
 app.get('/api/me', getUser);
 app.delete('/api/logout', logout);
 //Title Endpoints
+app.get(`/api/titles/:title_id`, getOneTitle);
 app.get('/api/titles', getTitles);
 app.post('/api/titles', addTitle);
 app.put('/api/titles', editTitle);
