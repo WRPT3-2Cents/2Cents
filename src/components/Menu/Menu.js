@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Menu = () => {
 
@@ -6,7 +7,11 @@ const Menu = () => {
 
     return (
         links.map(link => {
-            return <li>{link}</li>
+            if (link === 'Home'){
+                return <li><Link to='/'>Home</Link></li>
+            }
+            
+            return <li><Link to={`/${link}`}>{link}</Link></li>
         })
     )
 }

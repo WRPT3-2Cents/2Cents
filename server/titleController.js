@@ -14,21 +14,20 @@ const addTitle = (req, res) => {
     type,
     summary,
     genre,
-    length,
-    recommendations,
-    non_recommendations,
+    length
   } = req.body;
-  db.add_titles(
+  db.add_titles([
     name,
     type,
     summary,
     genre,
-    length,
-    recommendations,
-    non_recommendations
+    length]
   )
-    .then(() => res.sendStatus(200))
-    .catch((e) => res.status(500).send(e));
+    .then((titles) => res.status(200).send(titles))
+    .catch((e) => {
+      console.log(`Error adding new title: ${e}`);
+      res.status(500).send(e)
+    });
 };
 
 const editTitle = (req, res) => {
@@ -43,7 +42,7 @@ const editTitle = (req, res) => {
     recommendations,
     non_recommendations,
   } = req.body;
-  console.log(req.body)
+  
   db.edit_titles(
     title_id,
     name,

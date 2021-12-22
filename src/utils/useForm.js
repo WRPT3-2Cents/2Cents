@@ -13,7 +13,6 @@ const useForm = (defaultState = {}) => {
             }
             )
         );
-        // console.log(state);
     }
     
     return [state, handleChange];
