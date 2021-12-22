@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Menu = () => {
 
-    const links = ['Logo', 'Home', 'Follows', 'Profile', 'About']
+    const links = ['Logo', 'Home', 'Follows', 'Profile', 'About', 'Sign-Up']
 
     return (
         links.map(link => {
