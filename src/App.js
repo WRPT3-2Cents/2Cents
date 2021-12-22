@@ -9,7 +9,9 @@ const App = () => {
   return (
     <div className="App">
       <Nav />
+
         {routes}
+      
     </div>
   );
 

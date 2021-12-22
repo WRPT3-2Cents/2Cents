@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +36,18 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+button {
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: bolder;
+  border: none;
+  background-color: 
+}
+
+button:hover {
+  background-color: black;
+  color: yellow;
+  cursor: pointer;
 }
