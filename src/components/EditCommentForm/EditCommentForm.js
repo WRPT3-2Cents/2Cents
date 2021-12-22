@@ -2,12 +2,12 @@ import axios from 'axios';
 import React, { useState } from 'react';
 // import useForm from '../../utils/useForm';
 
-const EditCommentForm = ({comment, toggle, setComments}) => {
+const EditCommentForm = ({comment, toggle, setComments, titleId}) => {
     const [message, setMessage] = useState(comment.message);
 
     const info = (e) => {
         e.preventDefault();
-        axios.put(`/api/comments/${comment.comment_id}`, {message})
+        axios.put(`/api/comments/${comment.comment_id}`, {message, titleId})
             .then(res => {
                 toggle();
                 setComments(res.data)

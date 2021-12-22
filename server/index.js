@@ -52,7 +52,7 @@ app.delete('/api/users',deleteUsers);
 app.get('/api/comments/:title_id', getComments);
 app.post('/api/comments', addComment);
 app.put('/api/comments/:comment_id', editComment);
-app.delete('/api/comments/:comment_id', deleteComment);
+app.delete('/api/comments/:title_id/:comment_id', deleteComment);
 
 const PORT = process.env.SERVER_PORT;
 
