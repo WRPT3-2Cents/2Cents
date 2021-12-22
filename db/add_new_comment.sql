@@ -3,4 +3,5 @@ INSERT INTO Comments
 VALUES
 ($1, $2, $3, $4, $5, $6);
 
-SELECT * FROM Comments;
+SELECT * FROM Comments
+WHERE title_id = $4;

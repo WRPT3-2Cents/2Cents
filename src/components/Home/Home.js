@@ -40,7 +40,7 @@ const Home = () => {
                 <button onClick={toggleForm}>Add New Title</button>
             </section>
 
-            <h1>Home</h1>
+            <h1>2Cents</h1>
 
             {/* <List /> */}
 
