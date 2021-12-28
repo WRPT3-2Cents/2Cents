@@ -1,5 +1,8 @@
 .nav {
-    
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    font-size: 1.1rem;
 }
 
 .hamburger-menu {
