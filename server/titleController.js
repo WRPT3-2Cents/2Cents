@@ -15,16 +15,18 @@ const getOneTitle = async (req, res) => {
   }
 }
 
-const getTitles = (req, res) => {
+const getTitles = async (req, res) => {
   const db = req.app.get("db");
-  db.get_titles()
-    .then((titles) => {
-      res.status(200).send(titles);
-    })
-    .catch((e) => console.log(e));
+  try {
+    const titles = await db.get_titles();
+    return res.status(200).send(titles);
+  } catch(err){
+    console.log(`Error retrieving titles: ${err}`);
+    return res.status(500).send(`Error retrieving titles: ${err}`);
+  }
 };
 
-const addTitle = (req, res) => {
+const addTitle = async (req, res) => {
   const db = req.app.get("db");
   const {
     name,
@@ -33,21 +35,18 @@ const addTitle = (req, res) => {
     genre,
     length
   } = req.body;
-  db.add_titles([
-    name,
-    type,
-    summary,
-    genre,
-    length]
-  )
-    .then((titles) => res.status(200).send(titles))
-    .catch((e) => {
-      console.log(`Error adding new title: ${e}`);
-      res.status(500).send(e)
-    });
+
+  try {
+    const titles = await db.add_titles([name, type, summary, genre, length]);
+    return res.status(200).send(titles);
+  } catch(err){
+    console.log(`Error adding new title: ${e}`);
+    res.status(500).send(e)
+
+  }
 };
 
-const editTitle = (req, res) => {
+const editTitle = async (req, res) => {
   const db = req.app.get("db");
   const {
     title_id,
@@ -59,19 +58,14 @@ const editTitle = (req, res) => {
     recommendations,
     non_recommendations,
   } = req.body;
-  
-  db.edit_titles([
-    title_id,
-    name,
-    type,
-    summary,
-    genre,
-    length,
-    recommendations,
-    non_recommendations]
-  )
-    .then((titles) => res.status(200).send(titles))
-    .catch((e) => console.log(e));
+
+  try {
+    const titles = await db.edit_titles([title_id, name, type, summary, genre, length, recommendations, non_recommendations]);
+    return res.status(200).send(titles);
+  } catch(err){
+    console.log(`Error editing Title`);
+    return res.status(500).send(err);
+  }
 };
 
 const deleteTitle = (req, res) => {
