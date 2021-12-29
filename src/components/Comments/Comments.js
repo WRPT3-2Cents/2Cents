@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Modal from '../Modal/Modal';
 import EditCommentForm from '../EditCommentForm/EditCommentForm';
+import CommentDropdown from '../../bootstrap/CommentDropdown';
 import axios from 'axios';
 import './comments.css';
 
@@ -136,11 +137,18 @@ const Comments = ({title_id}) => {
                 if (comment.previous_id !== 0 && comment.previous_id !== null){
                         return (
                             <div className='comment-box reply' key={comment.comment_id}>
-                                <p onClick={() => editComment(comment)}>{comment.message}</p>
-                                <h6>{date}</h6>
+
+                                <section className='comment-author-info'>
+                                    <h6>Username</h6>
+                                    <h6>{date}</h6>
+                                    <CommentDropdown editComment={editComment} deleteMe={deleteMe} comment={comment} />
+                                </section>
+
+                                <p>{comment.message}</p>
+
                                 {loggedInStatus && <>
                                 <button onClick={addReplyComment}>Reply</button>
-                                <button onClick={(e) => deleteMe(e, comment)}> DELETE </button>
+                                
                                 
                                 <div className='reply-area hidden'>
                                         <textarea onChange={handleReplyChange} value={replyComment} />
@@ -153,19 +161,32 @@ const Comments = ({title_id}) => {
                 }
                 return (
                     <div className='comment-box' key={comment.comment_id}>
-                        <p onClick={() => editComment(comment)}>{comment.message}</p>
-                        <h6>{date}</h6>
-                        {loggedInStatus && <>
-                        <button onClick={addReplyComment}>Reply</button>
-                        <button onClick={(e) => deleteMe(e, comment)}> DELETE </button>
-                        
-                        <div className='reply-area hidden'>
-                                <textarea onChange={handleReplyChange} value={replyComment} />
-                                <button className='add-reply-btn' onClick={(e) => submitReply(e, comment)}>SUBMIT</button>
+
+                                <section className='comment-author-info'>
+                                    <h6 className='author'>Username</h6>
+                                    <h6>{date}</h6>
+                                </section>
+
+                                <p>{comment.message}</p>
+
+                                {loggedInStatus && <>
+
+                                <section className='reply-and-dropdown'>
+
+                                    <button className='reply-btn' onClick={addReplyComment}>Reply</button>
+                                    <section id='comment-dropdown'>
+                                        <CommentDropdown editComment={editComment} deleteMe={deleteMe} comment={comment} />
+                                    </section>
+                                </section>
+                                
+                                
+                                <div className='reply-area hidden'>
+                                        <textarea onChange={handleReplyChange} value={replyComment} />
+                                        <button className='add-reply-btn' onClick={(e) => submitReply(e, comment)}>SUBMIT</button>
+                                    </div>
+                                    </>
+                                }
                             </div>
-                        </>
-            }
-                    </div>
                 )
             })}
 

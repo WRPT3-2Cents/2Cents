@@ -16,11 +16,16 @@
     margin-top: 10px;
 }
 
-.main-logo {
+.nav-links h4 {
+    font-size: 1.2rem;
+}
+
+#main-logo {
     font-weight: 500;
     font-family: 'Pushster', cursive;
     font-size: 2rem;
 }
+
 
 @media only screen and (min-width: 600px){
     body {
@@ -39,13 +44,19 @@
     }
 
     .nav-links li {
-        margin: 20px 0px 0px 10px;
+        margin: 20px 20px 0px 10px;
     }
 
     .nav-links a:hover {
-        background-color: rgb(160, 160, 160);
-        color: yellow;
+        /* background-color: rgb(160, 160, 160); */
+        /* color: yellow; */
+        font-weight: 500;
         padding: 10px;
+        color: black;
+    }
+
+    #main-logo a:hover {
+        color: rgb(148, 148, 3);
     }
 
     .nav-link {

@@ -1,12 +1,12 @@
 import React from 'react';
 import { MDBNav, MDBNavItem, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem } from 'mdbreact';
 
-const Dropdown = ({addRecommendation, addNonRecommendation, }) => {
+const Dropdown = ({addRecommendation, addNonRecommendation}) => {
     return (
         <MDBNav color="secondary">
             <MDBNavItem>
                 <MDBDropdown>
-                    <MDBDropdownToggle nav caret color="secondary">
+                    <MDBDropdownToggle nav color="secondary">
                         <img src="https://img.icons8.com/material-outlined/34/000000/more.png"/>
                     </MDBDropdownToggle>
                     <MDBDropdownMenu color="secondary">
