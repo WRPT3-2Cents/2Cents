@@ -40,8 +40,6 @@ const Home = () => {
                 <button onClick={toggleForm}>Add New Title</button>
             </section>
 
-            <h1>2Cents</h1>
-
             {/* <List /> */}
 
             {filteredTitles.map(title => {
