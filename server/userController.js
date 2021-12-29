@@ -16,7 +16,8 @@ const editUsers = (req, res) => {
         password,
         email,
         recommendations,
-        watchlist
+        watchlist,
+        follows
     } = req.body
     db.edit_users(
         user_id,
@@ -24,7 +25,8 @@ const editUsers = (req, res) => {
         password,
         email,
         recommendations,
-        watchlist
+        watchlist,
+        follows
     )
     .then((users) => res.status(200).send(users))
     .catch((e) => console.log(e));

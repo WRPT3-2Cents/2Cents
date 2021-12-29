@@ -17,10 +17,11 @@ const Nav = () => {
     })
 
     return (
-        <nav className='nav' onClick={toggleMenu}>
+        <nav className='main-nav' onClick={toggleMenu}>
             { !menuStatus && 
                 <div className='hamburger-menu'>
-                    <img src="https://img.icons8.com/cotton/73/000000/menu.png"/>
+                    <img src="https://img.icons8.com/material-rounded/24/000000/menu--v1.png" alt='menu-icon' />
+                    <h6 className='menu-text'>MENU</h6>
                 </div>}
             { menuStatus && <Menu /> }
         </nav>

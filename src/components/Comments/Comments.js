@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from '../Modal/Modal';
 import EditCommentForm from '../EditCommentForm/EditCommentForm';
 import axios from 'axios';
+import './comments.css';
 
 const Comments = ({title_id}) => {
 
@@ -10,7 +11,6 @@ const Comments = ({title_id}) => {
     const [replyComment, setReplyComment] = useState('');
     const [editCommentStatus, setEditCommentStatus] = useState(false);
     const [targetComment, setTargetComment] = useState({});
-    
 
     useEffect(() => {
         axios.get(`/api/comments/${title_id}`)
@@ -22,6 +22,7 @@ const Comments = ({title_id}) => {
     }, []);
 
     const displayNewComment = () => {
+        
         const newComment = {
             message: newTopLevelComment,
             date: Date().split('GMT')[0],
@@ -120,13 +121,13 @@ const Comments = ({title_id}) => {
             .catch(err => console.log(err));
     }
 
-    const loggedInStatus = false;
+    const loggedInStatus = true;
 
     return (
         <>
             {loggedInStatus && <section className='add-comment-section'>
-                <textarea onChange={handleChange} value={newTopLevelComment} />
-                <button className='add-comment-btn' onClick={displayNewComment}>SUBMIT</button>
+                <textarea onChange={handleChange} value={newTopLevelComment} placeholder='What are your thoughts?'/>
+                {newTopLevelComment && <button className='add-comment-btn' onClick={displayNewComment}>SUBMIT</button>}
             </section> }
 
             {comments.map(comment => {
