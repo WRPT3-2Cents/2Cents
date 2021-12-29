@@ -7,8 +7,7 @@
 }
 
 .add-comment-section {
-    border: 2px solid black;
-    padding: 20px;
+    padding: 20px 20px 20px 0px;
     display: flex;
     flex-direction: column;
 }
@@ -39,13 +38,26 @@
 
 .header-info {
     display: flex;
-    justify-content: space-around;
+    align-items: center;
 }
 
-.recommendation-ratio {
-    background-color: rgb(153, 152, 152);
-    padding: 10px;
-    color: springgreen;
-    font-weight: bold;
-    font-size: 1.1rem;
+.header-info h6 {
+    margin-right: 22px;
+}
+
+.title-and-recommendation {
+    display: flex;
+    align-items: center;
+}
+
+#title {
+    font-weight: 500;
+}
+
+.recommendation-btns {
+
+}
+
+.recommendation-btns button {
+    padding: 0;
 }

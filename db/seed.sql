@@ -13,7 +13,8 @@ Users (
     password TEXT,
     email VARCHAR(50),
     recommendations VARCHAR(100)[],
-    watchlist VARCHAR(100)[]
+    watchlist VARCHAR(100)[],
+    follows VARCHAR(100)[]
 Comments (
     comment_id SERIAL PRIMARY KEY,
     message TEXT,
