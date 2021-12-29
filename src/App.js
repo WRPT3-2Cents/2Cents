@@ -10,8 +10,11 @@ const App = () => {
   return (
     <div className="App">
       <Nav />
+        <section className='main'>
 
         {routes}
+
+        </section>
       
     </div>
   );
