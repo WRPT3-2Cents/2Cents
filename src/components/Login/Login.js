@@ -1,20 +1,23 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./login.css";
 import { MDBCol, MDBInput} from "mdbreact";
 
 const Login = () => {
-  const [userName, setUserName] = useState("");
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate= useNavigate();
+  
   const loginUser = () => {
     const body = {
-      userName,
+      username,
       password,
     };
 
-    axios.post("/api/login", body).then((res) => {});
+    axios.post("/api/login", body).then((res) => {
+      navigate('/follows')
+    });
   };
 
   return (
@@ -30,7 +33,7 @@ const Login = () => {
             validate
             error="wrong"
             success="right"
-            value={userName}
+            value={username}
             onChange={(e) => setUserName(e.target.value)}
           />
           <MDBInput
@@ -42,9 +45,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           </div>
-          <Link to="/Follows">
             <button>Login</button>
-          </Link>
           <Link to="/Sign-up">
             <p className="h6 text-center mb-4">Create An Account</p>
           </Link>
@@ -55,3 +56,4 @@ const Login = () => {
 };
 
 export default Login;
+          

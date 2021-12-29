@@ -14,8 +14,8 @@ const Register = () => {
     e.preventDefault();
     const body = {
       userName,
-      userPassword,
       userEmail,
+      userPassword,
     };
 
     axios.post("/api/register", body);
