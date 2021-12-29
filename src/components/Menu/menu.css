@@ -27,6 +27,7 @@
 
     .nav-links {
         display: flex;
+        justify-content: space-between;
     }
 }
 
@@ -40,4 +41,8 @@
         color: yellow;
         padding: 10px;
     }
+}
+
+.menu{
+    width: 100%;
 }

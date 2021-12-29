@@ -1,12 +1,23 @@
-.login-form{
+.login-container{
+    border: solid 1px black;
+    width: 30%;
+    margin: auto;
+    border-radius: 8px;
+    background-color: #e0f7fa;
+}
+
+/* .login-form{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     height: 15vh;
-    /* border: solid 1px black; */
-}
+    border: solid 1px black;
+} */
 
-.login-inputs{
-    width: 15%;
-}
+/* .login-inputs{
+    width: 30%;
+    border-radius: 8px;
+    border: none;
+    padding-left: 8px;
+} */
