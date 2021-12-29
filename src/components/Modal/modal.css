@@ -1,4 +1,4 @@
-.modal {
+.custom-modal {
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -10,7 +10,7 @@
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.modal-content {
+.custom-modal-content {
         background-color: rgb(31, 29, 29);
         margin: 10% auto; /* 10% from the top and centered */
         padding: 20px;
