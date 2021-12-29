@@ -3,6 +3,8 @@ import Comments from '../Comments/Comments';
 import { useParams } from 'react-router-dom';
 import './title.css';
 import axios from 'axios';
+import Badge from '../../bootstrap/Badge';
+import Dropdown from '../../bootstrap/Dropdown';
 
 const Title = () => {
 
@@ -21,7 +23,7 @@ const Title = () => {
             .catch(err => console.log(err));
     }, [])
 
-    const addRecommentation = () => {
+    const addRecommendation = () => {
         const recommendations = titleInfo.recommendations + 1;
 
         axios.put(`/api/titles`, {...titleInfo, recommendations})
@@ -44,27 +46,30 @@ const Title = () => {
     }
 
     const recommendationRatio = Math.round((titleInfo.recommendations / (titleInfo.recommendations + titleInfo.non_recommendations))*100);
+    const recommendationLevel = recommendationRatio > 50 ? 'success' : 'danger';
 
     return (
         <>
             <section className='header'>
-
-                    <h1> {title_name} </h1>
-                    <h6 className='recommendation-ratio'>{recommendationRatio}%</h6>
-
-                    <section className='header-info'>
-                        <h5>{titleInfo.genre}</h5>
-                        <h5>{titleInfo.summary}</h5>
-                        <h5>{titleInfo.type}</h5>
+                    
+                    <section className='title-and-recommendation'>
+                            
+                        <h1 id='title'> {title_name} </h1>
+                        <Badge level={`${recommendationLevel}`} text={`Audience Score: ${recommendationRatio}%`} />
+                        
                     </section>
 
 
-                <section className='action-btns'>
-                    <button>W</button>
-                    <button>F </button>
-                    <button onClick={addRecommentation}>^</button>
-                    <button onClick={addNonRecommendation}>v</button>
-                </section>
+                    <section className='header-info'>
+                        <Dropdown addRecommendation={addRecommendation} addNonRecommendation={addNonRecommendation} />
+                        <h6>{titleInfo.genre}</h6>
+                        <h6>{titleInfo.type}</h6>
+                    </section>
+                    
+
+                    <section className='title-summary'>
+                        <h5>{titleInfo.summary}</h5>
+                    </section>
 
             </section>
 

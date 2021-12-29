@@ -1,5 +1,6 @@
 .menu {
-    
+    background-color: whitesmoke;
+    width: 100%;
 }
 
 .menu li {
@@ -12,12 +13,8 @@
 }
 
 .nav-links li {
-    margin: 0px 50px;
-}
-
-.menu {
-    /* position: fixed; */
-    /* background-color: steelblue; */
+    /* margin: 0px 50px; */
+    margin-top: 10px;
 }
 
 @media only screen and (min-width: 600px){
@@ -36,6 +33,11 @@
         /* background-color: lightblue; */
     }
 
+    .nav-links li {
+        /* margin: 0px 50px; */
+        margin: 10px 50px 0px 50px;
+    }
+
     .nav-links a:hover {
         background-color: rgb(160, 160, 160);
         color: yellow;
@@ -43,6 +45,4 @@
     }
 }
 
-.menu{
-    width: 100%;
-}
+
