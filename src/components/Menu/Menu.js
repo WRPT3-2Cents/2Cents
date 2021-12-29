@@ -6,13 +6,6 @@ import './menu.css';
 const Menu = () => {
 
     return (
-        // links.map(link => {
-        //     if (link === 'Home'){
-        //         return <li><Link to='/'>Home</Link></li>
-        //     }
-            
-        //     return <li><Link to={`/${link}`}>{link}</Link></li>
-        // })
         <div className='menu'>
           <ul className='nav-links'>
                 <div className='nav-links'>

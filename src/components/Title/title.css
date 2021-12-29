@@ -36,3 +36,16 @@
 .reply {
     margin-left: 20px;
 }
+
+.header-info {
+    display: flex;
+    justify-content: space-around;
+}
+
+.recommendation-ratio {
+    background-color: rgb(153, 152, 152);
+    padding: 10px;
+    color: springgreen;
+    font-weight: bold;
+    font-size: 1.1rem;
+}

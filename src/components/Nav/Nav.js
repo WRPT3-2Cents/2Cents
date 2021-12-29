@@ -20,7 +20,7 @@ const Nav = () => {
         <nav className='nav' onClick={toggleMenu}>
             { !menuStatus && 
                 <div className='hamburger-menu'>
-                    <img src="https://img.icons8.com/plumpy/48/000000/menu--v1.png"/>
+                    <img src="https://img.icons8.com/cotton/73/000000/menu.png"/>
                 </div>}
             { menuStatus && <Menu /> }
         </nav>
