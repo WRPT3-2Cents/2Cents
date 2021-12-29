@@ -120,13 +120,14 @@ const Comments = ({title_id}) => {
             .catch(err => console.log(err));
     }
 
+    const loggedInStatus = false;
 
     return (
         <>
-            <section className='add-comment-section'>
+            {loggedInStatus && <section className='add-comment-section'>
                 <textarea onChange={handleChange} value={newTopLevelComment} />
                 <button className='add-comment-btn' onClick={displayNewComment}>SUBMIT</button>
-            </section>
+            </section> }
 
             {comments.map(comment => {
                 const date = comment.date.split('T')[0];
@@ -136,6 +137,7 @@ const Comments = ({title_id}) => {
                             <div className='comment-box reply' key={comment.comment_id}>
                                 <p onClick={() => editComment(comment)}>{comment.message}</p>
                                 <h6>{date}</h6>
+                                {loggedInStatus && <>
                                 <button onClick={addReplyComment}>Reply</button>
                                 <button onClick={(e) => deleteMe(e, comment)}> DELETE </button>
                                 
@@ -143,6 +145,8 @@ const Comments = ({title_id}) => {
                                         <textarea onChange={handleReplyChange} value={replyComment} />
                                         <button className='add-reply-btn' onClick={(e) => submitReply(e, comment)}>SUBMIT</button>
                                     </div>
+                                    </>
+                                }
                             </div>
                         )
                 }
@@ -150,6 +154,7 @@ const Comments = ({title_id}) => {
                     <div className='comment-box' key={comment.comment_id}>
                         <p onClick={() => editComment(comment)}>{comment.message}</p>
                         <h6>{date}</h6>
+                        {loggedInStatus && <>
                         <button onClick={addReplyComment}>Reply</button>
                         <button onClick={(e) => deleteMe(e, comment)}> DELETE </button>
                         
@@ -157,6 +162,8 @@ const Comments = ({title_id}) => {
                                 <textarea onChange={handleReplyChange} value={replyComment} />
                                 <button className='add-reply-btn' onClick={(e) => submitReply(e, comment)}>SUBMIT</button>
                             </div>
+                        </>
+            }
                     </div>
                 )
             })}

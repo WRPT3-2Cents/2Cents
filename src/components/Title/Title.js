@@ -8,7 +8,6 @@ const Title = () => {
 
     // need to add functionality to add this title to the watchlist
     // need to add functionality to add this title to the follows list
-    // need to add functionality to +1 / -1 to this titles recommendations/non-recommendations fields
     
     const { title_name, title_id } = useParams();
     const [ titleInfo, setTitleInfo ] = useState({});
@@ -45,17 +44,19 @@ const Title = () => {
     }
 
     const recommendationRatio = Math.round((titleInfo.recommendations / (titleInfo.recommendations + titleInfo.non_recommendations))*100);
-    
-    console.log(titleInfo);
 
     return (
         <>
             <section className='header'>
-                <h1> {title_name} </h1>
-                <h5>{titleInfo.genre}</h5>
-                <h5>{titleInfo.summary}</h5>
-                <h5>{titleInfo.type}</h5>
-                <h6>{recommendationRatio}%</h6>
+
+                    <h1> {title_name} </h1>
+                    <h6 className='recommendation-ratio'>{recommendationRatio}%</h6>
+
+                    <section className='header-info'>
+                        <h5>{titleInfo.genre}</h5>
+                        <h5>{titleInfo.summary}</h5>
+                        <h5>{titleInfo.type}</h5>
+                    </section>
 
 
                 <section className='action-btns'>
