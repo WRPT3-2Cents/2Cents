@@ -75,12 +75,13 @@ const Comments = ({title_id}) => {
     }
 
     const addReplyComment = (e) => {
-        e.target.parentNode.childNodes[4].classList.toggle('hidden');
+        e.target.parentNode.parentNode.childNodes[3].classList.toggle('hidden')
     }
 
     const submitReply = (e, parentComment) => {
 
         e.target.parentNode.classList.toggle('hidden');
+        
 
         const newReplyComment = {
             message: replyComment,
@@ -139,15 +140,21 @@ const Comments = ({title_id}) => {
                             <div className='comment-box reply' key={comment.comment_id}>
 
                                 <section className='comment-author-info'>
-                                    <h6>Username</h6>
+                                    <h6 className='author'>Username</h6>
                                     <h6>{date}</h6>
-                                    <CommentDropdown editComment={editComment} deleteMe={deleteMe} comment={comment} />
                                 </section>
 
                                 <p>{comment.message}</p>
 
                                 {loggedInStatus && <>
-                                <button onClick={addReplyComment}>Reply</button>
+
+                                <section className='reply-and-dropdown'>
+
+                                    <button className='reply-btn' onClick={addReplyComment}>Reply</button>
+                                    <section id='comment-dropdown'>
+                                        <CommentDropdown editComment={editComment} deleteMe={deleteMe} comment={comment} />
+                                    </section>
+                                </section>
                                 
                                 
                                 <div className='reply-area hidden'>

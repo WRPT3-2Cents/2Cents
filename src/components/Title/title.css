@@ -23,10 +23,6 @@
     display: none;
 }
 
-.reply {
-    margin-left: 20px;
-}
-
 .header-info {
     display: flex;
     align-items: center;
@@ -45,10 +41,9 @@
     font-weight: 500;
 }
 
-.recommendation-btns {
-
-}
-
 .recommendation-btns button {
+    margin-right: 10px;
     padding: 0;
+    border-radius: 10px;
+    width: 70px;
 }

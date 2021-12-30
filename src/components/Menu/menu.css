@@ -1,5 +1,5 @@
 .menu {
-    background-color: whitesmoke;
+    background-color: black;
     width: 100%;
 }
 
@@ -9,7 +9,7 @@
 
 .menu a {
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 .nav-links li {
@@ -28,9 +28,6 @@
 
 
 @media only screen and (min-width: 600px){
-    body {
-        /* background-color: lightcoral; */
-    }
 
     .nav-links {
         display: flex;
@@ -39,24 +36,19 @@
 }
 
 @media only screen and (min-width: 1000px){
-    body {
-        /* background-color: lightblue; */
-    }
 
     .nav-links li {
         margin: 20px 20px 0px 10px;
     }
 
     .nav-links a:hover {
-        /* background-color: rgb(160, 160, 160); */
-        /* color: yellow; */
         font-weight: 500;
         padding: 10px;
-        color: black;
+        color: rgb(219, 219, 35);
     }
 
     #main-logo a:hover {
-        color: rgb(148, 148, 3);
+        color: rgb(219, 219, 35);
     }
 
     .nav-link {

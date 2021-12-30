@@ -34,3 +34,10 @@
     width: 90px;
     padding: 0;
 }
+
+.reply {
+    margin-left: 20px;
+    border-left: 1px solid black;
+    padding-left: 20px;
+    padding-top: 15px;
+}
