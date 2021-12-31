@@ -14,7 +14,7 @@ const LOGGED_IN = 'LOGGED_IN';
 const LOGGED_OUT = 'LOGGED_OUT';
 
 export const loginUser = (loginInfo) => {
-    const user = axios.post('/api/login', loginInfo)
+    const user = axios.post('/api/login', loginInfo).then(res => res.data);
     
     return {
         type: LOGGED_IN,

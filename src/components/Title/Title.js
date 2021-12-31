@@ -11,8 +11,6 @@ const Title = (props) => {
 
     const { title_name, title_id } = useParams();
     const [ titleInfo, setTitleInfo ] = useState({});
-    
-    // need to add functionality to add this title to the watchlist
 
     const addTitleToWatchlist = (title_id) => {
         if (!props.state.watchlist.includes(title_id)){
@@ -27,7 +25,7 @@ const Title = (props) => {
         
     }
 
-    // need to add functionality to add this title to the follows list
+    
     const addTitleToFollows = (title_id) => {
         if (!props.state.follows.includes(title_id)){
             const updatedFollows = [...props.state.follows, title_id];
@@ -40,7 +38,7 @@ const Title = (props) => {
         }
     }
     
-    // need to add functionality to add this title to the recommendations list
+    
     const addTitleToRecommendations = (title_id) => {
         if (!props.state.recommendations.includes(title_id)){
             const updatedRecommendations = [...props.state.recommendations, title_id];
