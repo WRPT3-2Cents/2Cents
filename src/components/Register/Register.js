@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./register.css";
 import {  MDBCol, MDBInput } from "mdbreact";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [userName, setUsername] = useState("");
@@ -17,9 +19,15 @@ const Register = () => {
       userEmail,
       userPassword,
     };
+    
+    axios.post("/api/register", body)
+    .then((res)=>{
+        if(res.status === 201){
+            toast.success("Registration Complete")
+        }
+    });
 
-    axios.post("/api/register", body);
-
+    
     setClickedRegister({ clickedRegister: true });
   };
 

@@ -1,5 +1,5 @@
 .menu {
-    background-color: whitesmoke;
+    background-color: black;
     width: 100%;
 }
 
@@ -9,18 +9,25 @@
 
 .menu a {
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 .nav-links li {
-    /* margin: 0px 50px; */
     margin-top: 10px;
 }
 
+.nav-links h4 {
+    font-size: 1.2rem;
+}
+
+#main-logo {
+    font-weight: 500;
+    font-family: 'Pushster', cursive;
+    font-size: 2rem;
+}
+
+
 @media only screen and (min-width: 600px){
-    body {
-        /* background-color: lightcoral; */
-    }
 
     .nav-links {
         display: flex;
@@ -29,19 +36,26 @@
 }
 
 @media only screen and (min-width: 1000px){
-    body {
-        /* background-color: lightblue; */
-    }
 
     .nav-links li {
-        /* margin: 0px 50px; */
-        margin: 10px 50px 0px 50px;
+        margin: 20px 20px 0px 10px;
     }
 
     .nav-links a:hover {
-        background-color: rgb(160, 160, 160);
-        color: yellow;
+        font-weight: 500;
         padding: 10px;
+        color: rgb(219, 219, 35);
+    }
+
+    #main-logo a:hover {
+        color: rgb(219, 219, 35);
+    }
+
+    .nav-link {
+        margin: 0;
+    }
+    ul.nav-links {
+        margin-bottom: 0;
     }
 }
 
