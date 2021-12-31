@@ -5,12 +5,14 @@ import Modal from '../Modal/Modal';
 import Form from '../Form/Form';
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Home = () => {
+const Home = (props) => {
 
     const [formStatus, setFormStatus] = useState(false);
     const [titles, setTitles] = useState([]);
     const [searchParams, setSearchParams] = useState('');
+    const [loggedInStatus, setLoggedInStatus] = useState(false);
 
     useEffect(() => {
         axios.get(`/api/titles`)
@@ -18,6 +20,7 @@ const Home = () => {
                 setTitles(res.data)
             })
             .catch(err => console.log(err))
+        setLoggedInStatus(props.state.loggedIn);
     }, []);
 
     
@@ -37,7 +40,7 @@ const Home = () => {
         <>  
             <section className='search-bar'>
                 <input value={searchParams} onChange={handleChange} placeholder='Search...'/>
-                <button onClick={toggleForm} className='add-new-title-btn'>+</button>
+                {loggedInStatus &&  <button onClick={toggleForm} className='add-new-title-btn'>+</button>}
             </section>
 
             {/* <List /> */}
@@ -65,4 +68,10 @@ const Home = () => {
     )
 }
 
-export default Home;
+const mapStateToProps = (reduxState) => {
+    return {
+        state: reduxState
+    }
+}
+
+export default connect(mapStateToProps)(Home);

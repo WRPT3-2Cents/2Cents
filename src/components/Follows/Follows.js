@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import './follows.css';
 
 const Follows = (props) => {
@@ -21,7 +22,12 @@ const Follows = (props) => {
             {props.state.follows.map(titleId => {
                 const title = titles.find(title => title.title_id === +titleId)
                 if (title){
-                    return <li key={title.title_id}>{title.name}</li>
+                    return (<li key={title.title_id} className='follows-title-details'>
+                                <Link to={`Title/${title.name}/${title.title_id}`}>
+                                    <h2>{title.name}</h2>
+                                    <h6>{title.genre}</h6>
+                                    <h6>{title.type}</h6>
+                                </Link></li>)
                 }
             })}
             </ul>

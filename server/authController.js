@@ -46,7 +46,6 @@ const postLogin = async (req, res) => {
                     watchlist: user.watchlist,
                     follows: user.follows
                 }
-                console.log(req.session.user);
                 res.status(200).send(req.session.user);
             }
         }

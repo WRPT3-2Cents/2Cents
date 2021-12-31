@@ -6,11 +6,14 @@ import axios from 'axios';
 import Badge from '../../bootstrap/Badge';
 import Dropdown from '../../bootstrap/Dropdown';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
+import { updateUser } from '../../redux/reducer';
 
 const Title = (props) => {
 
     const { title_name, title_id } = useParams();
     const [ titleInfo, setTitleInfo ] = useState({});
+    const [loggedInStatus, setLoggedInStatus] = useState(false);
 
     const addTitleToWatchlist = (title_id) => {
         if (!props.state.watchlist.includes(title_id)){
@@ -18,11 +21,9 @@ const Title = (props) => {
             // spread in state from redux except for loggedIn property
             const {loggedIn, ...userProperties} = props.state;
             const user = {...userProperties, watchlist: updatedWatchlist}
-            axios.put(`/api/users`, user)
-                .then(res => console.log(res.data))
-                .catch(err => console.log(err));
+            props.updateUser(user);
+            toast.success("Added to watchlist!")
         }
-        
     }
 
     
@@ -32,9 +33,8 @@ const Title = (props) => {
             // spread in state from redux except for loggedIn property
             const {loggedIn, ...userProperties} = props.state;
             const user = {...userProperties, follows: updatedFollows}
-            axios.put(`/api/users`, user)
-                .then(res => console.log(res.data))
-                .catch(err => console.log(err));
+            props.updateUser(user);
+            toast.success("Added to follows!")
         }
     }
     
@@ -45,9 +45,7 @@ const Title = (props) => {
             // spread in state from redux except for loggedIn property
             const {loggedIn, ...userProperties} = props.state;
             const user = {...userProperties, recommendations: updatedRecommendations}
-            axios.put(`/api/users`, user)
-                .then(res => console.log(res.data))
-                .catch(err => console.log(err));
+            props.updateUser(user);
         }
     }
 
@@ -59,9 +57,7 @@ const Title = (props) => {
             // spread in state from redux except for loggedIn property
             const {loggedIn, ...userProperties} = props.state;
             const user = {...userProperties, recommendations: updatedRecommendations}
-            axios.put(`/api/users`, user)
-                .then(res => console.log(res.data))
-                .catch(err => console.log(err));
+            props.updateUser(user);
         }
     }
 
@@ -72,6 +68,7 @@ const Title = (props) => {
                 setTitleInfo(data);
             })
             .catch(err => console.log(err));
+        setLoggedInStatus(props.state.loggedIn);
     }, [])
 
     const addRecommendation = () => {
@@ -120,12 +117,13 @@ const Title = (props) => {
 
 
                     <section className='header-info'>
+                        {loggedInStatus && 
                         <Dropdown 
                             addRecommendation={addRecommendation} 
                             addNonRecommendation={addNonRecommendation} 
                             addTitleToWatchlist={addTitleToWatchlist}
                             addTitleToFollows={addTitleToFollows}
-                            id={title_id}/>
+                            id={title_id}/>}
                         <h6>{titleInfo.genre}</h6>
                         <h6>{titleInfo.type}</h6>
                     </section>
@@ -141,13 +139,15 @@ const Title = (props) => {
 
         </>
     )
-}
+};
 
 const mapStateToProps = (reduxState) => {
 
     return {
         state: reduxState,
     }
-}
+};
 
-export default connect(mapStateToProps)(Title);
+const mapDispatchToProps = { updateUser };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Title);
