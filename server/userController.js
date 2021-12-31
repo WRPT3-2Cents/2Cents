@@ -1,35 +1,27 @@
-const getUsers = (req, res) => {
+const getUsers = async (req, res) => {
     const db = req.app.get('db');
-    db.get_users()
-    .then((users)=>{
-        res.status(200).send(users)
-    })
-    .catch((e)=>console.log(e))
+
+    try {
+        const users = await db.get_users();
+        return res.status(200).send(users[0]);
+    } catch(err){
+        console.log(`Error retrieving users: ${err}`);
+        return res.status(500).send(err);
+    }
 }
 
 
-const editUsers = (req, res) => {
+const editUsers = async (req, res) => {
     const db = req.app.get('db')
-    const {
-        user_id,
-        username,
-        password,
-        email,
-        recommendations,
-        watchlist,
-        follows
-    } = req.body
-    db.edit_users(
-        user_id,
-        username,
-        password,
-        email,
-        recommendations,
-        watchlist,
-        follows
-    )
-    .then((users) => res.status(200).send(users))
-    .catch((e) => console.log(e));
+    const { user_id, username, email, recommendations, watchlist, follows} = req.body
+
+    try {
+        const users = await db.edit_users([user_id, username, email, recommendations, watchlist, follows]);
+        return res.status(200).send(users[0]);
+    } catch(err){
+        console.log(`Error updating user: ${err}`);
+        return res.status(400).send(err);
+    }
 }
 
 const deleteUsers = (req, res) => {

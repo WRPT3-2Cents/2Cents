@@ -5,37 +5,64 @@ import './title.css';
 import axios from 'axios';
 import Badge from '../../bootstrap/Badge';
 import Dropdown from '../../bootstrap/Dropdown';
+import { connect } from 'react-redux';
 
 const Title = () => {
 
     const { title_name, title_id } = useParams();
     const [ titleInfo, setTitleInfo ] = useState({});
-
+    
     // need to add functionality to add this title to the watchlist
-    const mockUser = {
-        user_id: 7,
+    const mockUserData = {
+        user_id: 1,
         username: 'jp',
-        password: '1234',
         email: 'jp@example.com',
         recommendations: [],
         watchlist: [],
         follows: []
     }
+    
+    const [ mockUser, updateMockUser ] = useState(mockUserData);
 
     const addTitleToWatchlist = (title_id) => {
-        mockUser.watchlist.push(title_id);
+        if (!mockUser.watchlist.includes(title_id)){
+            const arr = mockUser.watchlist;
+            console.log({arr})
+            const updatedArr = [...arr, title_id];
+            console.log({updatedArr});
+            mockUser.watchlist = updatedArr;
+            updateMockUser(mockUser);
+            // axios.put('api/users', mockUser)
+            //     .then(res => console.log(res.data))
+            //     .catch(err => console.log(err));
+        }
         console.log(mockUser);
     }
 
     // need to add functionality to add this title to the follows list
     const addTitleToFollows = (title_id) => {
-        mockUser.follows.push(title_id)
+        if (!mockUser.follows.includes(title_id)){
+            mockUser.follows.push(title_id)
+            updateMockUser(mockUser);
+        }
         console.log(mockUser);
     }
     
     // need to add functionality to add this title to the recommendations list
     const addTitleToRecommendations = (title_id) => {
-        mockUser.recommendations.push(title_id)
+        if (!mockUser.recommendations.includes(title_id)){
+            mockUser.recommendations.push(title_id)
+            updateMockUser(mockUser);
+        }
+        console.log(mockUser);
+    }
+
+    const removeTitleFromRecommendations = (title_id) => {
+        if (mockUser.recommendations.includes(title_id)){
+            const titleIdIndexToRemove = mockUser.recommendations.find(id => id === title_id);
+            mockUser.recommendations.splice(titleIdIndexToRemove, 1);
+            updateMockUser(mockUser);
+        }
         console.log(mockUser);
     }
 
@@ -49,6 +76,9 @@ const Title = () => {
     }, [])
 
     const addRecommendation = () => {
+        
+        addTitleToRecommendations(title_id);
+
         const recommendations = titleInfo.recommendations + 1;
 
         axios.put(`/api/titles`, {...titleInfo, recommendations})
@@ -60,6 +90,9 @@ const Title = () => {
     }
 
     const addNonRecommendation = () => {
+
+        removeTitleFromRecommendations(title_id);
+
         const non_recommendations = titleInfo.non_recommendations + 1;
 
         axios.put(`/api/titles`, {...titleInfo, non_recommendations})
@@ -91,7 +124,6 @@ const Title = () => {
                             addNonRecommendation={addNonRecommendation} 
                             addTitleToWatchlist={addTitleToWatchlist}
                             addTitleToFollows={addTitleToFollows}
-                            addTitleToRecommendations={addTitleToRecommendations}
                             id={title_id}/>
                         <h6>{titleInfo.genre}</h6>
                         <h6>{titleInfo.type}</h6>
@@ -110,4 +142,10 @@ const Title = () => {
     )
 }
 
-export default Title;
+const mapStateToProps = (reduxState) => {
+    return {
+        state: reduxState,
+    }
+}
+
+export default connect(mapStateToProps)(Title);

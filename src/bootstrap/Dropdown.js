@@ -1,7 +1,7 @@
 import React from 'react';
 import { MDBNav, MDBNavItem, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem } from 'mdbreact';
 
-const Dropdown = ({addRecommendation, addNonRecommendation, addTitleToRecommendations, addTitleToWatchlist, addTitleToFollows }) => {
+const Dropdown = ({addRecommendation, addNonRecommendation, addTitleToWatchlist, addTitleToFollows, id }) => {
     return (
         <MDBNav color="secondary">
             <MDBNavItem>
@@ -22,10 +22,10 @@ const Dropdown = ({addRecommendation, addNonRecommendation, addTitleToRecommenda
                             </section>
                         </MDBDropdownItem>
                         <MDBDropdownItem>
-                            <button> Add to Watchlist </button>
+                            <button onClick={() => addTitleToWatchlist(id)}> Add to Watchlist </button>
                         </MDBDropdownItem>
                         <MDBDropdownItem>
-                            <button> Follow this title </button>
+                            <button onClick={() => addTitleToFollows(id)}> Follow this title </button>
                         </MDBDropdownItem>
                     </MDBDropdownMenu>
                 </MDBDropdown>

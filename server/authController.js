@@ -27,9 +27,9 @@ const postRegister = async (req, res) => {
 }
 
 const postLogin = async (req, res) => {
-    const { username, password } = req.body;
+    const { userName, password } = req.body;
     try {
-        const foundUser = await db(req).get_user(username);
+        const foundUser = await db(req).get_user(userName);
         const user = foundUser[0];
         if (!user){
             return res.status(401).send(`User not found. Please register a new user before logging in.`)
@@ -43,8 +43,10 @@ const postLogin = async (req, res) => {
                     username: user.username,
                     email: user.email,
                     recommendations: user.recommendations,
-                    watchlist: user.watchlist
+                    watchlist: user.watchlist,
+                    follows: user.follows
                 }
+                console.log(req.session.user);
                 return res.status(200).send(req.session.user);
             }
         }

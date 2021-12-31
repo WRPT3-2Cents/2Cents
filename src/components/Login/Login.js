@@ -3,24 +3,27 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./login.css";
 import { MDBCol, MDBInput} from "mdbreact";
+import { connect } from 'react-redux';
+import { loginUser } from '../../redux/reducer.js';
 
-const Login = () => {
+const Login = (props) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  const loginUser = () => {
-    const body = {
-      userName,
-      password,
-    };
+  // const loginUser = () => {
+  //   const body = {
+  //     userName,
+  //     password,
+  //   };
 
-    axios.post("/api/login", body).then((res) => {});
-  };
+  //   // axios.post("/api/login", body).then((res) => {});
+  //   props.loginUser(body);
+  // };
 
   return (
     <div className="login-container" >
       <MDBCol>
-        <form onSubmit={loginUser}>
+        <form>
           <h1 className="h1 text-center mb-4">Login</h1>
           <div className="black-text">
           <MDBInput
@@ -43,7 +46,7 @@ const Login = () => {
           />
           </div>
           <Link to="/Follows">
-            <button>Login</button>
+            <button onClick={() => props.loginUser({userName, password})}>Login</button>
           </Link>
           <Link to="/Sign-up">
             <p className="h6 text-center mb-4">Create An Account</p>
@@ -54,4 +57,12 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (reduxState) => {
+  return {
+    state: reduxState,
+  }
+};
+
+const mapDispatchToProps = { loginUser };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
