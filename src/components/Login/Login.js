@@ -2,37 +2,30 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./login.css";
-import { MDBCol, MDBInput } from "mdbreact";
-import {  toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { MDBCol, MDBInput} from "mdbreact";
+import { connect } from 'react-redux';
+import { loginUser } from '../../redux/reducer.js';
 
-const Login = () => {
-  const [username, setUserName] = useState("");
+const Login = (props) => {
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const loginUser = () => {
-    const body = {
-      username,
-      password,
-    };
+  // const loginUser = () => {
+  //   const body = {
+  //     userName,
+  //     password,
+  //   };
 
-    axios.post("/api/login", body)
-    .then((res) => {
-      toast.success("Login Successful");
-      console.log(res.status)
-      navigate("/follows");
-    });
-  };
-      
-      
-    
+  //   // axios.post("/api/login", body).then((res) => {});
+  //   props.loginUser(body);
+  // };
 
   return (
     <div className="login-container">
       <ToastContainer theme="dark" />
       <MDBCol>
-        <form onSubmit={loginUser}>
+        <form>
           <h1 className="h1 text-center mb-4">Login</h1>
           <div className="black-text">
             <MDBInput
@@ -54,9 +47,9 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="text-center">
-            <button>Login</button>
-          </div>
+          <Link to="/Follows">
+            <button onClick={() => props.loginUser({userName, password})}>Login</button>
+          </Link>
           <Link to="/Sign-up">
             <p className="h6 text-center mb-4">Create An Account</p>
           </Link>
@@ -66,4 +59,12 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (reduxState) => {
+  return {
+    state: reduxState,
+  }
+};
+
+const mapDispatchToProps = { loginUser };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -9,7 +9,7 @@ const About = () => {
 
             <h2> OUR TEAM </h2>
 
-            <p> The development minds behind this project are Nathan Amestoy, Jordan A and Joey Perry. </p>
+            <p> The development minds behind this project are Nathan Amestoy, Jordan Acey and Joey Perry. </p>
         </>
     )
 }

@@ -17,10 +17,12 @@
     "nodemon": "^2.0.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
     "react-router": "^6.2.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
-    "react-toastify": "^8.1.0",
+    "redux": "^4.1.2",
+    "redux-promise-middleware": "^6.1.2",
     "session": "^0.1.0",
     "use-history": "^1.4.1",
     "web-vitals": "^2.1.2"
