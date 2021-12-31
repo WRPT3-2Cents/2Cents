@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const initialState = {
+    id: '',
     username: '',
     email: '',
     watchlist: [],
@@ -15,8 +16,6 @@ const LOGGED_OUT = 'LOGGED_OUT';
 export const loginUser = (loginInfo) => {
     const user = axios.post('/api/login', loginInfo).then(res => {
         return res.data });
-
-    console.log(user);
     
     return {
         type: LOGGED_IN,
@@ -25,7 +24,7 @@ export const loginUser = (loginInfo) => {
 }
 
 export const logoutUser = () => {
-    const user = axios.get('/auth/logout').then(res => {
+    const user = axios.get('/api/logout').then(res => {
         return res.data
     })
     return {
@@ -36,17 +35,13 @@ export const logoutUser = () => {
 
 export default function reducer(state=initialState, action){
     switch(action.type){
-        case `${LOGGED_IN}_PENDING`: {
-            return {
-                ...state,
-            }
-        }
 
         case `${LOGGED_IN}_FULFILLED`: {
-            console.log(action.payload);
+            
             return {
                 ...state,
                 loggedIn: true,
+                id: action.payload.id,
                 username: action.payload.username,
                 email: action.payload.email,
                 recommendations: action.payload.recommendations,
@@ -59,11 +54,6 @@ export default function reducer(state=initialState, action){
             return {
                 ...state,
                 errorMessages: action.payload
-            }
-        }
-        case `${LOGGED_OUT}_PENDING`: {
-            return {
-                ...state,
             }
         }
 
@@ -80,7 +70,7 @@ export default function reducer(state=initialState, action){
                 errorMessages: action.payload
             }
         }
-        default:{
+        default: {
             return state;
         }
     }

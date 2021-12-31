@@ -7,11 +7,11 @@ const getOneTitle = async (req, res) => {
   try {
     const title = await db.get_one_title(title_id);
     
-    return res.status(200).send(title[0]);
+     res.status(200).send(title[0]);
 
   } catch(err){
     console.log(`Error retrieving single title: ${err}`);
-    return res.status(500).send(err);
+     res.status(500).send(err);
   }
 }
 
@@ -19,10 +19,10 @@ const getTitles = async (req, res) => {
   const db = req.app.get("db");
   try {
     const titles = await db.get_titles();
-    return res.status(200).send(titles);
+     res.status(200).send(titles);
   } catch(err){
     console.log(`Error retrieving titles: ${err}`);
-    return res.status(500).send(`Error retrieving titles: ${err}`);
+     res.status(500).send(`Error retrieving titles: ${err}`);
   }
 };
 
@@ -38,7 +38,7 @@ const addTitle = async (req, res) => {
 
   try {
     const titles = await db.add_titles([name, type, summary, genre, length]);
-    return res.status(200).send(titles);
+     res.status(200).send(titles);
   } catch(err){
     console.log(`Error adding new title: ${e}`);
     res.status(500).send(e)
@@ -61,10 +61,10 @@ const editTitle = async (req, res) => {
 
   try {
     const titles = await db.edit_titles([title_id, name, type, summary, genre, length, recommendations, non_recommendations]);
-    return res.status(200).send(titles);
+     res.status(200).send(titles);
   } catch(err){
     console.log(`Error editing Title`);
-    return res.status(500).send(err);
+     res.status(500).send(err);
   }
 };
 
