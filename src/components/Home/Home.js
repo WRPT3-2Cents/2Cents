@@ -37,10 +37,8 @@ const Home = () => {
         <>  
             <section className='search-bar'>
                 <input value={searchParams} onChange={handleChange} placeholder='Search...'/>
-                <button onClick={toggleForm}>Add New Title</button>
+                <button onClick={toggleForm} className='add-new-title-btn'>+</button>
             </section>
-
-            <h1>2Cents</h1>
 
             {/* <List /> */}
 

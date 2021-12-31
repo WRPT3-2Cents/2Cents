@@ -54,7 +54,7 @@ const Title = () => {
                     
                     <section className='title-and-recommendation'>
                             
-                        <h1 id='title'> {title_name} </h1>
+                        <h2 id='title'> {title_name} </h2>
                         <Badge level={`${recommendationLevel}`} text={`Audience Score: ${recommendationRatio}%`} />
                         
                     </section>

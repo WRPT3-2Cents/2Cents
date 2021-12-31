@@ -1,13 +1,19 @@
 .search-bar {
-    border: 2px solid black;
     display: flex;
     justify-content: space-around;
-    padding: 10px 0px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    border-radius: 20px;
 }
 
 .titles {
     list-style: none;
-    border: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 10px 0px;
+    
 }
 
 .titles a {
@@ -19,7 +25,24 @@
     cursor: pointer;
 }
 
+.titles h2 {
+    font-size: 1.4rem;
+}
+
+.titles h6 {
+    font-size: .75rem;
+}
+
 .title-details {
     display: flex;
     justify-content: space-around;
+}
+
+.add-new-title-btn {
+    border-radius: 20px;
+    width: 50px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
