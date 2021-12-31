@@ -1,0 +1,8 @@
+.username {
+    display: flex;
+}
+
+.username h4 {
+    font-weight: bold;
+    margin-left: 10px;
+}
