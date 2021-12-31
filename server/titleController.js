@@ -38,8 +38,8 @@ const addTitle = async (req, res) => {
 
   try {
     const titles = await db.add_titles([name, type, summary, genre, length]);
-     res.status(200).send(titles);
-  } catch(err){
+    res.status(200).send(titles);
+  } catch(e){
     console.log(`Error adding new title: ${e}`);
     res.status(500).send(e)
 

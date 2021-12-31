@@ -7,6 +7,7 @@ import About from './components/About/About';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 
+
 // Right now the default page is 'Home' but this will need to change once we have registration working
 // A logged in user should default to 'Follows' after they log in
 // A guest should default to 'Home' and should only have limited functionality available to them
