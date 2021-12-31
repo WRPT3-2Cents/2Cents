@@ -3,8 +3,8 @@ import './modal.css';
 
 const Modal = ({ children }) => {
     return (
-        <div className='modal'>
-            <div className='modal-content'>
+        <div className='custom-modal'>
+            <div className='custom-modal-content'>
                 {children}
             </div>
         </div>
