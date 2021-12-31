@@ -1,7 +1,7 @@
 import React from 'react';
 import { MDBNav, MDBNavItem, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem } from 'mdbreact';
 
-const Dropdown = ({addRecommendation, addNonRecommendation}) => {
+const Dropdown = ({addRecommendation, addNonRecommendation, addTitleToRecommendations, addTitleToWatchlist, addTitleToFollows }) => {
     return (
         <MDBNav color="secondary">
             <MDBNavItem>

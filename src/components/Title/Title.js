@@ -8,11 +8,36 @@ import Dropdown from '../../bootstrap/Dropdown';
 
 const Title = () => {
 
-    // need to add functionality to add this title to the watchlist
-    // need to add functionality to add this title to the follows list
-    
     const { title_name, title_id } = useParams();
     const [ titleInfo, setTitleInfo ] = useState({});
+
+    // need to add functionality to add this title to the watchlist
+    const mockUser = {
+        user_id: 7,
+        username: 'jp',
+        password: '1234',
+        email: 'jp@example.com',
+        recommendations: [],
+        watchlist: [],
+        follows: []
+    }
+
+    const addTitleToWatchlist = (title_id) => {
+        mockUser.watchlist.push(title_id);
+        console.log(mockUser);
+    }
+
+    // need to add functionality to add this title to the follows list
+    const addTitleToFollows = (title_id) => {
+        mockUser.follows.push(title_id)
+        console.log(mockUser);
+    }
+    
+    // need to add functionality to add this title to the recommendations list
+    const addTitleToRecommendations = (title_id) => {
+        mockUser.recommendations.push(title_id)
+        console.log(mockUser);
+    }
 
     useEffect(() => {
         // get all Title information for display on this page
@@ -61,7 +86,13 @@ const Title = () => {
 
 
                     <section className='header-info'>
-                        <Dropdown addRecommendation={addRecommendation} addNonRecommendation={addNonRecommendation} />
+                        <Dropdown 
+                            addRecommendation={addRecommendation} 
+                            addNonRecommendation={addNonRecommendation} 
+                            addTitleToWatchlist={addTitleToWatchlist}
+                            addTitleToFollows={addTitleToFollows}
+                            addTitleToRecommendations={addTitleToRecommendations}
+                            id={title_id}/>
                         <h6>{titleInfo.genre}</h6>
                         <h6>{titleInfo.type}</h6>
                     </section>
