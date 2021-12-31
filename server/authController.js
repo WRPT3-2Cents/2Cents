@@ -32,11 +32,11 @@ const postLogin = async (req, res) => {
         const foundUser = await db(req).get_user(userName);
         const user = foundUser[0];
         if (!user){
-            return res.status(401).send(`User not found. Please register a new user before logging in.`)
+            res.status(401).send(`User not found. Please register a new user before logging in.`)
         } else {
             const isAuthenticated = bcrypt.compareSync(password, user.password);
             if (!isAuthenticated){
-                return res.status(403).send(`Incorrect password!`);
+                 res.status(403).send(`Incorrect password!`);
             } else {
                 req.session.user = {
                     id: user.user_id,
@@ -47,12 +47,12 @@ const postLogin = async (req, res) => {
                     follows: user.follows
                 }
                 console.log(req.session.user);
-                return res.status(200).send(req.session.user);
+                res.status(200).send(req.session.user);
             }
         }
     } catch(err){
         console.log(`Error logging in user: ${err}`);
-        return res.status(500).send(err);
+        res.status(500).send(err);
     }
 }
 

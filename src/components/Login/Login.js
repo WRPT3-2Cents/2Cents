@@ -1,29 +1,27 @@
-import axios from "axios";
-import React, { useState } from "react";
+
+import React, { useState , useEffect} from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./login.css";
 import { MDBCol, MDBInput} from "mdbreact";
 import { connect } from 'react-redux';
 import { loginUser } from '../../redux/reducer.js';
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = (props) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-
-  // const loginUser = () => {
-  //   const body = {
-  //     userName,
-  //     password,
-  //   };
-
-  //   // axios.post("/api/login", body).then((res) => {});
-  //   props.loginUser(body);
-  // };
-
+  const navigate = useNavigate()
+  
+  useEffect(()=>{
+    if(props.state.loggedIn){
+      toast.success("Succesful Login")
+      navigate("/follows")
+    }
+  }, [props.state.loggedIn, navigate])
+  
   return (
     <div className="login-container">
-      <ToastContainer theme="dark" />
+      <ToastContainer />
       <MDBCol>
         <form>
           <h1 className="h1 text-center mb-4">Login</h1>
@@ -35,7 +33,7 @@ const Login = (props) => {
               validate
               error="wrong"
               success="right"
-              value={username}
+              value={userName}
               onChange={(e) => setUserName(e.target.value)}
             />
             <MDBInput
@@ -46,10 +44,10 @@ const Login = (props) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-          </div>
-          <Link to="/Follows">
+          </div >
+          <div className="text-center">
             <button onClick={() => props.loginUser({userName, password})}>Login</button>
-          </Link>
+          </div>
           <Link to="/Sign-up">
             <p className="h6 text-center mb-4">Create An Account</p>
           </Link>
