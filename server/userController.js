@@ -3,24 +3,25 @@ const getUsers = async (req, res) => {
 
     try {
         const users = await db.get_users();
-        return res.status(200).send(users[0]);
+        res.status(200).send(users[0]);
     } catch(err){
         console.log(`Error retrieving users: ${err}`);
-        return res.status(500).send(err);
+        res.status(500).send(err);
     }
 }
 
 
 const editUsers = async (req, res) => {
     const db = req.app.get('db')
-    const { user_id, username, email, recommendations, watchlist, follows} = req.body
+    const { id, username, email, recommendations, watchlist, follows} = req.body
+    const user_id = +id;
 
     try {
         const users = await db.edit_users([user_id, username, email, recommendations, watchlist, follows]);
-        return res.status(200).send(users[0]);
+        res.status(200).send(users[0]);
     } catch(err){
         console.log(`Error updating user: ${err}`);
-        return res.status(400).send(err);
+        res.status(400).send(err);
     }
 }
 
