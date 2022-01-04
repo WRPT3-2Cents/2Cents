@@ -5,7 +5,7 @@ import "./login.css";
 import { MDBCol, MDBInput} from "mdbreact";
 import { connect } from 'react-redux';
 import { loginUser } from '../../redux/reducer.js';
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 const Login = (props) => {
   const [userName, setUserName] = useState("");
@@ -21,7 +21,6 @@ const Login = (props) => {
   
   return (
     <div className="login-container">
-      <ToastContainer />
       <MDBCol>
         <form>
           <h1 className="h1 text-center mb-4">Login</h1>
