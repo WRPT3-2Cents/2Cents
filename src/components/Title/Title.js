@@ -16,36 +16,64 @@ const Title = (props) => {
     const [loggedInStatus, setLoggedInStatus] = useState(false);
 
     const addTitleToWatchlist = (title_id) => {
-        if (!props.state.watchlist.includes(title_id)){
+        if (props.state.watchlist === null){
+            const updatedWatchlist = [title_id];
+            // spread in state from redux except for loggedIn property
+            const {loggedIn, ...userProperties} = props.state;
+            const user = {...userProperties, watchlist: updatedWatchlist}
+            props.updateUser(user);
+            toast.success("Added to watchlist!")
+
+        } else if (!props.state.watchlist.includes(title_id)) {
             const updatedWatchlist = [...props.state.watchlist, title_id];
             // spread in state from redux except for loggedIn property
             const {loggedIn, ...userProperties} = props.state;
             const user = {...userProperties, watchlist: updatedWatchlist}
             props.updateUser(user);
             toast.success("Added to watchlist!")
+        } else {
+            alert(`Something went wrong!`);
         }
     }
 
     
     const addTitleToFollows = (title_id) => {
-        if (!props.state.follows.includes(title_id)){
+        if (props.state.follows === null){
+            const updatedFollows = [title_id];
+            // spread in state from redux except for loggedIn property
+            const {loggedIn, ...userProperties} = props.state;
+            const user = {...userProperties, follows: updatedFollows}
+            props.updateUser(user);
+            toast.success("Added to follows!")
+        } else if (!props.state.follows.includes(title_id)){
             const updatedFollows = [...props.state.follows, title_id];
             // spread in state from redux except for loggedIn property
             const {loggedIn, ...userProperties} = props.state;
             const user = {...userProperties, follows: updatedFollows}
             props.updateUser(user);
             toast.success("Added to follows!")
+        } else {
+            alert(`Something went wrong!`);
         }
     }
     
     
     const addTitleToRecommendations = (title_id) => {
+        if (props.state.recommendations === null){
+            const updatedRecommendations = [title_id];
+            // spread in state from redux except for loggedIn property
+            const {loggedIn, ...userProperties} = props.state;
+            const user = {...userProperties, recommendations: updatedRecommendations}
+            props.updateUser(user);
+        }
         if (!props.state.recommendations.includes(title_id)){
             const updatedRecommendations = [...props.state.recommendations, title_id];
             // spread in state from redux except for loggedIn property
             const {loggedIn, ...userProperties} = props.state;
             const user = {...userProperties, recommendations: updatedRecommendations}
             props.updateUser(user);
+        } else {
+            alert(`Something went wrong!`);
         }
     }
 

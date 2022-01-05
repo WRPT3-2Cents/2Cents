@@ -6,6 +6,8 @@ import './profile.css';
 
 const Profile = (props) => {
     const [ titles, setTitles] = useState([]);
+    const [ recommendations, setRecommendations] = useState(false);
+    const [ watchlist, setWatchlist] = useState(false);
 
     const removeFromWatchlist = (id) => {
         const {loggedIn, ...userProperties} = props.state;
@@ -22,6 +24,14 @@ const Profile = (props) => {
                 setTitles(res.data);
             })
             .catch(err => console.log(err));
+
+        if (props.state.recommendations !== null){
+                setRecommendations(true);
+            }
+
+        if (props.state.watchlist !== null){
+                setWatchlist(true);
+            }
     }, [])
 
     return (
@@ -36,7 +46,7 @@ const Profile = (props) => {
             <h4>Recommendations</h4>
             <ul>
 
-            {props.state.recommendations.map(titleId => {
+            {recommendations && props.state.recommendations.map(titleId => {
                 const title = titles.find(title => title.title_id === +titleId);
                 if (title){
                     return <li key={title.title_id}>{title.name}</li>
@@ -47,7 +57,7 @@ const Profile = (props) => {
             
             <h4>Watchlist</h4>
             <ul>
-            {props.state.watchlist.map(titleId => {
+            {watchlist && props.state.watchlist.map(titleId => {
                 const title = titles.find(title => title.title_id === +titleId);
                 if (title){
                     return (<li className='profile-list' key={title.title_id}>
