@@ -14,6 +14,7 @@ const Comments = ({title_id, state}) => {
     const [editCommentStatus, setEditCommentStatus] = useState(false);
     const [targetComment, setTargetComment] = useState({});
     const [loggedInStatus, setLoggedInStatus] = useState(false);
+    const [userCommentStatus, setUserCommentStatus] = useState(false);
 
     useEffect(() => {
         axios.get(`/api/comments/${title_id}`)
@@ -23,7 +24,15 @@ const Comments = ({title_id, state}) => {
             .catch(err => console.log(err))
         
         setLoggedInStatus(state.loggedIn);
+        
     }, []);
+
+    const getUserComment = (comment) => {
+        if (comment.user_id === state.id){
+            console.log(`match!`);
+            setUserCommentStatus(true);
+        }
+    }
 
     const displayNewComment = () => {
         
@@ -135,7 +144,8 @@ const Comments = ({title_id, state}) => {
 
             {comments.map(comment => {
                 const date = comment.date.split('T')[0];
-                console.log(comment);
+                
+                getUserComment(comment);
 
                 if (comment.previous_id !== 0 && comment.previous_id !== null){
                         return (
@@ -153,9 +163,12 @@ const Comments = ({title_id, state}) => {
                                 <section className='reply-and-dropdown'>
 
                                     <button className='reply-btn' onClick={addReplyComment}>Reply</button>
+
+                                    {userCommentStatus && 
+
                                     <section id='comment-dropdown'>
                                         <CommentDropdown editComment={editComment} deleteMe={deleteMe} comment={comment} />
-                                    </section>
+                                    </section> }
                                 </section>
                                 
                                 
@@ -183,9 +196,11 @@ const Comments = ({title_id, state}) => {
                                 <section className='reply-and-dropdown'>
 
                                     <button className='reply-btn' onClick={addReplyComment}>Reply</button>
+                                    {userCommentStatus && 
                                     <section id='comment-dropdown'>
                                         <CommentDropdown editComment={editComment} deleteMe={deleteMe} comment={comment} />
-                                    </section>
+                                    </section>}
+                                    
                                 </section>
                                 
                                 
