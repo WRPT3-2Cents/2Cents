@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './menu.css';
 import { connect } from 'react-redux';
 
@@ -8,7 +8,12 @@ import { logoutUser } from '../../redux/reducer';
 
 const Menu = (props) => {
     
-    
+    const navigate = useNavigate();
+
+    const logout = () => {
+        props.logoutUser();
+        navigate("/");
+    }
 
     return (
         <div className='menu'>
@@ -31,7 +36,7 @@ const Menu = (props) => {
                     </>}
                     {props.state.loggedIn && <>
                     {/* <li><h4 className='nav-link'><Link onClick={()=>props.logoutUser}to='/'>Logout</Link></h4></li> */}
-                    <li><Link to='/'><button onClick={()=>props.logoutUser()}>Logout</button></Link></li>
+                    <li><Link to='/'><button onClick={logout}>Logout</button></Link></li>
                     </>}
                 </div>
            </ul>

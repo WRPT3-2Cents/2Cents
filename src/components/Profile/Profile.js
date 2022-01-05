@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { updateUser } from '../../redux/reducer';
 import './profile.css';
 
 const Profile = (props) => {
@@ -66,4 +67,6 @@ const mapStateToProps = (reduxState) => {
     }
 }
 
-export default connect(mapStateToProps)(Profile);
+const mapDispatchToProps = { updateUser };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
