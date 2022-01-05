@@ -24,7 +24,6 @@ export const loginUser = (loginInfo) => {
 }
 
 export const logoutUser = () => {
-
     const user = axios.delete('/api/logout');
 
     return {
