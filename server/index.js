@@ -23,7 +23,7 @@ app.use(session({
 const dbLocation = path.join(__dirname, '../db');
 
 massive({
-    connectionString: process.env.CONNECTION_STRING,
+    connectionString: process.env.DATABASE_URL || process.env.CONNECTION_STRING,
     ssl:{
         rejectUnauthorized: false
     }
