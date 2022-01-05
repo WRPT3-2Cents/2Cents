@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './menu.css';
 import { connect } from 'react-redux';
+
 import { logoutUser } from '../../redux/reducer';
+
 
 const Menu = (props) => {
     
@@ -43,6 +45,8 @@ const mapStateToProps = (reduxState) => {
     }
 }
 
+
 const mapDispatchToProps = { logoutUser };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+
