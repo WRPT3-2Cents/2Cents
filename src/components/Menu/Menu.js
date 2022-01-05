@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import './menu.css';
 import { connect } from 'react-redux';
 
+import { logoutUser } from '../../redux/reducer';
+
+
 const Menu = (props) => {
     
     
@@ -22,8 +25,14 @@ const Menu = (props) => {
 
                 </div>
                 <div className='nav-links'>
+                    {!props.state.loggedIn && <>
                     <li><h4 className='nav-link'><Link to='/Sign-up'>Sign-Up</Link></h4></li>
                     <li><h4 className='nav-link'><Link to='/Login'>Login</Link></h4></li>
+                    </>}
+                    {props.state.loggedIn && <>
+                    {/* <li><h4 className='nav-link'><Link onClick={()=>props.logoutUser}to='/'>Logout</Link></h4></li> */}
+                    <li><Link to='/'><button onClick={()=>props.logoutUser()}>Logout</button></Link></li>
+                    </>}
                 </div>
            </ul>
         </div>
@@ -37,4 +46,7 @@ const mapStateToProps = (reduxState) => {
 }
 
 
-export default connect(mapStateToProps)(Menu);
+const mapDispatchToProps = { logoutUser };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+
