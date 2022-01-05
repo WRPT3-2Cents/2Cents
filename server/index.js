@@ -12,6 +12,8 @@ const PORT = process.env.PORT || 5050;
 const app = express();
 
 app.use(express.json())
+app.use(express.static(path.join(`../build`)));
+
 app.use(session({
     resave: false,
     saveUninitialized:true,
