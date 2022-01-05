@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 const Login = (props) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   
   useEffect(()=>{
     if(props.state.loggedIn){
@@ -18,6 +18,11 @@ const Login = (props) => {
       navigate("/follows")
     }
   }, [props.state.loggedIn, navigate])
+
+  const loggingIn = (e) => {
+    e.preventDefault();
+    props.loginUser({userName, password});
+  }
   
   return (
     <div className="login-container">
@@ -45,7 +50,7 @@ const Login = (props) => {
             />
           </div >
           <div className="text-center">
-            <button onClick={() => props.loginUser({userName, password})}>Login</button>
+            <button onClick={loggingIn}>Login</button>
           </div>
           <Link to="/Sign-up">
             <p className="h6 text-center mb-4">Create An Account</p>

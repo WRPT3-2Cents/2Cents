@@ -26,11 +26,13 @@ const Register = () => {
         if(res.status === 201){
             toast.success("Registration Complete")
         }
+
     });
 
-    
+    if(userPassword !== confirmPassword)
     setClickedRegister({ clickedRegister: true });
   };
+
 
   return (
     <div className="register-container">

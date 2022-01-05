@@ -47,7 +47,6 @@ export default function reducer(state=initialState, action){
 
         case `${LOGGED_IN}_FULFILLED`: {
             
-            
             const { id, username, email, recommendations, watchlist, follows } = action.payload.data;
             
             return {
@@ -63,6 +62,7 @@ export default function reducer(state=initialState, action){
         }
 
         case `${LOGGED_IN}_REJECTED`: {
+
             return {
                 ...state,
                 errorMessages: action.payload
@@ -92,7 +92,12 @@ export default function reducer(state=initialState, action){
 
         case `${LOGGED_OUT}_FULFILLED`: {
             return {
-                ...state,
+                id: '',
+                username: '',
+                email: '',
+                watchlist: [],
+                follows: [],
+                recommendations: [],
                 loggedIn: false
             }
         }
