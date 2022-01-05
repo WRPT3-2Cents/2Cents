@@ -7,6 +7,7 @@ const {postRegister, postLogin, getUser, logout} = require('./authController')
 const {getOneTitle, getTitles, addTitle, editTitle, deleteTitle} = require('./titleController')
 const {getUsers, editUsers, deleteUsers} = require('./userController')
 const {getComments, addComment, editComment, deleteComment} = require('./commentsController')
+const PORT = process.env.PORT || 5050;
 
 const app = express();
 
@@ -54,7 +55,5 @@ app.get('/api/comments/:title_id', getComments);
 app.post('/api/comments', addComment);
 app.put('/api/comments/:comment_id', editComment);
 app.delete('/api/comments/:title_id/:comment_id', deleteComment);
-
-const PORT = process.env.SERVER_PORT;
 
 app.listen(PORT, ()=> console.log(`Server running on ${PORT}` ));
