@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json())
 app.use(session({
     resave: false,
-    saveUnintialized: true,
+    saveUninitialized: true,
     secret: process.env.SESSION_SECRET,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 365
@@ -23,7 +23,7 @@ app.use(session({
 const dbLocation = path.join(__dirname, '../db');
 
 massive({
-    connectionString: process.env.CONNECTION_STRING,
+    connectionString: process.env.DATABASE_URL || process.env.CONNECTION_STRING,
     ssl:{
         rejectUnauthorized: false
     }
