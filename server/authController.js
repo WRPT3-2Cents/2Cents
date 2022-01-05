@@ -1,10 +1,40 @@
 const bcrypt = require('bcryptjs');
+const nodemailer = require('nodemailer')
+require('dotenv').config();
+
 const db = (req) => req.app.get('db');
 
 const postRegister = async (req, res) => {
     const { userName, userEmail, userPassword } = req.body;
-
-    try {
+    
+    let transport = nodemailer.createTransport({
+        host: "smtp-mail.outlook.com",
+        secureConnection: false,
+        port: 587,
+        tls: {
+          ciphers:'SSLv3'
+       },
+        auth: {
+          user: process.env.EMAIL_NAME,
+          pass: process.env.EMAIL_PASS
+        },
+      });
+    
+      let mailText = {
+        from: process.env.EMAIL_NAME,
+        to: userEmail,
+        subject: "Welcome to 2cents",
+        text: "Thank you for registering with 2Cents!",
+      };
+    
+      transport.sendMail(mailText, function(err){
+        if (err) {
+          console.log(err);
+        }
+        console.log('Message Sent')
+      });
+    
+      try {
         const result = await db(req).get_user(userName);
         const existingUser = result[0];
 
@@ -25,6 +55,7 @@ const postRegister = async (req, res) => {
         return res.status(500).send(err);
     }
 }
+
 
 const postLogin = async (req, res) => {
     const { userName, password } = req.body;
