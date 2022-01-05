@@ -24,7 +24,8 @@ export const loginUser = (loginInfo) => {
 }
 
 export const logoutUser = () => {
-    const user = axios.get('/api/logout');
+
+    const user = axios.delete('/api/logout');
 
     return {
         type: LOGGED_OUT,
