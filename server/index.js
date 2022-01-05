@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json())
 app.use(session({
     resave: false,
-    saveUnintialized: true,
+    saveUninitialized: true,
     secret: process.env.SESSION_SECRET,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 365
