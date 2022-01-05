@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const initialState = {
+    id: '',
     username: '',
     email: '',
     watchlist: [],
@@ -11,11 +12,10 @@ const initialState = {
 
 const LOGGED_IN = 'LOGGED_IN';
 const LOGGED_OUT = 'LOGGED_OUT';
+const UPDATED_USER = 'UPDATED_USER';
 
 export const loginUser = (loginInfo) => {
-    const user = axios.post('/api/login', loginInfo)
-
-    console.log(user);
+    const user = axios.post('/api/login', loginInfo);
     
     return {
         type: LOGGED_IN,
@@ -24,33 +24,41 @@ export const loginUser = (loginInfo) => {
 }
 
 export const logoutUser = () => {
-    const user = axios.get('/auth/logout').then(res => {
-        return res.data
-    })
+    const user = axios.delete('/api/logout');
+
     return {
         type: LOGGED_OUT,
         payload: user
     }
 }
 
+export const updateUser = (updatedUser) => {
+    const user = axios.put('/api/users', updatedUser);
+
+    return {
+        type: UPDATED_USER,
+        payload: user
+    }
+}
+
 export default function reducer(state=initialState, action){
+
     switch(action.type){
-        case `${LOGGED_IN}_PENDING`: {
-            return {
-                ...state,
-            }
-        }
 
         case `${LOGGED_IN}_FULFILLED`: {
-            console.log(action.payload);
+            
+            
+            const { id, username, email, recommendations, watchlist, follows } = action.payload.data;
+            
             return {
                 ...state,
                 loggedIn: true,
-                username: action.payload.username,
-                email: action.payload.email,
-                recommendations: action.payload.recommendations,
-                follows: action.payload.follows,
-                watchlist: action.payload.watchlist
+                id,
+                username,
+                email,
+                recommendations,
+                follows,
+                watchlist
             }
         }
 
@@ -60,9 +68,25 @@ export default function reducer(state=initialState, action){
                 errorMessages: action.payload
             }
         }
-        case `${LOGGED_OUT}_PENDING`: {
+        case `${UPDATED_USER}_FULFILLED`: {
+
+            const { user_id, username, email, recommendations, watchlist, follows } = action.payload.data;
+            
             return {
                 ...state,
+                id: user_id,
+                username,
+                email,
+                recommendations,
+                follows,
+                watchlist
+            }
+        }
+
+        case `${UPDATED_USER}_REJECTED`: {
+            return {
+                ...state,
+                errorMessages: action.payload
             }
         }
 
@@ -79,7 +103,7 @@ export default function reducer(state=initialState, action){
                 errorMessages: action.payload
             }
         }
-        default:{
+        default: {
             return state;
         }
     }

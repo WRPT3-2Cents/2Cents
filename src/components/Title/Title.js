@@ -6,64 +6,59 @@ import axios from 'axios';
 import Badge from '../../bootstrap/Badge';
 import Dropdown from '../../bootstrap/Dropdown';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
+import { updateUser } from '../../redux/reducer';
 
-const Title = () => {
+const Title = (props) => {
 
     const { title_name, title_id } = useParams();
     const [ titleInfo, setTitleInfo ] = useState({});
-    
-    // need to add functionality to add this title to the watchlist
-    const mockUserData = {
-        user_id: 1,
-        username: 'jp',
-        email: 'jp@example.com',
-        recommendations: [],
-        watchlist: [],
-        follows: []
-    }
-    
-    const [ mockUser, updateMockUser ] = useState(mockUserData);
+    const [loggedInStatus, setLoggedInStatus] = useState(false);
 
     const addTitleToWatchlist = (title_id) => {
-        if (!mockUser.watchlist.includes(title_id)){
-            const arr = mockUser.watchlist;
-            console.log({arr})
-            const updatedArr = [...arr, title_id];
-            console.log({updatedArr});
-            mockUser.watchlist = updatedArr;
-            updateMockUser(mockUser);
-            // axios.put('api/users', mockUser)
-            //     .then(res => console.log(res.data))
-            //     .catch(err => console.log(err));
+        if (!props.state.watchlist.includes(title_id)){
+            const updatedWatchlist = [...props.state.watchlist, title_id];
+            // spread in state from redux except for loggedIn property
+            const {loggedIn, ...userProperties} = props.state;
+            const user = {...userProperties, watchlist: updatedWatchlist}
+            props.updateUser(user);
+            toast.success("Added to watchlist!")
         }
-        console.log(mockUser);
     }
 
-    // need to add functionality to add this title to the follows list
+    
     const addTitleToFollows = (title_id) => {
-        if (!mockUser.follows.includes(title_id)){
-            mockUser.follows.push(title_id)
-            updateMockUser(mockUser);
+        if (!props.state.follows.includes(title_id)){
+            const updatedFollows = [...props.state.follows, title_id];
+            // spread in state from redux except for loggedIn property
+            const {loggedIn, ...userProperties} = props.state;
+            const user = {...userProperties, follows: updatedFollows}
+            props.updateUser(user);
+            toast.success("Added to follows!")
         }
-        console.log(mockUser);
     }
     
-    // need to add functionality to add this title to the recommendations list
+    
     const addTitleToRecommendations = (title_id) => {
-        if (!mockUser.recommendations.includes(title_id)){
-            mockUser.recommendations.push(title_id)
-            updateMockUser(mockUser);
+        if (!props.state.recommendations.includes(title_id)){
+            const updatedRecommendations = [...props.state.recommendations, title_id];
+            // spread in state from redux except for loggedIn property
+            const {loggedIn, ...userProperties} = props.state;
+            const user = {...userProperties, recommendations: updatedRecommendations}
+            props.updateUser(user);
         }
-        console.log(mockUser);
     }
 
     const removeTitleFromRecommendations = (title_id) => {
-        if (mockUser.recommendations.includes(title_id)){
-            const titleIdIndexToRemove = mockUser.recommendations.find(id => id === title_id);
-            mockUser.recommendations.splice(titleIdIndexToRemove, 1);
-            updateMockUser(mockUser);
+        if (props.state.recommendations.includes(title_id)){
+            const updatedRecommendations = [...props.state.recommendations];
+            const titleIdToRemove = props.state.recommendations.findIndex(id => id === title_id);
+            updatedRecommendations.splice(titleIdToRemove, 1);
+            // spread in state from redux except for loggedIn property
+            const {loggedIn, ...userProperties} = props.state;
+            const user = {...userProperties, recommendations: updatedRecommendations}
+            props.updateUser(user);
         }
-        console.log(mockUser);
     }
 
     useEffect(() => {
@@ -73,25 +68,28 @@ const Title = () => {
                 setTitleInfo(data);
             })
             .catch(err => console.log(err));
+        setLoggedInStatus(props.state.loggedIn);
     }, [])
 
     const addRecommendation = () => {
-        
-        addTitleToRecommendations(title_id);
-
-        const recommendations = titleInfo.recommendations + 1;
-
-        axios.put(`/api/titles`, {...titleInfo, recommendations})
-            .then(res => {
-                const title = res.data.filter(title => title.title_id === titleInfo.title_id)[0];
-                setTitleInfo(title);
-            })
-            .catch(err => console.log(err));
+        if (!props.state.recommendations.includes(title_id)){
+            addTitleToRecommendations(title_id);
+    
+            const recommendations = titleInfo.recommendations + 1;
+    
+            axios.put(`/api/titles`, {...titleInfo, recommendations})
+                .then(res => {
+                    const title = res.data.filter(title => title.title_id === titleInfo.title_id)[0];
+                    setTitleInfo(title);
+                })
+                .catch(err => console.log(err));
+        }
     }
 
     const addNonRecommendation = () => {
-
-        removeTitleFromRecommendations(title_id);
+        if (props.state.recommendations.includes(title_id)){
+            removeTitleFromRecommendations(title_id);
+        }
 
         const non_recommendations = titleInfo.non_recommendations + 1;
 
@@ -119,12 +117,13 @@ const Title = () => {
 
 
                     <section className='header-info'>
+                        {loggedInStatus && 
                         <Dropdown 
                             addRecommendation={addRecommendation} 
                             addNonRecommendation={addNonRecommendation} 
                             addTitleToWatchlist={addTitleToWatchlist}
                             addTitleToFollows={addTitleToFollows}
-                            id={title_id}/>
+                            id={title_id}/>}
                         <h6>{titleInfo.genre}</h6>
                         <h6>{titleInfo.type}</h6>
                     </section>
@@ -140,12 +139,15 @@ const Title = () => {
 
         </>
     )
-}
+};
 
 const mapStateToProps = (reduxState) => {
+
     return {
         state: reduxState,
     }
-}
+};
 
-export default connect(mapStateToProps)(Title);
+const mapDispatchToProps = { updateUser };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Title);

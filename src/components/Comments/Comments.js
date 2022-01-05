@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import Modal from '../Modal/Modal';
 import EditCommentForm from '../EditCommentForm/EditCommentForm';
 import CommentDropdown from '../../bootstrap/CommentDropdown';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import './comments.css';
 
-const Comments = ({title_id}) => {
+const Comments = ({title_id, state}) => {
 
     const [newTopLevelComment, setNewTopLevelComment] = useState('');
     const [comments, setComments] = useState([]);
     const [replyComment, setReplyComment] = useState('');
     const [editCommentStatus, setEditCommentStatus] = useState(false);
     const [targetComment, setTargetComment] = useState({});
+    const [loggedInStatus, setLoggedInStatus] = useState(false);
 
     useEffect(() => {
         axios.get(`/api/comments/${title_id}`)
@@ -19,7 +21,8 @@ const Comments = ({title_id}) => {
                 orderComments(res.data);
             })
             .catch(err => console.log(err))
-
+        
+        setLoggedInStatus(state.loggedIn);
     }, []);
 
     const displayNewComment = () => {
@@ -123,8 +126,6 @@ const Comments = ({title_id}) => {
             .catch(err => console.log(err));
     }
 
-    const loggedInStatus = true;
-
     return (
         <>
             {loggedInStatus && <section className='add-comment-section'>
@@ -134,6 +135,7 @@ const Comments = ({title_id}) => {
 
             {comments.map(comment => {
                 const date = comment.date.split('T')[0];
+                console.log(comment);
 
                 if (comment.previous_id !== 0 && comment.previous_id !== null){
                         return (
@@ -208,4 +210,10 @@ const Comments = ({title_id}) => {
     )
 }
 
-export default Comments;
+const mapStateToProps = (reduxState) => {
+    return {
+        state: reduxState
+    }
+}
+
+export default connect(mapStateToProps)(Comments);
