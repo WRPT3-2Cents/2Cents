@@ -23,7 +23,12 @@ const Comments = ({title_id, state}) => {
             .catch(err => console.log(err))
         
         setLoggedInStatus(state.loggedIn);
+        
     }, []);
+
+    const userComment = () => {
+        return false;
+    }
 
     const displayNewComment = () => {
         
@@ -153,6 +158,9 @@ const Comments = ({title_id, state}) => {
                                 <section className='reply-and-dropdown'>
 
                                     <button className='reply-btn' onClick={addReplyComment}>Reply</button>
+
+                                    {userComment(comment) && <section>user comment</section>}
+
                                     <section id='comment-dropdown'>
                                         <CommentDropdown editComment={editComment} deleteMe={deleteMe} comment={comment} />
                                     </section>
