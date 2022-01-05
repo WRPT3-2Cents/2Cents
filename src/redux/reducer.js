@@ -16,8 +16,6 @@ const UPDATED_USER = 'UPDATED_USER';
 
 export const loginUser = (loginInfo) => {
     const user = axios.post('/api/login', loginInfo);
-
-    console.log(user);
     
     return {
         type: LOGGED_IN,
@@ -49,7 +47,6 @@ export default function reducer(state=initialState, action){
 
         case `${LOGGED_IN}_FULFILLED`: {
             
-            console.log(action.payload);
             const { id, username, email, recommendations, watchlist, follows } = action.payload.data;
             
             return {
@@ -65,7 +62,6 @@ export default function reducer(state=initialState, action){
         }
 
         case `${LOGGED_IN}_REJECTED`: {
-            console.log(action.payload);
 
             return {
                 ...state,
