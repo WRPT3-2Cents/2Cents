@@ -69,6 +69,7 @@ const Title = (props) => {
             })
             .catch(err => console.log(err));
         setLoggedInStatus(props.state.loggedIn);
+        
     }, [])
 
     const addRecommendation = () => {
