@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Register = () => {
   const [userName, setUsername] = useState("");
   const [userPassword, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] =useState("");
   const [userEmail, setEmail] = useState("");
   const [clickedRegister, setClickedRegister] = useState(false);
 
@@ -56,7 +57,15 @@ const Register = () => {
               required
               value={userPassword}
               onChange={(e) => setPassword(e.target.value)}
-            />
+            /> 
+            <MDBInput 
+            label="Confirm Password"
+            group type = "password"
+            validate
+            required
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            /> 
             <MDBInput
               label="Your email"
               group
@@ -67,7 +76,7 @@ const Register = () => {
               required
               value={userEmail}
               onChange={(e) => setEmail(e.target.value)}
-            />
+            /> 
           </div>
           <div className="text-center">
             {clickedRegister ? (

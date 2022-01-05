@@ -15,7 +15,7 @@ const Login = (props) => {
   useEffect(()=>{
     if(props.state.loggedIn){
       toast.success("Succesful Login")
-      // navigate("/follows")
+      navigate("/follows")
     }
   }, [props.state.loggedIn, navigate])
   
