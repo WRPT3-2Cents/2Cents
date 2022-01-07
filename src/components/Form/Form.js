@@ -8,11 +8,17 @@ const Form = ({toggleForm, setTitles}) => {
 
     const info = (e) => {
         e.preventDefault();
-        axios.post(`/api/titles`, values)
+        axios.get (`http://www.omdbapi.com/?i=tt3896198&apikey=d92c4380&t=${values.name}`)
             .then(res => {
-                toggleForm();
-                setTitles(res.data)
+                const poster = res.data.Poster 
+                const newTitle = { ...values, poster}
+                axios.post(`/api/titles`, newTitle)
+                    .then(res => {
+                        toggleForm();
+                        setTitles(res.data)
+                    })
             })
+            .catch(err => console.log(err))
     }
 
     return (
