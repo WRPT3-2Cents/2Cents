@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./register.css";
 import {  MDBCol, MDBInput } from "mdbreact";
 import {  toast } from "react-toastify";
@@ -9,9 +9,10 @@ import 'react-toastify/dist/ReactToastify.css';
 const Register = () => {
   const [userName, setUsername] = useState("");
   const [userPassword, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] =useState("");
   const [userEmail, setEmail] = useState("");
-  const [clickedRegister, setClickedRegister] = useState(false);
-
+  const navigate = useNavigate()
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const body = {
@@ -20,16 +21,20 @@ const Register = () => {
       userPassword,
     };
     
-    axios.post("/api/register", body)
+
+    if(userPassword !== confirmPassword){
+        toast.error("Passwords Dont Match")
+    } else {
+        axios.post("/api/register", body)
     .then((res)=>{
         if(res.status === 201){
             toast.success("Registration Complete")
         }
+        navigate('/login')
     });
-
-    
-    setClickedRegister({ clickedRegister: true });
+    }
   };
+
 
   return (
     <div className="register-container">
@@ -56,7 +61,15 @@ const Register = () => {
               required
               value={userPassword}
               onChange={(e) => setPassword(e.target.value)}
-            />
+            /> 
+            <MDBInput 
+            label="Confirm Password"
+            group type = "password"
+            validate
+            required
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            /> 
             <MDBInput
               label="Your email"
               group
@@ -67,16 +80,10 @@ const Register = () => {
               required
               value={userEmail}
               onChange={(e) => setEmail(e.target.value)}
-            />
+            /> 
           </div>
-          <div className="text-center">
-            {clickedRegister ? (
-              <Link to="/Login">
-                <button>Continue</button>
-              </Link>
-            ) : (
+          <div className="text-center">        
               <button>Register</button>
-            )}
             <Link to="/Login">
               <p className="h6 text-center mb-4">Already Have An Account?</p>
             </Link>
