@@ -33,11 +33,12 @@ const addTitle = async (req, res) => {
     type,
     summary,
     genre,
-    length
+    length,
+    poster
   } = req.body;
 
   try {
-    const titles = await db.add_titles([name, type, summary, genre, length]);
+    const titles = await db.add_titles([name, type, summary, genre, length, poster]);
     res.status(200).send(titles);
   } catch(e){
     console.log(`Error adding new title: ${e}`);
