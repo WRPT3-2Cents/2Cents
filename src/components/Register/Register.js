@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./register.css";
 import {  MDBCol, MDBInput } from "mdbreact";
 import {  toast } from "react-toastify";
@@ -11,8 +11,8 @@ const Register = () => {
   const [userPassword, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] =useState("");
   const [userEmail, setEmail] = useState("");
-  const [clickedRegister, setClickedRegister] = useState(false);
-
+  const navigate = useNavigate()
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const body = {
@@ -21,16 +21,18 @@ const Register = () => {
       userPassword,
     };
     
-    axios.post("/api/register", body)
+
+    if(userPassword !== confirmPassword){
+        toast.error("Passwords Dont Match")
+    } else {
+        axios.post("/api/register", body)
     .then((res)=>{
         if(res.status === 201){
             toast.success("Registration Complete")
         }
-
+        navigate('/login')
     });
-
-    if(userPassword !== confirmPassword)
-    setClickedRegister({ clickedRegister: true });
+    }
   };
 
 
@@ -80,14 +82,8 @@ const Register = () => {
               onChange={(e) => setEmail(e.target.value)}
             /> 
           </div>
-          <div className="text-center">
-            {clickedRegister ? (
-              <Link to="/Login">
-                <button>Continue</button>
-              </Link>
-            ) : (
+          <div className="text-center">        
               <button>Register</button>
-            )}
             <Link to="/Login">
               <p className="h6 text-center mb-4">Already Have An Account?</p>
             </Link>
