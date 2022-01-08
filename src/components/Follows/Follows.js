@@ -36,8 +36,20 @@ const Follows = ({state}) => {
                                     </Link></li>)
                             }
                 })}
-            </ul>
-
+                <style jsx>
+                    {`
+                    .follows-title-details {
+                        border: solid black 2px;
+                        padding: 20px;
+                        justify-content: space-between;
+                        list-style: none;
+                    }
+                    .follows-title-details a:hover {
+                        color: red;
+                    }
+                    `}
+                </style>
+                    </ul>
             
         </>
     )
