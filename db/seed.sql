@@ -6,7 +6,8 @@ Titles (
     genre VARCHAR(30),
     length INT,
     recommendations INT,
-    non_recommendations INT
+    non_recommendations INT,
+    poster TEXT
 Users (
     user_id SERIAL PRIMARY KEY,
     username VARCHAR(50),

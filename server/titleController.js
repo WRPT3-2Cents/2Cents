@@ -21,7 +21,6 @@ const getTitles = async (req, res) => {
     const titles = await db.get_titles();
      res.status(200).send(titles);
   } catch(err){
-    console.log(`Error retrieving titles: ${err}`);
      res.status(500).send(`Error retrieving titles: ${err}`);
   }
 };
