@@ -39,9 +39,9 @@ const Follows = ({state}) => {
                 <style jsx>
                     {`
                     .follows-title-details {
+                        display: flex;
                         border: solid black 2px;
                         padding: 20px;
-                        justify-content: space-between;
                         list-style: none;
                     }
                     .follows-title-details a:hover {

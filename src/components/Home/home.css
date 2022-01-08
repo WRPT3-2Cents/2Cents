@@ -23,11 +23,11 @@
 
 .titles a:hover {
     cursor: pointer;
-    
+    color: red;
 }
 
 .titles h2 {
-    font-size: 1.4rem;
+    font-size: 2.0rem;
 }
 
 .titles h6 {
@@ -37,6 +37,7 @@
 .title-details {
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .add-new-title-btn {

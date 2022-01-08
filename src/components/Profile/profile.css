@@ -10,11 +10,8 @@
 .profile-list {
     list-style: none;
     display: flex;
-}
-
-.profile-list 
-
-.profile-list button {
-    padding: 0;
-    margin: 0;
+    padding: 15px;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 1.9rem;
 }

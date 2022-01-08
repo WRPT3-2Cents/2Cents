@@ -61,12 +61,29 @@ const Profile = (props) => {
                 const title = titles.find(title => title.title_id === +titleId);
                 if (title){
                     return (<li className='profile-list' key={title.title_id}>
+                                <img src={title.poster} alt='of sand' />
                                 <div>{title.name}</div>
-                                <button onClick={() => removeFromWatchlist(title.title_id)}>X</button>
+                                <button className='remove-button'onClick={() => removeFromWatchlist(title.title_id)}>X</button>
                             </li>)
                 }
             })}
             </ul>
+            <style jsx>
+                {`
+                .remove-button {
+                    background-color: red;
+                    color: white;
+                    font-size: 16px;
+                    border-radius: 14px;
+                    width: 36px;
+                }
+                img {
+                    height: 345px;
+                    width: 200px;
+                    
+                }
+                `}
+            </style>
         </>
     )
 }
