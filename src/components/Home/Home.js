@@ -13,6 +13,7 @@ const Home = (props) => {
     const [titles, setTitles] = useState([]);
     const [searchParams, setSearchParams] = useState('');
     const [loggedInStatus, setLoggedInStatus] = useState(false);
+    const [typeToFilterBy, setTypeToFilterBy] = useState('');
 
     useEffect(() => {
         axios.get(`/api/titles`)
@@ -25,7 +26,8 @@ const Home = (props) => {
 
     
     const handleChange = (e) => {
-        setSearchParams(e.target.value);
+        console.log(e.target.value);
+        setTypeToFilterBy(e.target.value);
     }
     
 
@@ -40,23 +42,64 @@ const Home = (props) => {
         <>  
             <section className='search-bar'>
                 <input value={searchParams} onChange={handleChange} placeholder='Search...'/>
+                <div>
+                    <label>Filter</label>
+                    <select value={typeToFilterBy} 
+                        onChange={handleChange}
+                        name='type'>
+                            <option selected>Select One</option>
+                            <option value='Movie'>Movie</option>
+                            <option value='TV Show'>TV Show</option>
+                            <option value='Book'>Book</option>
+                        </select>
+                </div>
                 {loggedInStatus &&  <button onClick={toggleForm} className='add-new-title-btn'>+</button>}
             </section>
 
             {/* <List /> */}
 
-            <section className='flex-box'>{filteredTitles.map(title => {
-                return (
-                    <li className='titles' key={title.title_id}>
-                    <Link to={`Title/${title.name}/${title.title_id}`} className='title-details'>
-                        <img src={title.poster} alt = " of sand" className='img-title'/>
-                        <h2>{title.name}</h2>
-                        <h6>{title.genre}</h6>
-                        <h6>{title.type}</h6>
-                    </Link>
-                    </li>
-                )
-            })}</section>
+            <section className='flex-box'>
+            {filteredTitles.map(title => {
+
+                if (typeToFilterBy){
+                    if (typeToFilterBy === title.type){
+                        return (
+                            <li className='titles' key={title.title_id}>
+                            <Link to={`Title/${title.name}/${title.title_id}`} className='title-details'>
+                                <div className='img-container'></div>
+                                <img src={title.poster} alt = "title poster" />
+                                <h2>{title.name}</h2>
+                                <h6>{title.genre}</h6>
+                                <h6>{title.type}</h6>
+                            </Link>
+                            </li> )
+                    } else if (typeToFilterBy === 'Select One'){
+                        return (
+                            <li className='titles' key={title.title_id}>
+                            <Link to={`Title/${title.name}/${title.title_id}`} className='title-details'>
+                                <div className='img-container'></div>
+                                <img src={title.poster} alt = "title poster" />
+                                <h2>{title.name}</h2>
+                                <h6>{title.genre}</h6>
+                                <h6>{title.type}</h6>
+                            </Link>
+                            </li> )
+                    }
+                } else {
+                    return (
+                        <li className='titles' key={title.title_id}>
+                        <Link to={`Title/${title.name}/${title.title_id}`} className='title-details'>
+                            <div className='img-container'></div>
+                            <img src={title.poster} alt = "title poster" />
+                            <h2>{title.name}</h2>
+                            <h6>{title.genre}</h6>
+                            <h6>{title.type}</h6>
+                        </Link>
+                        </li> 
+                    )
+                }
+                }) }
+            </section>
 
 
             {formStatus  && <Modal>
