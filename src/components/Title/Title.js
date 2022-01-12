@@ -140,7 +140,7 @@ const Title = (props) => {
                     <section className='title-and-recommendation'>
                             
                         <h2 id='title'> {title_name} </h2>
-                        <Badge level={`${recommendationLevel}`} text={`Audience Score: ${recommendationRatio}%`} />
+                        { recommendationRatio > 0 && <Badge level={`${recommendationLevel}`} text={`Audience Score: ${recommendationRatio}%`} /> }
                         
                     </section>
 
