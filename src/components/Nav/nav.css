@@ -3,12 +3,15 @@
     display: flex;
     position: fixed;
     width: 100%;
+    background-color: white;
 }
 
 .hamburger-menu {
     display: flex;
     align-items: center;
     padding-left: 20px;
+    background-color: white;
+    /* color: white; */
 }
 
 .img {
