@@ -49,7 +49,7 @@ const Home = (props) => {
                 return (
                     <li className='titles' key={title.title_id}>
                     <Link to={`Title/${title.name}/${title.title_id}`} className='title-details'>
-                        <img src={title.poster} alt = " of sand" className='poster'/>
+                        <img src={title.poster} alt = " of sand" className='img-title'/>
                         <h2>{title.name}</h2>
                         <h6>{title.genre}</h6>
                         <h6>{title.type}</h6>
