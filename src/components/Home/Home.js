@@ -45,20 +45,18 @@ const Home = (props) => {
 
             {/* <List /> */}
 
-            
-            {filteredTitles.map(title => {
+            <section className='flex-box'>{filteredTitles.map(title => {
                 return (
                     <li className='titles' key={title.title_id}>
                     <Link to={`Title/${title.name}/${title.title_id}`} className='title-details'>
-                        <div className='img-container'></div>
-                        <img src={title.poster} alt = "title poster" />
+                        <img src={title.poster} alt = " of sand" className='img-title'/>
                         <h2>{title.name}</h2>
                         <h6>{title.genre}</h6>
                         <h6>{title.type}</h6>
                     </Link>
                     </li>
                 )
-            })}
+            })}</section>
 
 
             {formStatus  && <Modal>
