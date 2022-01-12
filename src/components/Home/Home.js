@@ -58,7 +58,7 @@ const Home = (props) => {
 
             {/* <List /> */}
 
-            
+            <section className='flex-box'>
             {filteredTitles.map(title => {
 
                 if (typeToFilterBy){
@@ -99,6 +99,7 @@ const Home = (props) => {
                     )
                 }
                 }) }
+            </section>
 
 
             {formStatus  && <Modal>

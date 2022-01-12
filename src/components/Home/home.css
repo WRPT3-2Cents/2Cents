@@ -7,18 +7,32 @@
 
 .search-bar input {
     border-radius: 20px;
+    width: 300px;
+    padding-left: 10px;
+}
+
+.flex-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+
 }
 
 .titles {
     list-style: none;
-    border-bottom: 1px solid black;
     padding: 10px 0px;
-    
+    height: 580px;
+    width: 300px;
+    border-bottom: 1px black solid;
+    transition: transform .2s; /* Animation */
 }
 
 .titles a {
     text-decoration: none;
     color: black;
+    text-align: center;
 }
 
 .titles a:hover {
@@ -36,8 +50,18 @@
 
 .title-details {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    height: 550px;
+    width: 300px;
+}
+
+.img-title {
+    height: 400px;
+    max-width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
 }
 
 .add-new-title-btn {
@@ -48,3 +72,9 @@
     align-items: center;
     justify-content: center;
 }
+
+
+   .titles:hover{
+    cursor: pointer;
+    transform: scale(1.04);
+   }
