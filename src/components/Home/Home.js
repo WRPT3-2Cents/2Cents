@@ -30,18 +30,21 @@ const Home = (props) => {
         setTypeToFilterBy(e.target.value);
     }
     
+    const handleSearch = (e) => {
+        setSearchParams(e.target.value);
+    }
 
     const toggleForm = () => {
         setFormStatus(!formStatus);
     }
 
-    const filteredTitles = titles.filter(title => title.name.toLowerCase().includes(searchParams));
+    const filteredTitles = titles.filter(title => title.name.toLowerCase().includes(searchParams.toLowerCase()));
 
     return (
         
         <>  
             <section className='search-bar'>
-                <input value={searchParams} onChange={handleChange} placeholder='Search...'/>
+                <input value={searchParams} onChange={handleSearch} placeholder='Search...'/>
                 <div>
                     <label>Filter</label>
                     <select value={typeToFilterBy} 
