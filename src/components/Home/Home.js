@@ -45,11 +45,13 @@ const Home = (props) => {
 
             {/* <List /> */}
 
+            
             {filteredTitles.map(title => {
                 return (
                     <li className='titles' key={title.title_id}>
                     <Link to={`Title/${title.name}/${title.title_id}`} className='title-details'>
-                        <img src={title.poster} alt = " of sand" />
+                        <div className='img-container'></div>
+                        <img src={title.poster} alt = "title poster" />
                         <h2>{title.name}</h2>
                         <h6>{title.genre}</h6>
                         <h6>{title.type}</h6>

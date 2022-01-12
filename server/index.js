@@ -5,7 +5,7 @@ const session = require('express-session')
 const path = require('path');
 const {postRegister, postLogin, getUser, logout} = require('./authController')
 const {getOneTitle, getTitles, addTitle, editTitle, deleteTitle} = require('./titleController')
-const {getUsers, editUsers, deleteUsers} = require('./userController')
+const {getUsers, getAllUsers, editUsers, deleteUsers} = require('./userController')
 const {getComments, addComment, editComment, deleteComment} = require('./commentsController')
 const PORT = process.env.PORT || 5050;
 
@@ -50,6 +50,7 @@ app.put('/api/titles', editTitle);
 app.delete('/api/titles/:title_id', deleteTitle);
 //User Endpoints
 app.get('/api/users', getUsers);
+app.get('/api/users/all', getAllUsers);
 app.put('/api/users', editUsers);
 app.delete('/api/users',deleteUsers);
 //Comments Endpoints 

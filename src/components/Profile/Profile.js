@@ -71,16 +71,16 @@ const Profile = (props) => {
             <style jsx>
                 {`
                 .remove-button {
-                    background-color: red;
+                    background-color: black;
                     color: white;
                     font-size: 16px;
                     border-radius: 14px;
                     width: 36px;
                 }
-                img {
-                    height: 345px;
-                    width: 200px;
-                    
+
+                .remove-button:hover {
+                    background-color: red;
+                    color: white;
                 }
                 `}
             </style>
