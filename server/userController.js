@@ -10,6 +10,18 @@ const getUsers = async (req, res) => {
     }
 }
 
+const getAllUsers = async (req, res) => {
+    const db = req.app.get('db');
+
+    try {
+        const users = await db.get_users();
+        res.status(200).send(users);
+    } catch(err) {
+        console.log(`Error retrieving all users: ${err}`);
+        res.status(500).send(err);
+    }
+}
+
 
 const editUsers = async (req, res) => {
     const db = req.app.get('db')
@@ -35,6 +47,7 @@ const deleteUsers = (req, res) => {
 
 module.exports = {
     getUsers,
+    getAllUsers,
     editUsers,
     deleteUsers
 }

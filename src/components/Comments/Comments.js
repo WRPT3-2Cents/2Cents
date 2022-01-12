@@ -14,25 +14,16 @@ const Comments = ({title_id, state}) => {
     const [editCommentStatus, setEditCommentStatus] = useState(false);
     const [targetComment, setTargetComment] = useState({});
     const [loggedInStatus, setLoggedInStatus] = useState(false);
-    const [userCommentStatus, setUserCommentStatus] = useState(false);
 
     useEffect(() => {
         axios.get(`/api/comments/${title_id}`)
             .then(res => {
                 orderComments(res.data);
+                setLoggedInStatus(state.loggedIn);
             })
             .catch(err => console.log(err))
         
-        setLoggedInStatus(state.loggedIn);
-        
     }, []);
-
-    const getUserComment = (comment) => {
-        if (comment.user_id === state.id){
-            console.log(`match!`);
-            setUserCommentStatus(true);
-        }
-    }
 
     const displayNewComment = () => {
         
@@ -41,7 +32,9 @@ const Comments = ({title_id, state}) => {
             date: Date().split('GMT')[0],
             title_id: title_id,
             previous_id: null,
-            next_id: null
+            next_id: null,
+            user_id: state.id,
+            username: state.username
         }
 
         axios.post(`/api/comments`, newComment)
@@ -100,7 +93,9 @@ const Comments = ({title_id, state}) => {
             date: Date().split('GMT')[0],
             title_id: title_id,
             previous_id: parentComment.comment_id,
-            next_id: null
+            next_id: null,
+            user_id: state.id,
+            username: state.username
         }
 
         axios.post(`/api/comments`, newReplyComment)
@@ -144,15 +139,13 @@ const Comments = ({title_id, state}) => {
 
             {comments.map(comment => {
                 const date = comment.date.split('T')[0];
-                
-                getUserComment(comment);
 
-                if (comment.previous_id !== 0 && comment.previous_id !== null){
+                if (comment.previous_id !== 0 && comment.previous_id !== null && comment.user_id === state.id){
                         return (
                             <div className='comment-box reply' key={comment.comment_id}>
 
                                 <section className='comment-author-info'>
-                                    <h6 className='author'>Username</h6>
+                                    <h6 className='author'>{comment.username || 'USERNAME'}</h6>
                                     <h6>{date}</h6>
                                 </section>
 
@@ -164,11 +157,10 @@ const Comments = ({title_id, state}) => {
 
                                     <button className='reply-btn' onClick={addReplyComment}>Reply</button>
 
-                                    {userCommentStatus && 
-
                                     <section id='comment-dropdown'>
                                         <CommentDropdown editComment={editComment} deleteMe={deleteMe} comment={comment} />
-                                    </section> }
+                                    </section> 
+
                                 </section>
                                 
                                 
@@ -180,12 +172,14 @@ const Comments = ({title_id, state}) => {
                                 }
                             </div>
                         )
-                }
+                } else if (comment.previous_id !== 0 && comment.previous_id !== null && comment.user_id !== state.id){
+
+                
                 return (
-                    <div className='comment-box' key={comment.comment_id}>
+                    <div className='comment-box reply' key={comment.comment_id}>
 
                                 <section className='comment-author-info'>
-                                    <h6 className='author'>Username</h6>
+                                    <h6 className='author'>{comment.username || 'USERNAME'} </h6>
                                     <h6>{date}</h6>
                                 </section>
 
@@ -196,10 +190,6 @@ const Comments = ({title_id, state}) => {
                                 <section className='reply-and-dropdown'>
 
                                     <button className='reply-btn' onClick={addReplyComment}>Reply</button>
-                                    {userCommentStatus && 
-                                    <section id='comment-dropdown'>
-                                        <CommentDropdown editComment={editComment} deleteMe={deleteMe} comment={comment} />
-                                    </section>}
                                     
                                 </section>
                                 
@@ -211,7 +201,67 @@ const Comments = ({title_id, state}) => {
                                     </>
                                 }
                             </div>
-                )
+                )} else if ( comment.user_id === state.id){
+                    return (
+                        <div className='comment-box' key={comment.comment_id}>
+    
+                                    <section className='comment-author-info'>
+                                        <h6 className='author'>{comment.username || 'USERNAME'} </h6>
+                                        <h6>{date}</h6>
+                                    </section>
+    
+                                    <p>{comment.message}</p>
+    
+                                    {loggedInStatus && <>
+    
+                                    <section className='reply-and-dropdown'>
+    
+                                        <button className='reply-btn' onClick={addReplyComment}>Reply</button>
+    
+                                            <section id='comment-dropdown'>
+                                                <CommentDropdown editComment={editComment} deleteMe={deleteMe} comment={comment} />
+                                            </section>
+                                        
+                                    </section>
+                                    
+                                    
+                                    <div className='reply-area hidden'>
+                                            <textarea onChange={handleReplyChange} value={replyComment} />
+                                            <button className='add-reply-btn' onClick={(e) => submitReply(e, comment)}>SUBMIT</button>
+                                        </div>
+                                        </>
+                                    }
+                                </div>
+                    )
+                } else {
+                    return (
+                        <div className='comment-box' key={comment.comment_id}>
+    
+                                    <section className='comment-author-info'>
+                                        <h6 className='author'>{comment.username || 'USERNAME'} </h6>
+                                        <h6>{date}</h6>
+                                    </section>
+    
+                                    <p>{comment.message}</p>
+    
+                                    {loggedInStatus && <>
+    
+                                    <section className='reply-and-dropdown'>
+    
+                                        <button className='reply-btn' onClick={addReplyComment}>Reply</button>
+                                        
+                                    </section>
+                                    
+                                    
+                                    <div className='reply-area hidden'>
+                                            <textarea onChange={handleReplyChange} value={replyComment} />
+                                            <button className='add-reply-btn' onClick={(e) => submitReply(e, comment)}>SUBMIT</button>
+                                        </div>
+                                        </>
+                                    }
+                                </div>
+                    )
+                }
             })}
 
             {editCommentStatus && <Modal>
