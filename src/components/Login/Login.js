@@ -31,6 +31,7 @@ const Login = (props) => {
           <h1 className="h1 text-center mb-4">Login</h1>
           <div className="black-text">
             <MDBInput
+            icon='user'
               label="Enter your username"
               group
               type="text"
@@ -41,6 +42,7 @@ const Login = (props) => {
               onChange={(e) => setUserName(e.target.value)}
             />
             <MDBInput
+            icon='lock'
               label="Enter your password"
               group
               type="password"
@@ -53,7 +55,7 @@ const Login = (props) => {
             <button onClick={loggingIn}>Login</button>
           </div>
           <Link to="/Sign-up">
-            <p className="h6 text-center mb-4">Create An Account</p>
+            <p className="h6 text-center mb-4">Create An Account Today!</p>
           </Link>
         </form>
       </MDBCol>

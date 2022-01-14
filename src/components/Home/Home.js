@@ -7,6 +7,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+
 const Home = (props) => {
 
     const [formStatus, setFormStatus] = useState(false);
@@ -43,13 +44,14 @@ const Home = (props) => {
     return (
         
         <>  
-            <section className='search-bar'>
-                <input value={searchParams} onChange={handleSearch} placeholder='Search...'/>
+            <section className='search-bar' >
+                <input value={searchParams} onChange={handleSearch} className="form-control form-control-sm ml-3 w-40" type="text" placeholder="Search..." aria-label="Search"/>
                 <div>
-                    <label>Filter</label>
+                    <label className='filter-label'>Filter</label>
                     <select value={typeToFilterBy} 
                         onChange={handleChange}
-                        name='type'>
+                        name='type'
+                        className='filter-drop'>
                             <option selected>Select One</option>
                             <option value='Movie'>Movie</option>
                             <option value='TV Show'>TV Show</option>
@@ -69,8 +71,7 @@ const Home = (props) => {
                         return (
                             <li className='titles' key={title.title_id}>
                             <Link to={`Title/${title.name}/${title.title_id}`} className='title-details'>
-                                <div className='img-container'></div>
-                                <img src={title.poster} alt = "title poster" />
+                                <img src={title.poster} alt = "title poster" className='img-title'/>
                                 <h2>{title.name}</h2>
                                 <h6>{title.genre}</h6>
                                 <h6>{title.type}</h6>
@@ -80,8 +81,7 @@ const Home = (props) => {
                         return (
                             <li className='titles' key={title.title_id}>
                             <Link to={`Title/${title.name}/${title.title_id}`} className='title-details'>
-                                <div className='img-container'></div>
-                                <img src={title.poster} alt = "title poster" />
+                                <img src={title.poster} alt = "title poster" className='img-title'/>
                                 <h2>{title.name}</h2>
                                 <h6>{title.genre}</h6>
                                 <h6>{title.type}</h6>
@@ -92,8 +92,7 @@ const Home = (props) => {
                     return (
                         <li className='titles' key={title.title_id}>
                         <Link to={`Title/${title.name}/${title.title_id}`} className='title-details'>
-                            <div className='img-container'></div>
-                            <img src={title.poster} alt = "title poster" />
+                            <img src={title.poster} alt = "title poster" className='img-title'/>
                             <h2>{title.name}</h2>
                             <h6>{title.genre}</h6>
                             <h6>{title.type}</h6>

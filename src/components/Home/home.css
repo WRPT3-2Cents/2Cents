@@ -3,6 +3,7 @@
     justify-content: space-around;
     height: 40px;
     margin-bottom: 20px;
+    align-items: center;
 }
 
 .search-bar input {
@@ -57,7 +58,7 @@
     width: 300px;
 }
 
-.img-title {
+.img-title{
     height: 400px;
     max-width: 100%;
     border-radius: 10px;
@@ -77,4 +78,14 @@
    .titles:hover{
     cursor: pointer;
     transform: scale(1.04);
+   }
+
+   .filter-drop{
+       width: 150px;
+       border-radius: 10px;
+   }
+
+   .filter-label{
+       padding-right: 5px;
+       font-size: 18px;
    }
