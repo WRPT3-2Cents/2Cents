@@ -26,8 +26,9 @@
     display: flex;
 }
 
-#comment-dropdown {
-    
+.no-comments {
+    text-align: center;
+    padding: 40px;
 }
 
 .reply-btn {

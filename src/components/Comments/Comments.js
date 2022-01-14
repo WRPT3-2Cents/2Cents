@@ -136,6 +136,8 @@ const Comments = ({title_id, state}) => {
                 <textarea onChange={handleChange} value={newTopLevelComment} placeholder='What are your thoughts?'/>
                 {newTopLevelComment && <button className='add-comment-btn' onClick={displayNewComment}>SUBMIT</button>}
             </section> }
+            
+            {comments[0] === undefined && <section className='no-comments'><h4>No Comments Yet </h4> <h6>Be the first to share your thoughts! </h6></section>}
 
             {comments.map(comment => {
                 const date = comment.date.split('T')[0];
