@@ -84,3 +84,8 @@
        width: 150px;
        border-radius: 10px;
    }
+
+   .filter-label{
+       padding-right: 5px;
+       font-size: 18px;
+   }

@@ -7,6 +7,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+
 const Home = (props) => {
 
     const [formStatus, setFormStatus] = useState(false);
@@ -43,10 +44,10 @@ const Home = (props) => {
     return (
         
         <>  
-            <section className='search-bar'>
-                <input value={searchParams} onChange={handleSearch} placeholder='Search...'/>
+            <section className='search-bar' >
+                <input value={searchParams} onChange={handleSearch} className="form-control form-control-sm ml-3 w-40" type="text" placeholder="Search..." aria-label="Search"/>
                 <div>
-                    <label>Filter</label>
+                    <label className='filter-label'>Filter</label>
                     <select value={typeToFilterBy} 
                         onChange={handleChange}
                         name='type'
