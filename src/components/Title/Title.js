@@ -135,14 +135,19 @@ const Title = (props) => {
     const recommendationLevel = recommendationRatio > 50 ? 'success' : 'danger';
 
     return (
-        <>
+        <section className='title-component'>
             <section className='header'>
                     
-                    <section className='title-and-recommendation'>
-                            
+                    <section className='title-and-img'>
+                        <section className='title-img-container'>
+                            <img src={titleInfo.poster} alt='image poster' />
+                        </section>
                         <h2 id='title'> {title_name} </h2>
-                        { recommendationRatio > 0 && <Badge level={`${recommendationLevel}`} text={`Audience Score: ${recommendationRatio}%`} /> }
                         
+                    </section>
+                    <section className='recommendation'>
+                        { recommendationRatio > 0 && <Badge level={`${recommendationLevel}`} text={`Audience Score: ${recommendationRatio}%`} /> }
+
                     </section>
 
 
@@ -167,7 +172,7 @@ const Title = (props) => {
 
             <Comments title_id={title_id} />
 
-        </>
+        </section>
     )
 };
 
