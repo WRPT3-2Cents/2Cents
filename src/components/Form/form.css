@@ -2,9 +2,10 @@
     background: white;
     color: black;
     font-weight: bold;
-    border: none;
+    /* border: 1px solid black; */
     border-radius: 10px;
-    padding: 10px;
+    padding: 5px;
+    float: right;
 }
 
 .form-btn:hover {
@@ -14,7 +15,27 @@
 }
 
 .form {
-    border: 2px solid white;
-    margin-bottom: 50px;
+    /* border: 2px solid white; */
+    /* margin-bottom: 50px; */
     padding: 25px 10px;
+}
+
+.add-summary-section textarea {
+    border-radius: 10px;
+}
+
+.form-btn-submit {
+    background: white;
+    color: black;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.form-btn-submit:hover {
+    background: black;
+    color: white;
+    cursor: pointer;
 }
