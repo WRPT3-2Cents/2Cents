@@ -6,7 +6,7 @@ import Form from '../Form/Form';
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { MDBIcon } from 'mdbreact';
 
 const Home = (props) => {
 
@@ -58,7 +58,7 @@ const Home = (props) => {
                             <option value='Book'>Book</option>
                         </select>
                 </div>
-                {loggedInStatus &&  <button onClick={toggleForm} className='add-new-title-btn'>+</button>}
+                {loggedInStatus &&  <button onClick={toggleForm} className='add-new-title-btn'><MDBIcon icon="plus-circle" /></button>}
             </section>
 
             {/* <List /> */}

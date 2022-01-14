@@ -66,9 +66,9 @@
 }
 
 .add-new-title-btn {
-    border-radius: 20px;
+    border-radius: 50px;
     width: 50px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
