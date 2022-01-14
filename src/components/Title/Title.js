@@ -65,8 +65,7 @@ const Title = (props) => {
             const {loggedIn, ...userProperties} = props.state;
             const user = {...userProperties, recommendations: updatedRecommendations}
             props.updateUser(user);
-        }
-        if (!props.state.recommendations.includes(title_id)){
+        } else if (!props.state.recommendations.includes(title_id)){
             const updatedRecommendations = [...props.state.recommendations, title_id];
             // spread in state from redux except for loggedIn property
             const {loggedIn, ...userProperties} = props.state;
@@ -101,9 +100,9 @@ const Title = (props) => {
     }, [])
 
     const addRecommendation = () => {
-        if (!props.state.recommendations.includes(title_id)){
+        
+        if (props.state.recommendations === null || !props.state.recommendations.includes(title_id)){
             addTitleToRecommendations(title_id);
-    
             const recommendations = titleInfo.recommendations + 1;
     
             axios.put(`/api/titles`, {...titleInfo, recommendations})
@@ -112,6 +111,8 @@ const Title = (props) => {
                     setTitleInfo(title);
                 })
                 .catch(err => console.log(err));
+        } else {
+            console.log(`Uh oh. Something went wrong!`);
         }
     }
 
