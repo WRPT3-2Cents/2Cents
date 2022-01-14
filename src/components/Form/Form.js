@@ -34,6 +34,7 @@ const Form = ({toggleForm, setTitles}) => {
                         onChange={handleChange}
                         required
                         label='Title:'
+                        size='lg'
                         />
                 </div>
                 <div>
@@ -43,6 +44,7 @@ const Form = ({toggleForm, setTitles}) => {
                         onChange={handleChange}
                         required
                         label='Genre:'
+                        size='lg'
                         />
                 </div>
                 <div>
@@ -52,6 +54,7 @@ const Form = ({toggleForm, setTitles}) => {
                         onChange={handleChange}
                         required
                         label='Length:'
+                        size='lg'
                         />
                 </div>
                 <div>
