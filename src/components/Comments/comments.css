@@ -1,8 +1,8 @@
 .comment-box {
     margin-right: 20px;
-    border-bottom: 1px solid black;
-    padding-bottom: 5px;
-    padding-top: 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 20px 10px 5px 10px;
 }
 
 .add-comment-section textarea {
@@ -20,6 +20,7 @@
 
 .author {
     font-weight: bold;
+    margin: 0;
 }
 
 .reply-and-dropdown {
@@ -43,4 +44,26 @@
     border-left: 1px solid black;
     padding-left: 20px;
     padding-top: 15px;
+}
+
+.date {
+    font-size: .85rem;
+    margin: 0;
+    padding: 0;
+}
+
+.replying-to-username {
+    font-size: .90rem;
+}
+
+@media only screen and (min-width: 1000px){
+    .comment-box {
+        margin-right: 20px;
+        border: none;
+        border-radius: 0px;
+        border-bottom: 1px solid black;
+        padding: 0;
+        padding-bottom: 5px;
+        padding-top: 20px;
+    }
 }

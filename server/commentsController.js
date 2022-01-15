@@ -16,7 +16,7 @@ const getComments = async (req, res) => {
 const addComment = async (req,res) => {
     
     
-    const { message, date, previous_id, next_id, title_id, user_id, username } = req.body;
+    const { message, date, previous_id, next_id, title_id, user_id, username, previous_username } = req.body;
     const db = req.app.get('db');
 
     // helper function
@@ -27,7 +27,7 @@ const addComment = async (req,res) => {
     // try catch block for adding new comments and reply comments
 
     try {
-        const comments = await db.add_new_comment([message, date, user_id, title_id,previous_id, next_id, username]);
+        const comments = await db.add_new_comment([message, date, user_id, title_id,previous_id, next_id, username, previous_username]);
         
         
         if (previous_id !== null){

@@ -27,7 +27,6 @@ const Home = (props) => {
 
     
     const handleChange = (e) => {
-        console.log(e.target.value);
         setTypeToFilterBy(e.target.value);
     }
     

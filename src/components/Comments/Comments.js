@@ -34,7 +34,8 @@ const Comments = ({title_id, state}) => {
             previous_id: null,
             next_id: null,
             user_id: state.id,
-            username: state.username
+            username: state.username,
+            previous_username: null
         }
 
         axios.post(`/api/comments`, newComment)
@@ -95,7 +96,8 @@ const Comments = ({title_id, state}) => {
             previous_id: parentComment.comment_id,
             next_id: null,
             user_id: state.id,
-            username: state.username
+            username: state.username,
+            previous_username: parentComment.username
         }
 
         axios.post(`/api/comments`, newReplyComment)
@@ -130,6 +132,37 @@ const Comments = ({title_id, state}) => {
             .catch(err => console.log(err));
     }
 
+    const formatDate = (date) => {
+        const dateArray = date.split('-');
+        let month = '';
+        if (dateArray[1] === '01'){
+            month = 'Jan';
+        } else if (dateArray[1] === '02'){
+            month = 'Feb';
+        } else if (dateArray[1] === '03'){
+            month = 'Mar';
+        } else if (dateArray[1] === '04'){
+            month = 'Apr';
+        } else if (dateArray[1] === '05'){
+            month = 'May';
+        } else if (dateArray[1] === '06'){
+            month = 'June';
+        } else if (dateArray[1] === '07'){
+            month = 'July';
+        } else if (dateArray[1] === '08'){
+            month = 'Aug';
+        } else if (dateArray[1] === '09'){
+            month = 'Sept';
+        }else if (dateArray[1] === '10'){
+            month = 'Oct';
+        }else if (dateArray[1] === '11'){
+            month = 'Nov';
+        } else {
+            month = 'Dec'
+        }
+        return `${month} ${dateArray[2]}, ${dateArray[0]}`;
+    }
+
     return (
         <>
             {loggedInStatus && <section className='add-comment-section'>
@@ -141,6 +174,7 @@ const Comments = ({title_id, state}) => {
 
             {comments.map(comment => {
                 const date = comment.date.split('T')[0];
+                const formattedDate = formatDate(date);
 
                 if (comment.previous_id !== 0 && comment.previous_id !== null && comment.user_id === state.id){
                         return (
@@ -148,7 +182,8 @@ const Comments = ({title_id, state}) => {
 
                                 <section className='comment-author-info'>
                                     <h6 className='author'>{comment.username || 'USERNAME'}</h6>
-                                    <h6>{date}</h6>
+                                    <h6 className='date'>{formattedDate}</h6>
+                                    <h6 className='replying-to-username'> replying to {comment.previous_username || 'USERNAME'} </h6>
                                 </section>
 
                                 <p>{comment.message}</p>
@@ -181,8 +216,9 @@ const Comments = ({title_id, state}) => {
                     <div className='comment-box reply' key={comment.comment_id}>
 
                                 <section className='comment-author-info'>
-                                    <h6 className='author'>{comment.username || 'USERNAME'} </h6>
-                                    <h6>{date}</h6>
+                                    <h6 className='author'>{comment.username || 'USERNAME'}</h6>
+                                    <h6 className='date'>{formattedDate}</h6>
+                                    <h6 className='replying-to-username'> replying to {comment.previous_username || 'USERNAME'} </h6>
                                 </section>
 
                                 <p>{comment.message}</p>
@@ -209,7 +245,7 @@ const Comments = ({title_id, state}) => {
     
                                     <section className='comment-author-info'>
                                         <h6 className='author'>{comment.username || 'USERNAME'} </h6>
-                                        <h6>{date}</h6>
+                                        <h6 className='date'>{formattedDate}</h6>
                                     </section>
     
                                     <p>{comment.message}</p>
@@ -241,7 +277,7 @@ const Comments = ({title_id, state}) => {
     
                                     <section className='comment-author-info'>
                                         <h6 className='author'>{comment.username || 'USERNAME'} </h6>
-                                        <h6>{date}</h6>
+                                        <h6 className='date'>{formattedDate}</h6>
                                     </section>
     
                                     <p>{comment.message}</p>
