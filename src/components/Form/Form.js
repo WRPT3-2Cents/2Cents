@@ -20,19 +20,20 @@ const Form = ({toggleForm, setTitles}) => {
                                     })
                              })
                         .catch(err => console.log(err))
-                    } else {
-        axios.get (`http://www.omdbapi.com/?i=tt3896198&apikey=d92c4380&t=${values.name}`)
-            .then(res => {
-                const poster = res.data.Poster 
-                const newTitle = { ...values, poster}
-                axios.post(`/api/titles`, newTitle)
-                    .then(res => {
-                        toggleForm();
-                        setTitles(res.data)
-                    })
-            })
-            .catch(err => console.log(err))
-    }}
+        } else {
+            axios.get (`http://www.omdbapi.com/?i=tt3896198&apikey=d92c4380&t=${values.name}`)
+                .then(res => {
+                    const poster = res.data.Poster 
+                    const newTitle = { ...values, poster}
+                    axios.post(`/api/titles`, newTitle)
+                        .then(res => {
+                            toggleForm();
+                            setTitles(res.data)
+                        })
+                })
+                .catch(err => console.log(err))
+        }
+    }
     return (
         <>
             <MDBCol>
