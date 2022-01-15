@@ -8,6 +8,7 @@ const Profile = (props) => {
     const [ titles, setTitles] = useState([]);
     const [ recommendations, setRecommendations] = useState(false);
     const [ watchlist, setWatchlist] = useState(false);
+    const [ username, setUsername ] = useState('')
 
     const removeFromWatchlist = (id) => {
         const {loggedIn, ...userProperties} = props.state;
@@ -16,6 +17,12 @@ const Profile = (props) => {
         updatedWatchlist.splice(indexToRemove, 1);
         const user = {...userProperties, watchlist: updatedWatchlist};
         props.updateUser(user);
+    }
+
+    const updateUsername= () => {
+        const {loggedIn, ...userProperties} = props.state;
+        const user = {...userProperties, username};
+        props.updateUser(user)
     }
 
     useEffect(() => {
@@ -41,6 +48,16 @@ const Profile = (props) => {
             <section className='username'>
                 <h3>Username: </h3>
                 <h4>{props.state.username}</h4>
+                <div className="usernameUpdateField">
+                    <input
+                    type="text"
+                    placeholder="Enter New Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    />
+                <button type="submit" id="reg" onClick={updateUsername}>
+                Change My Username</button>
+                </div>
             </section>
 
             <h4>Recommendations</h4>
