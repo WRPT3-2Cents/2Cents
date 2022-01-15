@@ -11,7 +11,11 @@
 }
 
 
-
+@media only screen and (min-width: 600px){
+    .login-container {
+        margin-top: 50px;
+    }
+}
 
 
 
@@ -27,19 +31,3 @@
     }
 
 }
-
-/* .login-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    height: 15vh;
-    border: solid 1px black;
-} */
-
-/* .login-inputs{
-    width: 30%;
-    border-radius: 8px;
-    border: none;
-    padding-left: 8px;
-} */
