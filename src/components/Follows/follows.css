@@ -1,0 +1,10 @@
+.flex-box-follows{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
+
