@@ -22,34 +22,23 @@ const Follows = ({state}) => {
     return (
         <>
             <h1>Follows</h1>
-            <ul>
-
+            
+            <ul className='flex-box-follows'>
             {isFollowing && 
                 state.follows.map(titleId => {
                     const title = titles.find(title => title.title_id === +titleId)
                     if (title){
-                        return (<li key={title.title_id} className='follows-title-details'>
-                                    <Link to={`Title/${title.name}/${title.title_id}`}>
+                        return (<li key={title.title_id} className='titles'>
+                                    <Link to={`Title/${title.name}/${title.title_id}`} className='title-details'>
+                                        <img src={title.poster} alt = "title poster" className='img-title'/>
                                         <h2>{title.name}</h2>
                                         <h6>{title.genre}</h6>
                                         <h6>{title.type}</h6>
                                     </Link></li>)
                             }
                 })}
-                <style jsx>
-                    {`
-                    .follows-title-details {
-                        display: flex;
-                        border: solid black 2px;
-                        padding: 20px;
-                        list-style: none;
-                    }
-                    .follows-title-details a:hover {
-                        color: red;
-                    }
-                    `}
-                </style>
                     </ul>
+            
             
         </>
     )

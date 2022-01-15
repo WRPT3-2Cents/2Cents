@@ -27,11 +27,11 @@ const Dropdown = ({
             <MDBDropdownItem>
               <section className="recommendation-btns">
                 <p>Recommend this title?</p>
-                <button onClick={addRecommendation}>
+                <button onClick={addRecommendation} className='thumbs-up'>
                   <MDBIcon far icon="thumbs-up" />
                   {/* Yes <img src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/24/000000/external-up-arrow-basic-ui-elements-flatart-icons-outline-flatarticons-2.png"/>    */}
                 </button>
-                <button onClick={addNonRecommendation}>
+                <button onClick={addNonRecommendation} className='thumbs-down'>
                   <MDBIcon far icon="thumbs-down" />
                   {/* No <img src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/24/000000/external-down-arrow-basic-ui-elements-flatart-icons-outline-flatarticons.png"/>  */}
                 </button>
