@@ -3,6 +3,7 @@
     border: 1px solid black;
     border-radius: 20px;
     padding: 20px 10px 5px 10px;
+    list-style: none;
 }
 
 .add-comment-section textarea {
@@ -37,6 +38,7 @@
     border-radius: 30px;
     width: 90px;
     padding: 0;
+    outline: none;
 }
 
 .reply {
@@ -54,6 +56,18 @@
 
 .replying-to-username {
     font-size: .90rem;
+}
+
+.add-reply-btn{
+    width: 100px;
+    border-radius: 10px;
+    color: white;
+    background-color: #4B515D;
+}
+
+.add-reply-btn:hover{
+    background-color: black;
+    color: white;
 }
 
 @media only screen and (min-width: 1000px){
