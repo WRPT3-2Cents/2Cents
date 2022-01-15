@@ -90,19 +90,18 @@
        font-size: 18px;
    }
 
-@media all and (max-width: 700px){
-    .filter-drop{
-        display: none;
-    }
+   .search-bar {
+       display: flex;
+       flex-direction: column;
+       margin: 35px 0px;
+   }
 
-    .filter-label{
-        display: none;
-    }
+   .search-bar input {
+       margin-bottom: 15px;
+   }
 
-    .search-bar input {
-        border-radius: 20px;
-        width: 220px;
-        padding-left: 10px;
-    }
-    
-}
+   @media only screen and (min-width: 1000px){
+       .search-bar {
+           flex-direction: row;
+       }
+   }
