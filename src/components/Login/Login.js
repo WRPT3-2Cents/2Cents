@@ -38,6 +38,7 @@ const Login = (props) => {
               validate
               error="wrong"
               success="right"
+              required
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
             />
@@ -47,12 +48,13 @@ const Login = (props) => {
               group
               type="password"
               validate
+              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div >
           <div className="text-center">
-            <button onClick={loggingIn}>Login</button>
+            <button onClick={loggingIn} className='button-login'>Login</button>
           </div>
           <Link to="/Sign-up">
             <p className="h6 text-center mb-4">Create An Account Today!</p>

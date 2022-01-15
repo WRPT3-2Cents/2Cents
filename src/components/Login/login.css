@@ -1,4 +1,14 @@
+.button-login{
+    width: 100px;
+    border-radius: 10px;
+    color: white;
+    background-color: #4B515D;
+}
 
+.button-login:hover{
+    background-color: black;
+    color: white;
+}
 
 
 

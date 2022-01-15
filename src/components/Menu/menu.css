@@ -20,6 +20,13 @@
     font-size: 1.2rem;
 }
 
+.button-logout{
+    background-color: black;
+    color: white;
+    font-size: large;
+    padding-left: 14px;
+}
+
 #main-logo {
     font-weight: 500;
     font-family: 'Pushster', cursive;
