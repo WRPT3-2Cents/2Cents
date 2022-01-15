@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import useForm from '../../utils/useForm';
 import './form.css';
 import { MDBCol, MDBInput, MDBIcon } from "mdbreact";

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './home.css';
-import List from '../List/List';
 import Modal from '../Modal/Modal';
 import Form from '../Form/Form';
 import axios from 'axios'
