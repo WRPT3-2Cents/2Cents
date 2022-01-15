@@ -34,7 +34,8 @@ const Comments = ({title_id, state}) => {
             previous_id: null,
             next_id: null,
             user_id: state.id,
-            username: state.username
+            username: state.username,
+            previous_username: null
         }
 
         axios.post(`/api/comments`, newComment)
@@ -95,7 +96,8 @@ const Comments = ({title_id, state}) => {
             previous_id: parentComment.comment_id,
             next_id: null,
             user_id: state.id,
-            username: state.username
+            username: state.username,
+            previous_username: parentComment.username
         }
 
         axios.post(`/api/comments`, newReplyComment)
@@ -149,6 +151,7 @@ const Comments = ({title_id, state}) => {
                                 <section className='comment-author-info'>
                                     <h6 className='author'>{comment.username || 'USERNAME'}</h6>
                                     <h6>{date}</h6>
+                                    <h6 className='replying-to-username'> replying to {comment.previous_username} </h6>
                                 </section>
 
                                 <p>{comment.message}</p>
@@ -181,8 +184,9 @@ const Comments = ({title_id, state}) => {
                     <div className='comment-box reply' key={comment.comment_id}>
 
                                 <section className='comment-author-info'>
-                                    <h6 className='author'>{comment.username || 'USERNAME'} </h6>
+                                    <h6 className='author'>{comment.username || 'USERNAME'}</h6>
                                     <h6>{date}</h6>
+                                    <h6 className='replying-to-username'> replying to {comment.previous_username} </h6>
                                 </section>
 
                                 <p>{comment.message}</p>

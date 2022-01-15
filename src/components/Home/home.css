@@ -89,3 +89,19 @@
        padding-right: 5px;
        font-size: 18px;
    }
+
+   .search-bar {
+       display: flex;
+       flex-direction: column;
+       margin: 35px 0px;
+   }
+
+   .search-bar input {
+       margin-bottom: 15px;
+   }
+
+   @media only screen and (min-width: 1000px){
+       .search-bar {
+           flex-direction: row;
+       }
+   }
