@@ -100,6 +100,12 @@
        margin-bottom: 15px;
    }
 
+   @media only screen and (min-width: 600px){
+       .search-bar {
+           margin: 75px 0px;
+       }
+   }
+
    @media only screen and (min-width: 1000px){
        .search-bar {
            flex-direction: row;
