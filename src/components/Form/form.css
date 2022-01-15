@@ -2,7 +2,6 @@
     background: white;
     color: black;
     font-weight: bold;
-    /* border: 1px solid black; */
     border-radius: 10px;
     padding: 5px;
     float: right;
@@ -15,8 +14,6 @@
 }
 
 .form {
-    /* border: 2px solid white; */
-    /* margin-bottom: 50px; */
     padding: 25px 10px;
 }
 
