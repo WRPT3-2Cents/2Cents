@@ -36,7 +36,7 @@ const Menu = (props) => {
                     </>}
                     {props.state.loggedIn && <>
                     {/* <li><h4 className='nav-link'><Link onClick={()=>props.logoutUser}to='/'>Logout</Link></h4></li> */}
-                    <li><Link to='/'><button onClick={logout}>Logout</button></Link></li>
+                    <li><Link to='/'><button onClick={logout} className='button-logout'>Logout</button></Link></li>
                     </>}
                 </div>
            </ul>
