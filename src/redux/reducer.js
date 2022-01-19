@@ -32,6 +32,14 @@ export const logoutUser = () => {
     }
 }
 
+export const getUserSession = (user) => {
+    
+    return {
+        type: LOGGED_IN,
+        payload: user
+    }
+}
+
 export const updateUser = (updatedUser) => {
     const user = axios.put('/api/users', updatedUser);
 
@@ -44,7 +52,7 @@ export const updateUser = (updatedUser) => {
 export default function reducer(state=initialState, action){
 
     switch(action.type){
-
+        case LOGGED_IN:
         case `${LOGGED_IN}_FULFILLED`: {
             
             const { id, username, email, recommendations, watchlist, follows } = action.payload.data;
