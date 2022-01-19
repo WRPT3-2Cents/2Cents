@@ -15,3 +15,12 @@
     justify-content: space-around;
     font-size: 1.9rem;
 }
+
+.edit-button {
+    margin-left: 20px;
+    display: flex;
+}
+
+.edit-button:hover {
+    background-color: red;
+}

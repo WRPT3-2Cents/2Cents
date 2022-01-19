@@ -50,7 +50,7 @@ const Home = (props) => {
                         onChange={handleChange}
                         name='type'
                         className='filter-drop'>
-                            <option selected>Select One</option>
+                            <option defaultValue>Select One</option>
                             <option value='Movie'>Movie</option>
                             <option value='TV Show'>TV Show</option>
                             <option value='Book'>Book</option>
@@ -59,7 +59,6 @@ const Home = (props) => {
                 {loggedInStatus &&  <button onClick={toggleForm} className='add-new-title-btn'><MDBIcon icon="plus-circle" /></button>}
             </section>
 
-            {/* <List /> */}
 
             <section className='flex-box'>
             {filteredTitles.map(title => {
