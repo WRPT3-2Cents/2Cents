@@ -6,7 +6,7 @@ const path = require('path');
 const {postRegister, postLogin, getUser, logout} = require('./authController')
 const {getOneTitle, getTitles, addTitle, editTitle, deleteTitle} = require('./titleController')
 const {getUsers, getAllUsers, editUsers, deleteUsers} = require('./userController')
-const {getComments, addComment, editComment, deleteComment} = require('./commentsController')
+const {getComments, addComment, editComment, deleteComment} = require('./commentsController');
 const PORT = process.env.PORT || 5050;
 
 const app = express();
@@ -14,9 +14,10 @@ const app = express();
 app.use(express.json())
 app.use(express.static(path.join(`../build`)));
 
-app.use(session({
+app.use(
+    session({
     resave: false,
-    saveUninitialized:true,
+    saveUninitialized: true,
     secret: process.env.SESSION_SECRET,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 365

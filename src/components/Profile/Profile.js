@@ -9,6 +9,10 @@ const Profile = (props) => {
     const [ recommendations, setRecommendations] = useState(false);
     const [ watchlist, setWatchlist] = useState(false);
     const [ username, setUsername ] = useState('')
+<<<<<<< HEAD
+=======
+    const [ editButton, setEditButton ] = useState(false);
+>>>>>>> main
 
     const removeFromWatchlist = (id) => {
         const {loggedIn, ...userProperties} = props.state;
@@ -25,6 +29,10 @@ const Profile = (props) => {
         props.updateUser(user)
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
     useEffect(() => {
         axios.get('/api/titles')
             .then(res => {
@@ -40,7 +48,6 @@ const Profile = (props) => {
                 setWatchlist(true);
             }
     }, [])
-
     return (
         <>
             <h1>Profile</h1>
@@ -48,6 +55,7 @@ const Profile = (props) => {
             <section className='username'>
                 <h3>Username: </h3>
                 <h4>{props.state.username}</h4>
+<<<<<<< HEAD
                 <div className="usernameUpdateField">
                     <input
                     type="text"
@@ -59,11 +67,30 @@ const Profile = (props) => {
                 Change My Username</button>
                 </div>
             </section>
+=======
+                
+                <div>
+                {props.state.loggedIn && editButton ? (
+                        <div className="usernameUpdateField">
+                                <input
+                                    type="text"
+                                    placeholder="Enter New Username"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                />
+                                <button type="submit" id="reg" onClick={updateUsername}>Submit</button>
+                            </div>
+                    ) : (
+                        <button className="edit-button" onClick={setEditButton}>Edit Button</button>
+                    )}
+                </div>
+                </section>
+>>>>>>> main
 
             <h4>Recommendations</h4>
             <ul>
 
-            {recommendations && props.state.recommendations.map(titleId => {
+            {recommendations && props.state.recommendations.map(titleId  => {
                 const title = titles.find(title => title.title_id === +titleId);
                 if (title){
                     return <li key={title.title_id}>{title.name}</li>
