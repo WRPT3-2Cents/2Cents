@@ -87,14 +87,11 @@ const postLogin = async (req, res) => {
 }
 
 const getUser = async (req, res) => {
-    try {
-        const user = await db(req).get_user(req.body.username);
-        return res.status(200).send(user);
-    } catch(err) {
-        console.log(`Error retrieving user: ${err}`);
-        return res.status(500).send(err);
+    if (req.session.user)res.status(200).send(req.session.user)
+        else {res.sendStatus(401)
     }
 }
+
 
 const logout = async (req ,res) => {
     req.session.destroy();
