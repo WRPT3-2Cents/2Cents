@@ -92,7 +92,9 @@ const Form = ({toggleForm, setTitles}) => {
                         required
                         />
                 </div>
-                <button className='form-btn-submit' onClick={info}>SUBMIT</button>
+                <div className='text-center'>
+                    <button className='form-btn-submit' onClick={info}>POST</button>
+                    </div>
             </form>
             </MDBCol>
         </>

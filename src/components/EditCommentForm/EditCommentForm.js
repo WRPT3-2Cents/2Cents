@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { MDBCol, MDBIcon } from "mdbreact";
 
 
 const EditCommentForm = ({comment, toggle, setComments, titleId}) => {
@@ -25,16 +26,23 @@ const EditCommentForm = ({comment, toggle, setComments, titleId}) => {
 
     return (
         <>
+        <MDBCol>
+            <button className='form-btn' onClick={toggleForm}><MDBIcon icon="times-circle" /></button>
             <form className='form' noValidate>
                 <label>Message: </label>
                     <textarea value={message} 
+                    className="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
                                 name='message'
                                 onChange={handleChange}
                                 required
                                 />
-                <button className='form-btn' onClick={info}>SUBMIT</button>
+                <div className='text-center'>
+                <button className='button-register' onClick={info}>POST</button>
+                </div>
             </form>
-            <button className='form-btn' onClick={toggleForm}>CLOSE</button>
+            </MDBCol>
         </>
     )
 }
