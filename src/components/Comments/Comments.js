@@ -192,8 +192,6 @@ const Comments = ({title_id, state}) => {
 
                                 <section className='reply-and-dropdown'>
 
-                                    <button className='reply-btn' onClick={addReplyComment}>Reply</button>
-
                                     <section id='comment-dropdown'>
                                         <CommentDropdown editComment={editComment} deleteMe={deleteMe} comment={comment} />
                                     </section> 
@@ -253,8 +251,6 @@ const Comments = ({title_id, state}) => {
                                     {loggedInStatus && <>
     
                                     <section className='reply-and-dropdown'>
-    
-                                        <button className='reply-btn' onClick={addReplyComment}>Reply</button>
     
                                             <section id='comment-dropdown'>
                                                 <CommentDropdown editComment={editComment} deleteMe={deleteMe} comment={comment} />
