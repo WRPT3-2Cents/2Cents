@@ -27,7 +27,8 @@ const App = ({getUserSession}) => {
         {routes}
         </section>
       
-    </div>)
+    </div>
+    )
   );
 
 }

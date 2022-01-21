@@ -10,6 +10,14 @@
     color: white;
 }
 
+.guest-button-login{
+    width: 100px;
+    border-radius: 10px;
+    margin-left: 40px;
+    color: white;
+    background-color: #4B515D
+}
+
 
 @media only screen and (min-width: 600px){
     .login-container {

@@ -23,6 +23,13 @@ const Login = (props) => {
     e.preventDefault();
     props.loginUser({userName, password});
   }
+
+  const guestLogin = (e) => {
+    e.preventDefault();
+    const userName = 'guest';
+    const password = 'guest';
+    props.loginUser({userName, password})
+  }
   
   return (
     <div className="login-container">
@@ -55,6 +62,7 @@ const Login = (props) => {
           </div >
           <div className="text-center">
             <button onClick={loggingIn} className='button-login'>Login</button>
+            <button onClick={guestLogin} className='guest-button-login'>Login as a Guest</button>
           </div>
           <Link to="/Sign-up">
             <p className="h6 text-center mb-4">Create An Account Today!</p>
