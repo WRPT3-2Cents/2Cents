@@ -28,7 +28,7 @@ const Follows = ({state}) => {
                 state.follows.map(titleId => {
                     const title = titles.find(title => title.title_id === +titleId)
                     if (title){
-                        return (<li key={title.title_id} className='titles'>
+                        return (<li key={title.title_id} className='titles follows-titles'>
                                     <Link to={`Title/${title.name}/${title.title_id}`} className='title-details'>
                                         <img src={title.poster} alt = "title poster" className='img-title'/>
                                         <h2>{title.name}</h2>

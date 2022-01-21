@@ -79,12 +79,12 @@ const Profile = (props) => {
             </ul>
             
             <h4>Watchlist</h4>
-            <ul>
+            <ul className='watchlist'>
             {watchlist && props.state.watchlist.map(titleId => {
                 const title = titles.find(title => title.title_id === +titleId);
                 if (title){
                     return (<li className='profile-list' key={title.title_id}>
-                                <img src={title.poster} alt='of sand' />
+                                <img src={title.poster} alt='title image' />
                                 <div>{title.name}</div>
                                 <button className='remove-button'onClick={() => removeFromWatchlist(title.title_id)}>X</button>
                             </li>)
