@@ -49,21 +49,23 @@ const Profile = (props) => {
                 <h3>Username: </h3>
                 <h4>{props.state.username}</h4>
                 
-                <div>
-                {props.state.loggedIn && editButton ? (
-                        <div className="usernameUpdateField">
-                                <input
-                                    type="text"
-                                    placeholder="Enter New Username"
-                                    value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
-                                />
-                                <button type="submit" id="reg" onClick={updateUsername}>Submit</button>
-                            </div>
-                    ) : (
-                        <button className="edit-button" onClick={setEditButton}>Edit Button</button>
-                    )}
-                </div>
+                {props.state.username !== 'guest' &&
+                    <div>
+                    {props.state.loggedIn && editButton ? (
+                            <div className="usernameUpdateField">
+                                    <input
+                                        type="text"
+                                        placeholder="Enter New Username"
+                                        value={username}
+                                        onChange={(e) => setUsername(e.target.value)}
+                                    />
+                                    <button type="submit" id="reg" onClick={updateUsername}>Submit</button>
+                                </div>
+                        ) : (
+                            <button className="edit-button" onClick={setEditButton}>Edit Button</button>
+                        )}
+                    </div>
+                    }
                 </section>
 
             <h4>Recommendations</h4>
@@ -79,12 +81,12 @@ const Profile = (props) => {
             </ul>
             
             <h4>Watchlist</h4>
-            <ul>
+            <ul className='watchlist'>
             {watchlist && props.state.watchlist.map(titleId => {
                 const title = titles.find(title => title.title_id === +titleId);
                 if (title){
                     return (<li className='profile-list' key={title.title_id}>
-                                <img src={title.poster} alt='of sand' />
+                                <img src={title.poster} alt='title image' />
                                 <div>{title.name}</div>
                                 <button className='remove-button'onClick={() => removeFromWatchlist(title.title_id)}>X</button>
                             </li>)
