@@ -49,21 +49,23 @@ const Profile = (props) => {
                 <h3>Username: </h3>
                 <h4>{props.state.username}</h4>
                 
-                <div>
-                {props.state.loggedIn && editButton ? (
-                        <div className="usernameUpdateField">
-                                <input
-                                    type="text"
-                                    placeholder="Enter New Username"
-                                    value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
-                                />
-                                <button type="submit" id="reg" onClick={updateUsername}>Submit</button>
-                            </div>
-                    ) : (
-                        <button className="edit-button" onClick={setEditButton}>Edit Button</button>
-                    )}
-                </div>
+                {props.state.username !== 'guest' &&
+                    <div>
+                    {props.state.loggedIn && editButton ? (
+                            <div className="usernameUpdateField">
+                                    <input
+                                        type="text"
+                                        placeholder="Enter New Username"
+                                        value={username}
+                                        onChange={(e) => setUsername(e.target.value)}
+                                    />
+                                    <button type="submit" id="reg" onClick={updateUsername}>Submit</button>
+                                </div>
+                        ) : (
+                            <button className="edit-button" onClick={setEditButton}>Edit Button</button>
+                        )}
+                    </div>
+                    }
                 </section>
 
             <h4>Recommendations</h4>

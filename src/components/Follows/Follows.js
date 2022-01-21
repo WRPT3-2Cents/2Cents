@@ -37,6 +37,10 @@ const Follows = ({state}) => {
                                     </Link></li>)
                             }
                 })}
+            {!isFollowing && <>
+                            <h2>It looks like you're not following any titles yet! Head to the home page and start a conversation! </h2>
+                            <Link to='/' className='home-link-btn'>HOME</Link>
+                            </>}
                     </ul>
             
             
