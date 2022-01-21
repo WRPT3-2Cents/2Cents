@@ -48,7 +48,7 @@ const Profile = (props) => {
             <section className='username'>
                 <h3>Username: </h3>
                 <h4>{props.state.username}</h4>
-                
+        
                 {props.state.username !== 'guest' &&
                     <div>
                     {props.state.loggedIn && editButton ? (
@@ -65,6 +65,7 @@ const Profile = (props) => {
                             <button className="edit-button" onClick={setEditButton}>Edit Button</button>
                         )}
                     </div>
+
                     }
                 </section>
 
