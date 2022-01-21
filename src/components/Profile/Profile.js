@@ -26,7 +26,6 @@ const Profile = (props) => {
         props.updateUser(user)
     }
 
-
     useEffect(() => {
         axios.get('/api/titles')
             .then(res => {

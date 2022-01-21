@@ -6,8 +6,17 @@
     list-style: none;
 }
 
+.add-comment-btn{
+    width: 100px;
+    border-radius: 10px;
+    color: white;
+    background-color: #4B515D;
+    margin-top: 5px;
+}
+
 .add-comment-section textarea {
     border-radius: 10px;
+    padding-left: 10px;
 }
 
 .comment-author-info {
@@ -35,8 +44,8 @@
 
 .reply-btn {
     background-color: white;
-    border-radius: 30px;
-    width: 90px;
+    border-radius: 10px;
+    width: 100px;
     padding: 0;
     outline: none;
 }
@@ -78,6 +87,8 @@
 .thumbs-down:hover{
     background-color: red;
 }
+
+
 
 @media only screen and (min-width: 1000px){
     .comment-box {
