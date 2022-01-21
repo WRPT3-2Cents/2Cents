@@ -19,7 +19,6 @@
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
-    background-color: whitesmoke;
     border-radius: 10px;
 }
 
@@ -28,7 +27,6 @@
     padding: 10px 0px;
     height: 580px;
     width: 300px;
-    border-bottom: 1px black solid;
     transition: transform .2s; /* Animation */
 }
 
@@ -45,10 +43,12 @@
 
 .titles h2 {
     font-size: 2.0rem;
+    margin: 0;
 }
 
 .titles h6 {
     font-size: .75rem;
+    margin: 0;
 }
 
 .title-details {
@@ -58,10 +58,11 @@
     align-items: center;
     height: 550px;
     width: 300px;
+    border-bottom: 1px solid black;
 }
 
 .img-title{
-    height: 400px;
+    height: 350px;
     max-width: 100%;
     border-radius: 10px;
     object-fit: cover;
@@ -111,5 +112,10 @@
    @media only screen and (min-width: 1000px){
        .search-bar {
            flex-direction: row;
+           margin: 10px 0px;
+       }
+
+       .flex-box {
+            background-color: whitesmoke;
        }
    }

@@ -11,9 +11,9 @@
     list-style: none;
     display: flex;
     padding: 15px;
-    align-items: center;
-    justify-content: space-around;
     font-size: 1.9rem;
+    border: 2px solid rgb(150, 167, 150);
+    flex-direction: column;
 }
 
 .edit-button {
@@ -23,4 +23,22 @@
 
 .edit-button:hover {
     background-color: red;
+}
+
+@media only screen and (min-width: 1000px){
+    .profile-list {
+        width: 300px;
+        position: relative;
+        margin-right: 25px;
+    }
+
+    .watchlist {
+        display: flex;
+    }
+
+    .remove-button {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+    }
 }

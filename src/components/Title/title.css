@@ -19,6 +19,10 @@
     margin-top: 5px;
 }
 
+.reply-area textarea{
+    border-radius: 10px;
+}
+
 .hidden {
     display: none;
 }

@@ -28,7 +28,7 @@ const Follows = ({state}) => {
                 state.follows.map(titleId => {
                     const title = titles.find(title => title.title_id === +titleId)
                     if (title){
-                        return (<li key={title.title_id} className='titles'>
+                        return (<li key={title.title_id} className='titles follows-titles'>
                                     <Link to={`Title/${title.name}/${title.title_id}`} className='title-details'>
                                         <img src={title.poster} alt = "title poster" className='img-title'/>
                                         <h2>{title.name}</h2>
@@ -37,6 +37,10 @@ const Follows = ({state}) => {
                                     </Link></li>)
                             }
                 })}
+            {!isFollowing && <>
+                            <h2>It looks like you're not following any titles yet! Head to the home page and start a conversation! </h2>
+                            <Link to='/' className='home-link-btn'>HOME</Link>
+                            </>}
                     </ul>
             
             

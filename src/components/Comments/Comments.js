@@ -167,7 +167,7 @@ const Comments = ({title_id, state}) => {
         <>
             {loggedInStatus && <section className='add-comment-section'>
                 <textarea onChange={handleChange} value={newTopLevelComment} placeholder='What are your thoughts?'/>
-                {newTopLevelComment && <button className='add-comment-btn' onClick={displayNewComment}>SUBMIT</button>}
+                {newTopLevelComment && <button className='add-comment-btn' onClick={displayNewComment}>POST</button>}
             </section> }
             
             {comments[0] === undefined && <section className='no-comments'><h4>No Comments Yet </h4> <h6>Be the first to share your thoughts! </h6></section>}
@@ -192,8 +192,6 @@ const Comments = ({title_id, state}) => {
 
                                 <section className='reply-and-dropdown'>
 
-                                    <button className='reply-btn' onClick={addReplyComment}>Reply</button>
-
                                     <section id='comment-dropdown'>
                                         <CommentDropdown editComment={editComment} deleteMe={deleteMe} comment={comment} />
                                     </section> 
@@ -203,7 +201,7 @@ const Comments = ({title_id, state}) => {
                                 
                                 <div className='reply-area hidden'>
                                         <textarea onChange={handleReplyChange} value={replyComment} />
-                                        <button className='add-reply-btn' onClick={(e) => submitReply(e, comment)}>SUBMIT</button>
+                                        <button className='add-reply-btn' onClick={(e) => submitReply(e, comment)}>POST</button>
                                     </div>
                                     </>
                                 }
@@ -234,7 +232,7 @@ const Comments = ({title_id, state}) => {
                                 
                                 <div className='reply-area hidden'>
                                         <textarea onChange={handleReplyChange} value={replyComment} />
-                                        <button className='add-reply-btn' onClick={(e) => submitReply(e, comment)}>SUBMIT</button>
+                                        <button className='add-reply-btn' onClick={(e) => submitReply(e, comment)}>POST</button>
                                     </div>
                                     </>
                                 }
@@ -254,8 +252,6 @@ const Comments = ({title_id, state}) => {
     
                                     <section className='reply-and-dropdown'>
     
-                                        <button className='reply-btn' onClick={addReplyComment}>Reply</button>
-    
                                             <section id='comment-dropdown'>
                                                 <CommentDropdown editComment={editComment} deleteMe={deleteMe} comment={comment} />
                                             </section>
@@ -265,7 +261,7 @@ const Comments = ({title_id, state}) => {
                                     
                                     <div className='reply-area hidden'>
                                             <textarea onChange={handleReplyChange} value={replyComment} />
-                                            <button className='add-reply-btn' onClick={(e) => submitReply(e, comment)}>SUBMIT</button>
+                                            <button className='add-reply-btn' onClick={(e) => submitReply(e, comment)}>POST</button>
                                         </div>
                                         </>
                                     }
@@ -293,7 +289,7 @@ const Comments = ({title_id, state}) => {
                                     
                                     <div className='reply-area hidden'>
                                             <textarea onChange={handleReplyChange} value={replyComment} />
-                                            <button className='add-reply-btn' onClick={(e) => submitReply(e, comment)}>SUBMIT</button>
+                                            <button className='add-reply-btn' onClick={(e) => submitReply(e, comment)}>POST</button>
                                         </div>
                                         </>
                                     }

@@ -26,6 +26,9 @@
     font-size: large;
     padding-left: 14px;
 }
+.button-logout:hover{
+    color: yellow;
+}
 
 #main-logo {
     font-weight: 500;
