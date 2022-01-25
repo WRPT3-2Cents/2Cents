@@ -41,6 +41,8 @@ export const getUserSession = (user) => {
 }
 
 export const updateUser = (updatedUser) => {
+    console.log(updatedUser);
+
     const user = axios.put('/api/users', updatedUser);
 
     return {
