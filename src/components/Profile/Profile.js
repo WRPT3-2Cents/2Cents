@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { updateUser } from '../../redux/reducer';
+import { Link } from 'react-router-dom';
 import './profile.css';
 import { MDBIcon, MDBTypography } from 'mdbreact';
 
@@ -73,7 +74,7 @@ const Profile = (props) => {
 
                     }</div>
                 </section>
-            <section>
+            <section className='recommendations-section'>
             <MDBTypography tag='h3'className='recommendation-title text-center'>My Recommendations <MDBIcon far icon="thumbs-up" /></MDBTypography>
             <ul className='recommendations'>
 
@@ -88,7 +89,7 @@ const Profile = (props) => {
             </section>
         </section>
             
-            <section>
+            <section className='watchlist-section'>
             <MDBTypography tag='h2'className='watchlist-title text-center'>My Watchlist</MDBTypography>
             <ul className='watchlist'>
             {watchlist && props.state.watchlist.map(titleId => {
@@ -96,11 +97,13 @@ const Profile = (props) => {
                 if (title){
                     return (<li className='watchlist-cont' key={title.title_id}>
                                 <button className='delete-watchlist'onClick={() => removeFromWatchlist(title.title_id)}><MDBIcon far icon="trash-alt" /></button>
+                                <Link to={`Title/${title.name}/${title.title_id}`}>
                                 <div className='profile-list'>
-                                <img src={title.poster} alt='title image' className='img-title' />
-                                <h3>{title.name}</h3>
-                                <h6>{title.genre}</h6>
+                                    <img src={title.poster} alt='title' className='profile-img-title' />
+                                    <h3>{title.name}</h3>
+                                    <h6>{title.genre}</h6>
                                 </div>
+                                </Link>
                             </li>)
                 }
             })}
