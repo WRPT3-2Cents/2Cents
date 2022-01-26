@@ -45,7 +45,7 @@ const Profile = (props) => {
     }, [])
     return (
         <>
-            <h1>My Profile</h1>
+            <h1 className='profile-title'>My Profile</h1>
         <section className='profile-background'>
             <section>
             <section className='username'>
@@ -95,7 +95,7 @@ const Profile = (props) => {
                     return (<li className='watchlist-cont' key={title.title_id}>
                                 <button className='delete-watchlist'onClick={() => removeFromWatchlist(title.title_id)}><MDBIcon far icon="trash-alt" /></button>
                                 <div className='profile-list'>
-                                <img src={title.poster} alt='title image' className='img-title' />
+                                <img src={title.poster} alt='title' className='title' />
                                 <h3>{title.name}</h3>
                                 <h6>{title.genre}</h6>
                                 </div>

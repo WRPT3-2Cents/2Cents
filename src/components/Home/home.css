@@ -91,6 +91,7 @@
    .filter-label{
        padding-right: 5px;
        font-size: 18px;
+       color: white;
    }
 
    .search-bar {

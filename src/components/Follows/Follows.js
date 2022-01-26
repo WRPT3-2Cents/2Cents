@@ -32,7 +32,7 @@ const Follows = (props) => {
 
     return (
         <>
-            <h1>Follows</h1>
+            <h1 className='follows-title'>Follows</h1>
             
             <ul className='flex-box-follows'>
             {isFollowing && 
