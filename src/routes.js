@@ -17,6 +17,7 @@ export default (
         <Route path='/' element ={<Home />} />
         <Route path='Title/:title_name/:title_id' element={<Title />} />
         <Route path='Follows/Title/:title_name/:title_id' element={<Title />} />
+        <Route path='Profile/Title/:title_name/:title_id' element={<Title />} />
         <Route path='Profile' element={<Profile/>} />
         <Route path='Follows' element={<Follows />} />
         <Route path='About' element={<About />} />
