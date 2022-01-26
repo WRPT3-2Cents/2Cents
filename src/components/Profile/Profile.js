@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { updateUser } from '../../redux/reducer';
 import './profile.css';
+import { MDBIcon, MDBTypography } from 'mdbreact';
+
 
 const Profile = (props) => {
     const [ titles, setTitles] = useState([]);
@@ -43,10 +45,11 @@ const Profile = (props) => {
     }, [])
     return (
         <>
-            <h1>Profile</h1>
-
+            <h1>My Profile</h1>
+        <section className='profile-background'>
+            <section>
             <section className='username'>
-                <h3>Username: </h3>
+            <MDBTypography tag='h3'className='text-center'>My Username:</MDBTypography>
                 <h4>{props.state.username}</h4>
         
                 {props.state.username !== 'guest' &&
@@ -59,41 +62,49 @@ const Profile = (props) => {
                                         value={username}
                                         onChange={(e) => setUsername(e.target.value)}
                                     />
-                                    <button type="submit" id="reg" onClick={updateUsername}>Submit</button>
+                                    <button className='edit-button'type="submit" id="reg" onClick={updateUsername}>Change</button>
                                 </div>
                         ) : (
-                            <button className="edit-button" onClick={setEditButton}>Edit Button</button>
+                            <button  className='edit-button' onClick={setEditButton}><MDBIcon far icon="edit" /></button>
                         )}
                     </div>
 
                     }
                 </section>
-
-            <h4>Recommendations</h4>
-            <ul>
+            <section>
+            <MDBTypography tag='h3'className='recommendation-title text-center'>My Recommendations <MDBIcon far icon="thumbs-up" /></MDBTypography>
+            <ul className='recommendations'>
 
             {recommendations && props.state.recommendations.map(titleId  => {
                 const title = titles.find(title => title.title_id === +titleId);
                 if (title){
-                    return <li key={title.title_id}>{title.name}</li>
+                    return <li className='r-list'key={title.title_id}>{title.name}</li>
                 }
             })}
             
             </ul>
+            </section>
+        </section>
             
-            <h4>Watchlist</h4>
+            <section>
+            <MDBTypography tag='h2'className='watchlist-title text-center'>My Watchlist</MDBTypography>
             <ul className='watchlist'>
             {watchlist && props.state.watchlist.map(titleId => {
                 const title = titles.find(title => title.title_id === +titleId);
                 if (title){
-                    return (<li className='profile-list' key={title.title_id}>
-                                <img src={title.poster} alt='title image' />
-                                <div>{title.name}</div>
-                                <button className='remove-button'onClick={() => removeFromWatchlist(title.title_id)}>X</button>
+                    return (<li className='watchlist-cont' key={title.title_id}>
+                                <button className='delete-watchlist'onClick={() => removeFromWatchlist(title.title_id)}><MDBIcon far icon="trash-alt" /></button>
+                                <div className='profile-list'>
+                                <img src={title.poster} alt='title image' className='img-title' />
+                                <h3>{title.name}</h3>
+                                <h6>{title.genre}</h6>
+                                </div>
                             </li>)
                 }
             })}
             </ul>
+                </section>
+            </section>
             <style jsx>
                 {`
                 .remove-button {
@@ -110,6 +121,7 @@ const Profile = (props) => {
                 }
                 `}
             </style>
+            
         </>
     )
 }
@@ -123,3 +135,6 @@ const mapStateToProps = (reduxState) => {
 const mapDispatchToProps = { updateUser };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+
+                                
+                                
