@@ -88,6 +88,7 @@
 .watchlist-section {
     background-color: whitesmoke;
     border-radius: 10px;
+    border: 2px solid green;
 }
 
 .watchlist-cont {
@@ -174,6 +175,7 @@
     }
     .watchlist-section {
         margin-left: 50px;
+        width: 700px;
     }
     .username {
         padding: 25px;
