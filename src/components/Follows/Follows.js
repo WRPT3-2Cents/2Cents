@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { updateUser } from '../../redux/reducer';
 import { Link } from 'react-router-dom';
+import { MDBIcon } from 'mdbreact';
 import './follows.css';
 
 const Follows = (props) => {
@@ -40,12 +41,13 @@ const Follows = (props) => {
                     const title = titles.find(title => title.title_id === +titleId)
                     if (title){
                         return (<li key={title.title_id} className='titles follows-titles'>
+                                    <button className='delete-follows' onClick={() => removeFromFollows(title.title_id)}><MDBIcon far icon="trash-alt" /></button>
                                     <Link to={`Title/${title.name}/${title.title_id}`} className='title-details'>
                                         <img src={title.poster} alt = "title poster" className='img-title'/>
                                         <h2>{title.name}</h2>
                                         <h6>{title.genre}</h6>
                                         <h6>{title.type}</h6>
-                                    </Link><button onClick={() => removeFromFollows(title.title_id)}>REMOVE</button></li>)
+                                    </Link></li>)
                             }
                 })}
             {!isFollowing && <>
