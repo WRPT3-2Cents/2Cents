@@ -1,19 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { updateUser } from '../../redux/reducer';
 import { Link } from 'react-router-dom';
 import './follows.css';
 
-const Follows = ({state}) => {
+const Follows = (props) => {
     const [ titles, setTitles ] = useState([]);
     const [ isFollowing, setIsFollowing] = useState(false);
+
+    const removeFromFollows = (id) => {
+        const {loggedIn, ...userProperties} = props.state;
+        const indexToRemove = userProperties.follows.findIndex(titleId => +titleId === id);
+        const updatedFollows = [...userProperties.follows];
+        updatedFollows.splice(indexToRemove, 1);
+        const user = {...userProperties, follows: updatedFollows};
+        props.updateUser(user);
+    }
 
     useEffect(() => {
         axios.get('/api/titles')
             .then(res => setTitles(res.data))
             .catch(err => console.log(err));
         
-        if (state.follows !== null){
+        if (props.state.follows !== null && props.state.follows[0] !== undefined){
+            console.log(props.state.follows);
             setIsFollowing(true);
         }
         
@@ -25,7 +36,7 @@ const Follows = ({state}) => {
             
             <ul className='flex-box-follows'>
             {isFollowing && 
-                state.follows.map(titleId => {
+                props.state.follows.map(titleId => {
                     const title = titles.find(title => title.title_id === +titleId)
                     if (title){
                         return (<li key={title.title_id} className='titles follows-titles'>
@@ -34,7 +45,7 @@ const Follows = ({state}) => {
                                         <h2>{title.name}</h2>
                                         <h6>{title.genre}</h6>
                                         <h6>{title.type}</h6>
-                                    </Link></li>)
+                                    </Link><button onClick={() => removeFromFollows(title.title_id)}>REMOVE</button></li>)
                             }
                 })}
             {!isFollowing && <>
@@ -54,4 +65,6 @@ const mapStateToProps = (reduxState) => {
     }
 }
 
-export default connect(mapStateToProps)(Follows);
+const mapDispatchToProps = { updateUser };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Follows);
