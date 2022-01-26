@@ -1,44 +1,128 @@
 .username {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    height: 200px;
+    background-color: whitesmoke;
+    border-radius: 10px;
 }
 
 .username h4 {
+    margin-top: 10px;
     font-weight: bold;
     margin-left: 10px;
 }
 
+.recommendations{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 400px;
+    height: 500px;
+    background-color: whitesmoke;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-top: 30px;
+    overflow: auto;
+    list-style: none;
+    /* text-align: center; */
+    font-size: 20px;
+    margin-top: -8px;
+}
+.recommendation-title{
+    background-color: whitesmoke;
+    height: 50px;
+    margin-top: 30px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.r-list{
+    border-bottom: 1px black solid;
+    width: 300px;
+    margin: 10px;
+}
 .profile-list {
     list-style: none;
     display: flex;
+    flex-direction: column;
+
     padding: 15px;
     font-size: 1.9rem;
-    border: 2px solid rgb(150, 167, 150);
+        /* border: 2px solid rgb(150, 167, 150); */
     flex-direction: column;
+}
+.profile-background{
+    /* background-color: whitesmoke; */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+
 }
 
 .edit-button {
-    margin-left: 20px;
-    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    width: 100px;
 }
 
 .edit-button:hover {
-    background-color: red;
+    cursor: pointer;
+    border-radius: 10px;
 }
+
 
 @media only screen and (min-width: 1000px){
     .profile-list {
         width: 300px;
+        height: 500px;
         position: relative;
         margin-right: 25px;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-content: center;
+        padding-top: 0px;
     }
 
     .watchlist {
         display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
+        overflow: auto;
+        height: 800px;
+        background-color: whitesmoke;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        margin-left: 10px;
+        /* border: solid 1px black; */
     }
 
-    .remove-button {
-        position: absolute;
-        right: 10px;
-        bottom: 10px;
+    .watchlist-title{
+        background-color: whitesmoke;
+        margin: 0px;
+        margin-left: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .delete-watchlist {
+        float: right;
+        margin-right: 35px;
+        padding-bottom: 0px;
+    }
+    .delete-watchlist:hover{
+        cursor: pointer;
+        border-radius: 10px;
+    }
+
+    .watchlist-cont{
+        list-style: none;
+    padding: 10px 0px;
+    width: 300px;
+    text-align: center;
     }
 }
