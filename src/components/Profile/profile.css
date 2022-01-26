@@ -32,7 +32,6 @@
     margin-top: 30px;
     overflow: auto;
     list-style: none;
-    /* text-align: center; */
     font-size: 20px;
     margin-top: -8px;
 }
@@ -88,9 +87,7 @@
 .watchlist-section {
     background-color: whitesmoke;
     border-radius: 10px;
-    width: 800px;
-    height: 800px;
-    overflow: auto;
+    border: 2px solid green;
 }
 
 .watchlist-cont {
@@ -145,6 +142,7 @@
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
         margin-left: 10px;
+        height: 500px;
     }
 
     .watchlist-title{
@@ -178,6 +176,7 @@
     }
     .watchlist-section {
         margin-left: 50px;
+        width: 700px;
     }
     .username {
         padding: 25px;
