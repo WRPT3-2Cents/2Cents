@@ -164,7 +164,7 @@ const Comments = ({title_id, state}) => {
     }
 
     return (
-        <>
+        <section className='comments-container'>
             {loggedInStatus && <section className='add-comment-section'>
                 <textarea onChange={handleChange} value={newTopLevelComment} placeholder='What are your thoughts?'/>
                 {newTopLevelComment && <button className='add-comment-btn' onClick={displayNewComment}>POST</button>}
@@ -305,7 +305,7 @@ const Comments = ({title_id, state}) => {
                                             setComments={orderComments}
                                             titleId={title_id}/>
                                     </Modal>}
-        </>
+        </section>
     )
 }
 
