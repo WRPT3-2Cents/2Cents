@@ -49,27 +49,29 @@ const Profile = (props) => {
         <section className='profile-background'>
             <section>
             <section className='username'>
-            <MDBTypography tag='h3'className='text-center'>My Username:</MDBTypography>
-                <h4>{props.state.username}</h4>
+            <MDBTypography tag='h3'className='username-title text-center'>My Username</MDBTypography>
+                <div className='username-cont'>
+                    <h4>{props.state.username}</h4>
         
                 {props.state.username !== 'guest' &&
-                    <div>
+                    <div className='usernameUpdateField'>
                     {props.state.loggedIn && editButton ? (
-                            <div className="usernameUpdateField">
-                                    <input
+                            <div >
+                                        <input
                                         type="text"
                                         placeholder="Enter New Username"
                                         value={username}
                                         onChange={(e) => setUsername(e.target.value)}
+                                        className='input-username'
                                     />
                                     <button className='edit-button'type="submit" id="reg" onClick={updateUsername}>Change</button>
-                                </div>
+                            </div>
                         ) : (
                             <button  className='edit-button' onClick={setEditButton}><MDBIcon far icon="edit" /></button>
                         )}
                     </div>
 
-                    }
+                    }</div>
                 </section>
             <section>
             <MDBTypography tag='h3'className='recommendation-title text-center'>My Recommendations <MDBIcon far icon="thumbs-up" /></MDBTypography>
