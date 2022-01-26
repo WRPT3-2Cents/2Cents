@@ -2,7 +2,7 @@
 import React, { useState , useEffect} from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./login.css";
-import { MDBCol, MDBInput} from "mdbreact";
+import { MDBCol, MDBInput, MDBTypography} from "mdbreact";
 import { connect } from 'react-redux';
 import { loginUser } from '../../redux/reducer.js';
 import { toast } from "react-toastify";
@@ -35,7 +35,7 @@ const Login = (props) => {
     <div className="login-container">
       <MDBCol>
         <form>
-          <h1 className="h1 text-center mb-4">Login</h1>
+        <MDBTypography tag='h1' className="text-center">Login</MDBTypography>
           <div className="black-text">
             <MDBInput
             icon='user'
