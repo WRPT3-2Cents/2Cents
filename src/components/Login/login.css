@@ -19,6 +19,8 @@
 }
 .login-container {
     background-color: whitesmoke;
+    border-radius: 10px;
+    margin-top: 50px;
 }
 .buttons {
     display: flex;
