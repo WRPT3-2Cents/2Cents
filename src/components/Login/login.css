@@ -28,6 +28,9 @@
     .login-container {
         margin-top: 50px;
     }
+    .buttons {
+        justify-content: center;
+    }
 }
 
 
