@@ -1,3 +1,13 @@
+@keyframes scroll {
+    from {
+        margin-top: 0%;
+        width: 100%
+    }
+    to {
+        margin-top: -40%;
+        width: 100%
+    }
+}
 .main-nav {
     border-bottom: 1px solid black;
     display: flex;
@@ -13,6 +23,14 @@
     align-items: center;
     padding-left: 20px;
     background-color: white;
+}
+
+.menu {
+    animation-name: scroll;
+    animation-duration: .4s;
+    animation-iteration-count: 1;
+    animation-direction: alternate-reverse;
+    animation-timing-function: linear;
 }
 
 .img {
@@ -34,5 +52,9 @@
 @media only screen and (min-width: 1000px){
     .close-btn {
         display: none;
+    }
+
+    @keyframes scroll{
+        
     }
 }

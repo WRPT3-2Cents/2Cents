@@ -23,7 +23,7 @@ const Comments = ({title_id, state}) => {
             })
             .catch(err => console.log(err))
         
-    }, []);
+    }, [comments]);
 
     const displayNewComment = () => {
         

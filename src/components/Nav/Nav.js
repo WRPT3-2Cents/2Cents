@@ -4,6 +4,7 @@ import './nav.css';
 
 const Nav = () => {
     const [ menuStatus, setMenuStatus] = useState(false);
+    const [ hamburger, setHamburger ] = useState(false) 
 
     const toggleMenu = () => setMenuStatus(!menuStatus);
 
@@ -18,11 +19,14 @@ const Nav = () => {
 
     return (
         <nav className='main-nav' onClick={toggleMenu}>
+            <div className={!menuStatus ? 'hamburger hamburger-scroll' : 'scroll'}
+                onClick={toggleMenu}>
             { !menuStatus && 
                 <div className='hamburger-menu'>
                     <img src="https://img.icons8.com/material-rounded/24/000000/menu--v1.png" alt='menu-icon' />
                     <h6 className='menu-text'>MENU</h6>
                 </div>}
+                    </div>
             { menuStatus && <> 
                                 <span className='close-btn'>X</span>
                                 <Menu />
