@@ -43,9 +43,8 @@
 }
 .r-list{
     border-bottom: 1px black solid;
-    /* margin: 10px; */
     margin-top: 15px;
-    width: 250px;
+    width: 90%;
 }
 .profile-list {
     list-style: none;
@@ -160,6 +159,13 @@
         justify-content: space-around;
         align-content: center;
         padding-top: 0px;
+        color: black;
+        transition: transform .2s; /* Animation */
+    }
+
+    .profile-list:hover{
+        color: red;
+        transform: scale(1.02);
     }
 
     .watchlist {
@@ -227,8 +233,7 @@
 
     .r-list{
         border-bottom: 1px black solid;
-        /* margin: 10px; */
         margin-top: 15px;
-        width: 325px;
+        width: 90%;
     }
 }
