@@ -60,7 +60,7 @@ const Login = (props) => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="text-center">
+          <div className="text-center buttons">
             <button onClick={loggingIn} className='button-login'>Login</button>
             <button onClick={guestLogin} className='guest-button-login'>Login as a Guest</button>
           </div>
