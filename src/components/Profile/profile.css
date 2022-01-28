@@ -43,7 +43,9 @@
 }
 .r-list{
     border-bottom: 1px black solid;
-    margin: 10px;
+    /* margin: 10px; */
+    margin-top: 15px;
+    width: 250px;
 }
 .profile-list {
     list-style: none;
@@ -57,10 +59,6 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-}
-
-.profile-title {
-    color: white;
 }
 
 .edit-button {
@@ -82,14 +80,36 @@
     border: whitesmoke 1px solid;
 }
 .watchlist {
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: whitesmoke;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 .watchlist-section {
     background-color: whitesmoke;
     border-radius: 10px;
-    border: 2px solid green;
+    height: 600px;
+    overflow: scroll;
+}
+.profile-title {
+    color: white;
 }
 
+.profile-list {
+    width: 300px;
+    height: 500px;
+    position: relative;
+    margin-right: 25px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    padding-top: 0px;
+}
 .watchlist-cont {
     margin:0;
     list-style: none;
@@ -114,7 +134,18 @@
     background-color: whitesmoke;
     margin: 25px 0px;
     border-radius: 10px;
-    align-content: center;
+    overflow: auto;
+    height: 400px;
+}
+
+.delete-watchlist {
+    float: right;
+    margin-right: 25px;
+    padding-bottom: 0px;
+}
+.delete-watchlist:hover{
+    cursor: pointer;
+    border-radius: 10px;
 }
 
 @media only screen and (min-width: 1000px){
@@ -142,7 +173,6 @@
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
         margin-left: 10px;
-        height: 500px;
     }
 
     .watchlist-title{
@@ -176,7 +206,8 @@
     }
     .watchlist-section {
         margin-left: 50px;
-        width: 700px;
+        width: 800px;
+        height: 800px;
     }
     .username {
         padding: 25px;
@@ -186,6 +217,18 @@
         margin-top: 20px;
         border-radius: 10px;
         padding: 20px;
-        height: 600px;
+        height: 550px;
+        width: 450px;
+    } 
+    .profile-title {
+        color: white;
+        margin-left: 100px;
+    }
+
+    .r-list{
+        border-bottom: 1px black solid;
+        /* margin: 10px; */
+        margin-top: 15px;
+        width: 325px;
     }
 }
