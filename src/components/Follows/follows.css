@@ -28,3 +28,13 @@
 .follows-title {
     color: white;
 }
+
+.follows-titles h2 {
+    font-size: 1.4rem;
+}
+
+@media only screen and (min-width: 1000px){
+    .follows-titles h2 {
+        font-size: 1.6rem;
+    }
+}
