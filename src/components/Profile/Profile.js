@@ -26,6 +26,7 @@ const Profile = (props) => {
     const updateUsername= () => {
         const {loggedIn, ...userProperties} = props.state;
         const user = {...userProperties, username};
+        setEditButton(false);
         props.updateUser(user)
     }
 

@@ -33,8 +33,33 @@
     font-size: 1.4rem;
 }
 
+
 @media only screen and (min-width: 1000px){
     .follows-titles h2 {
         font-size: 1.6rem;
+    }
+    .follows-message {
+        display: flex;
+        flex-direction: column;
+        border: 2px solid black;
+        margin: 0;
+        border: 0;
+    }
+
+    .home-link-btn {
+        font-size: 2rem;
+    }
+
+    .flex-box-follows-box {
+        display: flex;
+        background-color: whitesmoke;
+        border-radius: 10px;
+        border: 2px solid black;
+        justify-content: center;
+        text-align: center;
+        padding: 50px;
+    }
+    .follows-message h2 {
+        font-weight: bold;
     }
 }

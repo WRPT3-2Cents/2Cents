@@ -35,7 +35,7 @@ const Follows = (props) => {
         <>
             <h1 className='follows-title'>Follows</h1>
             
-            <ul className='flex-box-follows'>
+            <ul className='flex-box-follows-box'>
             {isFollowing && 
                 props.state.follows.map(titleId => {
                     const title = titles.find(title => title.title_id === +titleId)
@@ -50,10 +50,11 @@ const Follows = (props) => {
                                     </Link></li>)
                             }
                 })}
-            {!isFollowing && <>
-                            <h2>It looks like you're not following any titles yet! Head to the home page and start a conversation! </h2>
+            {!isFollowing && <section className='follows-message'>
+                            <h2>It looks like you're not following any titles yet!</h2>
+                            <h3>Head to the home page and start a conversation! </h3>
                             <Link to='/' className='home-link-btn'>HOME</Link>
-                            </>}
+                            </section>}
                     </ul>
             
             
